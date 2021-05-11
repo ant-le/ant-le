@@ -8,7 +8,7 @@ I'm [Anton](https://github.com/ant-le) <a href="https://www.linkedin.com/in/anto
 , an undergraduate student interested in data4good, politics and philosophy 👨‍💻.
 <br>  
 
-<img align="left" src="https://raw.githubusercontent.com/Aniket965/Aniket965/master/pacman.svg?sanitize=true" width="200" height="300">
+<img align="left" src="https://raw.githubusercontent.com/Aniket965/Aniket965/master/pacman.svg?sanitize=true" width="200" height="250">
   
 #### I am currently friends with: <br>
 <code><a href="https://www.python.org/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/python/python-ar21.svg"></a></code>
