@@ -10,7 +10,7 @@
 - ⚡ Fun fact: I love to draw and play guitar / drums
 
 ### My Spotify Song 🎧
-[![Spotify](https://spotify-github-readme.vercel.app/api/spotify)](https://open.spotify.com/track/66K0Kz7mw6mxpPoRiBlZkW?si=4efa1e52bedb4f96)
+[![Spotify](https://spotify-github-readme.vercel.app/api/spotify)](https://open.spotify.com/collection/tracks)
 
 
 ### Connect with me:
