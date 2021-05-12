@@ -5,7 +5,7 @@ I'm [Anton](https://github.com/ant-le) <a href="https://www.linkedin.com/in/anto
   <a href="mailto:lechuga.anton@gmail.com">
     <img align="center" alt="Anton Lechuga | Gmail" width="26px" src="https://github.com/piyushP7pravin/piyushP7pravin/blob/master/Gmail.svg" />
   </a>
-, an undergraduate student interested in data4good, politics and philosophy 👨‍💻.
+, an undergraduate student interested in data4good, politics and AI 👨‍💻.
 <br>  
 
 <img align="left" src="https://raw.githubusercontent.com/Aniket965/Aniket965/master/pacman.svg?sanitize=true" width="200" height="250">
@@ -22,5 +22,3 @@ I'm [Anton](https://github.com/ant-le) <a href="https://www.linkedin.com/in/anto
 <code><a href="https://www.javascript.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/javascript/javascript-ar21.svg"></a></code>
 <code><a href="https://www.tensorflow.org/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg"></a></code>
 <br>
-
-
