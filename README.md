@@ -1,7 +1,7 @@
 # 𝗛𝗲𝗹𝗹𝗼！<img src="https://user-images.githubusercontent.com/5679180/79618120-0daffb80-80be-11ea-819e-d2b0fa904d07.gif" width="27px">  <a href="https://www.linkedin.com/in/anton-luis-lechuga-1b1777176/"> <img align="right" alt="Anton Lechuga | Linkedin" width="24px" src="https://github.com/piyushP7pravin/piyushP7pravin/blob/master/Linkedin.svg" /> <a href="mailto:lechuga.anton@gmail.com"> <img align="right" alt="Anton Lechuga | Gmail" width="26px" src="https://github.com/piyushP7pravin/piyushP7pravin/blob/master/Gmail.svg" />
   </a>
 
-I'm [Anton](https://github.com/ant-le), an undergraduate student interested in data4good, politics and philosophy 👨‍💻.
+I'm [Anton](https://github.com/ant-le), an undergraduate student interested in data4good, politics and AI 👨‍💻.
 <br>  
 
 <img align="left" src="https://raw.githubusercontent.com/Aniket965/Aniket965/master/pacman.svg?sanitize=true" width="200" height="250">
