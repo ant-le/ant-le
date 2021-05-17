@@ -13,8 +13,10 @@ I'm [Anton](https://github.com/ant-le), an undergraduate student interested in d
 <code><a href="https://git-scm.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg"></a></code>
 <code><a href="https://www.mysql.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/mysql/mysql-ar21.svg"></a></code>
 <code><a href="http://www.postgresql.org" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/postgresql/postgresql-ar21.svg"></a></code>
+<code><a href="https://java.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/java/java-ar21.svg"></a></code>
 <br>
 #### Looking forward to meet: <br>
 <code><a href="https://www.javascript.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/javascript/javascript-ar21.svg"></a></code>
 <code><a href="https://www.tensorflow.org/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg"></a></code>
+<code><a href="https://www.djangoproject.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-ar21.svg"></a></code>
 <br>
