@@ -1,4 +1,4 @@
-<img src="images/header.svg"></img>
+<img src="/images/header.svg"></img>
 
 <img width="50%" align="right" alt="Github" src="/images/scrat.png" />
 
