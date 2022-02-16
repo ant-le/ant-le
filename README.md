@@ -12,7 +12,7 @@ I'm Anton, an undergraduate student interested in Causal Inference, Bayesian Sta
 <code><a href="https://www.r-project.org" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/r-project/r-project-ar21.svg"></a></code>
 <code><a href="http://www.postgresql.org" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/postgresql/postgresql-ar21.svg"></a></code>
 <code><a href="https://java.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/java/java-ar21.svg"></a></code>
-<code><a href="https://java.com/" target="_blank"><img height="50" src="https://raw.githubusercontent.com/ant-le/ant-le/5c20e4c1988c3fdf6107fc82bde0c33a27248eb3/images/stan.svg"></a></code>
+<code><a href="https://mc-stan.org/users/interfaces/pystan" target="_blank"><img height="50" width="50" src="https://raw.githubusercontent.com/ant-le/ant-le/b9d2632ac7cb5bdf7bd8fd5523bdef00a50cd432/images/stan.svg"></a></code>
 <br>
 
 ### Looking forward to meet: <br>
