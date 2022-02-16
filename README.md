@@ -1,6 +1,6 @@
 <img src="images/header.svg"></img>
 
-<img width="50%" align="right" alt="Github" src="/images/scrat.png" />
+<img width="50%" align="right" alt="Github" src="images/scrat.png" />
 
 an undergraduate student interested in Causal Inference, Bayesian Stats and AI.
   - A
