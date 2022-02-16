@@ -1,4 +1,4 @@
-<img src="/images/header.svg"></img>
+<img src="images/header.svg"></img>
 
 <img width="50%" align="right" alt="Github" src="/images/scrat.png" />
 
@@ -28,9 +28,9 @@ an undergraduate student interested in Causal Inference, Bayesian Stats and AI.
    <br>
 <br>
   <a href="https://www.linkedin.com/in/anton-luis-lechuga/"> 
-  <img align="blank" alt="Anton Lechuga | Linkedin" width="24px" src="/images/linkedin.svg" />
+  <img align="blank" alt="Anton Lechuga | Linkedin" width="24px" src="images/linkedin.svg" />
 <a href="mailto:lechuga.anton@gmail.com"> 
-  <img align="blank" alt="Anton Lechuga | Gmail" width="26px" src="/images/gmail.svg" /> 
+  <img align="blank" alt="Anton Lechuga | Gmail" width="26px" src="images/gmail.svg" /> 
 <a href="https://twitter.com/anton_lechuga"> 
-  <img align="blank" alt="Anton Lechuga | Twitter" width="24px" src="/images/twitter.svg" />
+  <img align="blank" alt="Anton Lechuga | Twitter" width="24px" src="images/twitter.svg" />
 </a>    
