@@ -146,8 +146,6 @@ g.typingUnderline rect {
 
   <rect fill="#AAA" fill-opacity="50%" x="0" y="1" width="100%" height="0.4" ></rect>
  
-  <use id="wave3" class="wave" xlink:href="#wave" x="0" y="-2" ></use> 
-  <use id="wave2" class="wave" xlink:href="#wave" x="0" y="0" ></use>
  
   <g class="gooeff" filter="url(#goo)">
     <circle class="drop drop1" cx="95" cy="2" r="8.8"  />
@@ -171,9 +169,6 @@ g.typingUnderline rect {
     <circle class="drop drop5" cx="14.2" cy="5.1" r="7.5"  />
     <circle class="drop drop6" cx="17.2" cy="4.8" r="9.2"  />
       
-    <use id="wave1" class="wave" xlink:href="#wave" x="0" y="1" />
-  </g>  
-
 <text x="1" y="12" font-family="Chalkduster" font-size=".22em" 
       fill="#AAA" font-weight="bold"> 
       Hi there 
