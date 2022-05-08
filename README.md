@@ -2,7 +2,7 @@
 
 <img width="50%" align="right" alt="Github" src="images/scrat.png" />
 
-an undergraduate student interested in Causal Inference, Bayesian Stats and AI.
+a graduate student interested in Causal Inference, Bayesian Stats and AI.
   - A
   - B
   - C
