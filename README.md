@@ -1,4 +1,4 @@
-# Hello, 
+# Hello  <img align="blank" width="40px" src="images/wave.gif" /> 
 <img width="50%" align="right" alt="Github" src="images/scrat.png" />
 
 I am a graduate student interested in:
