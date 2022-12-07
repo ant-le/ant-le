@@ -1,17 +1,9 @@
 # Hello  <img align="blank" width="40px" src="images/wave.gif" /> 
-<img width="50%" align="right" alt="Github" src="images/scrat.png" />
 
-I am a graduate student interested in:
+I am a Data Science graduate student interested in:
   - Bayesian Statistics
   - Causal Inference
   - Artificial Intelligence
-
-### Programs I work with:<br>
-<code><a href="https://www.python.org/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/python/python-ar21.svg"></a></code>
-<code><a href="https://www.r-project.org" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/r-project/r-project-ar21.svg"></a></code>
-<code><a href="http://www.postgresql.org" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/postgresql/postgresql-ar21.svg"></a></code>
-<code><a href="https://java.com/" target="_blank"><img height="50" src="https://www.vectorlogo.zone/logos/java/java-ar21.svg"></a></code>
-<br><br><br><br><br><br><br>
 <hr>
 <p align="center">
    <i>"Enjoy the little detours to the fullest.</i>
