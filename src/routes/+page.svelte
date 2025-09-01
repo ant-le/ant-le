@@ -1,54 +1,54 @@
 <script lang="ts">
-	import TextCard from '$lib/components/TextCard.svelte';
-	import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte';
-	import { mockFriendsData } from '$lib/mockData';
+    import { friendsData } from '$lib/data'
+    import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte'
+    import TextCard from '$lib/components/TextCard.svelte'
+    import profile from '$lib/assets/profile.webp'
+    let friends = $derived(friendsData)
 </script>
 
-<div class="container">
-	<!-- Hero Section -->
-	<section class="text-center mb-16">
-		<h1 class="heading-1">
-			Welcome, I'm Anton
-		</h1>
-		<p class="text-body text-center max-w-2xl mx-auto">
-			A passionate scientist, runner, and music enthusiast sharing my journey through life and work.
-		</p>
-	</section>
+<svelte:head>
+    <title>Anton Lechuga | Home</title>
+    <meta
+        name="description"
+        content="Personal website of Anton Lechuga - Scientist, Runner, and Music Enthusiast"
+    />
+</svelte:head>
 
-	<!-- About Section -->
-	<section class="space-y-6 mb-16">
-		<TextCard 
-			text="I'm a researcher with a deep interest in machine learning and quantum computing. My work focuses on developing innovative solutions that bridge the gap between theoretical concepts and practical applications."
-			align="center"
-			variant="highlighted"
-		/>
-		
-		<TextCard 
-			text="When I'm not in the lab or behind a computer, you'll find me running through the streets and trails. Running has become more than just exercise—it's my meditation, my challenge, and my way of exploring the world."
-			align="center"
-		/>
-		
-		<TextCard 
-			text="Music is the soundtrack to my life. From classical compositions to modern jazz, I find inspiration and solace in melodies that tell stories and evoke emotions."
-			align="center"
-			variant="highlighted"
-		/>
-	</section>
+<div class="max-w-5xl mx-auto mt-16 flex flex-col gap-16">
+    <div class="flex flex-col md:flex-row mx-auto gap-2">
+        <div class="m-auto">
+            <img
+                class="h-auto max-w-xs sm:max-w-s transition-all duration-300 rounded-lg cursor-pointer filter grayscale hover:grayscale-0"
+                src={profile}
+                alt="That is me."
+            />
+        </div>
+        <div class="flex flex-col gap-1 p-2">
+            <TextCard
+                text="Hello, I am Anton and on this little website I want to share things I am interested in, 
+        aspects of life I care about and stuff I love doing!"
+            />
 
-	<!-- Friends References Section -->
-	<section class="mb-16">
-		<CardRasterHorizontal 
-			items={mockFriendsData}
-			type="friends"
-			title="What Friends Say"
-		/>
-	</section>
+            <TextCard
+                text="I have backgrounds in <b>political science</b> and <b>computer science</b>. 
+        My current academic interests are centered around causal inference and software development. This website is part of
+        tying to see if/how LLMs can effectively used to write code without extensive refactoring and debugging."
+            />
 
-	<!-- Call to Action -->
-	<section class="text-center">
-		<TextCard 
-			text="Explore my work in science, follow my running journey, or discover the music that moves me. Each section offers a different perspective on who I am and what drives me."
-			align="center"
-		/>
-	</section>
+            <TextCard
+                text="In my free-time, I spends a lot of time listening/mixing music
+        and running longer distances. I want to use this website to keep track
+        and share some progress I've been making..."
+            />
+        </div>
+    </div>
+
+    <!-- Friends Section -->
+    <section class="p-4 border-t border-neutral-200">
+        <CardRasterHorizontal
+            posts={friends}
+            className="
+        "
+        />
+    </section>
 </div>

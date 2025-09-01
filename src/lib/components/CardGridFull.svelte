@@ -1,213 +1,183 @@
 <script lang="ts">
-	import type { BlogPost, FriendsData } from '../types';
-	import BlogCard from './BlogCard.svelte';
-	import FriendsReferences from './FriendsReferences.svelte';
-	import { filterBlogPostsByLabel, filterBlogPostsByTitle, sortBlogPostsByDate } from '../utils';
+    import type { BlogPost } from '$lib/types'
+    import BlogCard from './BlogCard.svelte'
+    import {
+        filterBlogPostsByLabel,
+        filterBlogPostsByTitle,
+        sortBlogPostsByDate,
+    } from '$lib/utils'
 
-	interface Props {
-		items: BlogPost[] | FriendsData[];
-		type: 'blog' | 'friends';
-		title?: string;
-		columns?: number;
-		className?: string;
-		showFilters?: boolean;
-	}
+    let {
+        posts,
+        columns = 3,
+        className = '',
+        onReadMore,
+    } = $props<{
+        posts: BlogPost[]
+        columns?: number
+        className?: string
+        onReadMore?: (post: BlogPost) => void
+    }>()
 
-	let { 
-		items, 
-		type, 
-		title, 
-		columns = 3, 
-		className = '', 
-		showFilters = true 
-	}: Props = $props();
-	
-	
-	  // Filter and sort state
-  let searchTerm = $state('');
-  let selectedLabel = $state('');
-  let sortBy = $state('date');
-	
-	// Get unique labels from blog posts
-	let uniqueLabels = $derived(() => {
-		if (type === 'blog') {
-			const allLabels = (items as BlogPost[]).flatMap(post => post.labels);
-			return [...new Set(allLabels)];
-		}
-		return [];
-	});
-	
-	// Filter and sort items
-	let filteredItems = $derived(() => {
-		if (type === 'blog') {
-			let filteredItems = items as BlogPost[];
-			
-			// Filter by search term
-			if (searchTerm) {
-				filteredItems = filterBlogPostsByTitle(filteredItems, searchTerm);
-			}
-			
-			// Filter by label
-			if (selectedLabel) {
-				filteredItems = filterBlogPostsByLabel(filteredItems, selectedLabel);
-			}
-			
-			// Sort items
-			if (sortBy === 'date') {
-				filteredItems = sortBlogPostsByDate(filteredItems);
-			}
-			
-			return filteredItems;
-		}
-		return items;
-	});
+    // Filter and sort state
+    let searchTerm = $state('')
+    let selectedLabel = $state('')
+    let sortOrder = $state<'newest' | 'oldest'>('newest')
 
-	function handleSearch(event: Event) {
-		const target = event.target as HTMLInputElement;
-		searchTerm = target.value;
-	}
+    // Get all unique labels from posts
+    let allLabels = $derived([
+        ...new Set(posts.flatMap((post: BlogPost) => post.labels)),
+    ])
 
-	function handleLabelFilter(event: Event) {
-		const target = event.target as HTMLSelectElement;
-		selectedLabel = target.value;
-	}
+    // Filter and sort posts
+    let filteredPosts = $derived.by(() => {
+        let filtered = posts
 
-	function handleSort(event: Event) {
-		const target = event.target as HTMLSelectElement;
-		sortBy = target.value;
-	}
+        // Filter by search term
+        if (searchTerm.trim()) {
+            filtered = filterBlogPostsByTitle(filtered, searchTerm.trim())
+        }
 
-	function clearFilters() {
-		searchTerm = '';
-		selectedLabel = '';
-		sortBy = 'date';
-	}
+        // Filter by label
+        if (selectedLabel) {
+            filtered = filterBlogPostsByLabel(filtered, selectedLabel)
+        }
+
+        // Sort by date
+        filtered = sortBlogPostsByDate(filtered)
+        if (sortOrder === 'oldest') {
+            filtered = filtered.reverse()
+        }
+
+        return filtered
+    })
 </script>
 
-<div class="{className}">
-	{#if title}
-		<h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
-			{title}
-		</h2>
-	{/if}
-	
-	{#if showFilters && type === 'blog'}
-		<div class="mb-8 p-4 bg-gray-50 rounded-lg">
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-				<!-- Search -->
-				<div>
-					<label for="search" class="block text-sm font-medium text-gray-700 mb-2">
-						Search by title
-					</label>
-					<input
-						id="search"
-						type="text"
-						placeholder="Search posts..."
-						bind:value={searchTerm}
-						            oninput={handleSearch}
-						class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-					/>
-				</div>
-				
-				<!-- Label Filter -->
-				<div>
-					<label for="label-filter" class="block text-sm font-medium text-gray-700 mb-2">
-						Filter by label
-					</label>
-					<select
-						id="label-filter"
-						bind:value={selectedLabel}
-						            onchange={handleLabelFilter}
-						class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-					>
-						<option value="">All labels</option>
-						{#each uniqueLabels() as label}
-							<option value={label}>{label}</option>
-						{/each}
-					</select>
-				</div>
-				
-				<!-- Sort -->
-				<div>
-					<label for="sort" class="block text-sm font-medium text-gray-700 mb-2">
-						Sort by
-					</label>
-					<select
-						id="sort"
-						bind:value={sortBy}
-						            onchange={handleSort}
-						class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-					>
-						<option value="date">Date (newest first)</option>
-						<option value="title">Title (A-Z)</option>
-					</select>
-				</div>
-			</div>
-			
-			<!-- Clear Filters Button -->
-			{#if searchTerm || selectedLabel || sortBy !== 'date'}
-				<div class="mt-4 text-center">
-					<button
-						onclick={clearFilters}
-						class="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 underline"
-					>
-						Clear all filters
-					</button>
-				</div>
-			{/if}
-		</div>
-	{/if}
-	
-	<!-- Results Count -->
-	{#if showFilters && type === 'blog'}
-		<div class="mb-4 text-sm text-gray-600">
-			Showing {filteredItems().length} of {items.length} posts
-		</div>
-	{/if}
-	
-	<!-- Grid -->
-	{#if filteredItems().length > 0}
-		<div class="grid gap-6" style="grid-template-columns: repeat({columns}, 1fr);">
-			{#each filteredItems() as item, index}
-				{#if type === 'blog'}
-					<BlogCard post={item as BlogPost} />
-				{:else if type === 'friends'}
-					<FriendsReferences friend={item as FriendsData} />
-				{/if}
-			{/each}
-		</div>
-	{:else}
-		<div class="text-center py-12">
-			<div class="text-gray-500 text-lg mb-2">
-				{#if searchTerm || selectedLabel}
-					No posts found matching your filters
-				{:else}
-					No posts available
-				{/if}
-			</div>
-			{#if searchTerm || selectedLabel}
-				<button
-					onclick={clearFilters}
-					class="text-blue-600 hover:text-blue-800 underline"
-				>
-					Clear filters
-				</button>
-			{/if}
-		</div>
-	{/if}
-</div>
+<div
+    class="
+    /* Minimal theme (default) */
+    space-y-6
+    
+    /* Artistic theme overrides */
+    artistic:space-y-8
+    
+    {className}
+"
+>
+    <!-- Filter Controls -->
+    <div
+        class="
+        /* Minimal theme (default) */
+        flex flex-col sm:flex-row gap-4 items-start sm:items-center
+        
+        /* Artistic theme overrides */
+        artistic:flex-col artistic:sm:flex-row artistic:gap-4 artistic:items-start artistic:sm:items-center artistic:p-4 artistic:bg-gradient-to-r artistic:from-primary/10 artistic:to-secondary/10 artistic:rounded-xl artistic:border-2 artistic:border-accent/30 artistic:shadow-lg
+    "
+    >
+        <!-- Search Input -->
+        <div
+            class="
+            /* Minimal theme (default) */
+            flex-1 min-w-0
+        "
+        >
+            <input
+                type="text"
+                placeholder="Search by title..."
+                bind:value={searchTerm}
+                class="
+                    /* Minimal theme (default) */
+                    w-full px-3 py-2 bg-transparent border border-neutral-300 text-text-primary placeholder-text-tertiary focus:outline-none focus:border-text-primary transition-colors duration-200
+                    
+                    /* Artistic theme overrides */
+                    artistic:bg-gradient-to-r artistic:from-bg-secondary artistic:to-primary/5 artistic:border-2 artistic:border-accent/50 artistic:rounded-lg artistic:focus:border-accent artistic:placeholder-text-secondary artistic:text-text-primary artistic:shadow-md artistic:focus:shadow-lg artistic:transition-all artistic:duration-300
+                "
+            />
+        </div>
 
-<style>
-	/* Responsive grid */
-	@media (max-width: 640px) {
-		div[style*="grid-template-columns"] {
-			grid-template-columns: 1fr !important;
-		}
-	}
-	
-	@media (min-width: 641px) and (max-width: 1024px) {
-		div[style*="grid-template-columns"] {
-			grid-template-columns: repeat(2, 1fr) !important;
-		}
-	}
-</style>
+        <!-- Label Filter -->
+        <select
+            bind:value={selectedLabel}
+            class="
+                /* Minimal theme (default) */
+                px-3 py-2 bg-transparent border border-neutral-300 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-200
+                
+                /* Artistic theme overrides */
+                artistic:bg-gradient-to-r artistic:from-secondary/20 artistic:to-accent/20 artistic:border-2 artistic:border-secondary artistic:rounded-lg artistic:focus:border-accent artistic:text-text-primary artistic:shadow-md artistic:focus:shadow-lg artistic:transition-all artistic:duration-300
+            "
+        >
+            <option value="">All Labels</option>
+            {#each allLabels as label}
+                <option value={label}>{label}</option>
+            {/each}
+        </select>
+
+        <!-- Sort Order -->
+        <select
+            bind:value={sortOrder}
+            class="
+                /* Minimal theme (default) */
+                px-3 py-2 bg-transparent border border-neutral-300 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-200
+                
+                /* Artistic theme overrides */
+                artistic:bg-gradient-to-r artistic:from-accent/20 artistic:to-accent-2/20 artistic:border-2 artistic:border-accent artistic:rounded-lg artistic:focus:border-accent-2 artistic:text-text-primary artistic:shadow-md artistic:focus:shadow-lg artistic:transition-all artistic:duration-300
+            "
+        >
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+        </select>
+    </div>
+
+    <!-- Results Count -->
+    <div
+        class="
+        /* Minimal theme (default) */
+        text-sm font-light text-text-secondary
+        
+        /* Artistic theme overrides */
+        artistic:font-normal artistic:text-secondary artistic:bg-gradient-to-r artistic:from-primary/10 artistic:to-secondary/10 artistic:px-4 artistic:py-2 artistic:rounded-lg artistic:border artistic:border-accent/30 artistic:shadow-md artistic:animate-pulse
+    "
+    >
+        Showing {filteredPosts.length} of {posts.length} posts
+    </div>
+
+    <!-- Blog Cards Grid -->
+    <div
+        class="
+        /* Minimal theme (default) */
+        grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{columns} gap-6
+        
+        /* Artistic theme overrides */
+        artistic:grid-cols-1 artistic:md:grid-cols-2 artistic:lg:grid-cols-{columns} artistic:gap-8
+    "
+    >
+        {#each filteredPosts as post}
+            <BlogCard {post} {onReadMore} />
+        {/each}
+    </div>
+
+    <!-- No Results Message -->
+    {#if filteredPosts.length === 0}
+        <div
+            class="
+            /* Minimal theme (default) */
+            text-center py-12 text-text-secondary
+            
+            /* Artistic theme overrides */
+            artistic:text-center artistic:py-12 artistic:text-text-secondary
+        "
+        >
+            <p
+                class="
+                /* Minimal theme (default) */
+                text-lg font-light
+                
+                /* Artistic theme overrides */
+                artistic:text-lg artistic:font-normal
+            "
+            >
+                No posts found matching your criteria.
+            </p>
+        </div>
+    {/if}
+</div>
