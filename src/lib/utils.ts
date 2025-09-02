@@ -72,7 +72,7 @@ export function getRandomBlogPosts(
  * Get running PBs sorted by distance (shortest to longest)
  */
 export function getSortedRunningPBs(pbs: RunningPB[]): RunningPB[] {
-    const distanceOrder = { '5k': 1, '10k': 2, 'Half Marathon': 3, Marathon: 4 }
+    const distanceOrder = { '5k': 1, '10k': 2, 'Half Marathon': 3, 'Marathon': 4 }
     return [...pbs].sort(
         (a, b) => distanceOrder[a.distance] - distanceOrder[b.distance]
     )
