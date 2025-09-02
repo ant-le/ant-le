@@ -13,7 +13,7 @@ export const blogPosts: BlogPost[] = [
     },
     {
         creationDate: new Date('2022-03-26'),
-        title: 'Austrian Poilitics - Corruption Scandal',
+        title: 'Austrian Politics - Corruption Scandal',
         image: '/images/placeholder.svg',
         labels: [
             'bayesian statistics',
