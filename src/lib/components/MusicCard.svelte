@@ -11,8 +11,7 @@
 <article
     class="
     flex flex-col h-full rounded-xl overflow-hidden shadow-lg transition-shadow duration-300
-    bg-white dark:bg-neutral-800 hover:shadow-xl
-    artistic:bg-primary-dark artistic:shadow-xl artistic:hover:shadow-accent/20
+    bg-white artistic:bg-primary-dark artistic:shadow-xl artistic:hover:shadow-accent/20
   "
 >
     <!-- Main visual container. It's now relative to position children inside it. -->
@@ -115,7 +114,7 @@
 
         <!-- Labels -->
         <div
-            class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700 artistic:border-accent/30"
+            class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-neutral-200 artistic:border-accent/30"
         >
             {#each post.labels as label}
                 <span
