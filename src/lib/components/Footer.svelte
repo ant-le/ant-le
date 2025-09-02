@@ -1,186 +1,122 @@
 <script lang="ts">
-	const socialLinks = [
-		{ name: 'Strava', href: 'https://www.strava.com/athletes/your-profile', icon: 'S', artisticIcon: '🏃‍♂️' },
-		{ name: 'GitHub', href: 'https://github.com/your-username', icon: 'G', artisticIcon: '💻' },
-		{ name: 'Email', href: 'mailto:your-email@example.com', icon: 'E', artisticIcon: '📧' }
-	];
+    const currentYear = new Date().getFullYear()
 </script>
 
-<footer class="footer">
-	<div class="container py-8">
-		<div class="flex flex-col items-center space-y-4">
-			<!-- Social Links -->
-			<div class="flex space-x-8">
-				{#each socialLinks as link}
-					<a
-						href={link.href}
-						class="social-link"
-						aria-label={link.name}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<div class="social-icon">
-							<span class="minimal-icon">{link.icon}</span>
-							<span class="artistic-icon">{link.artisticIcon}</span>
-						</div>
-						<span class="social-label">
-							{link.name}
-						</span>
-					</a>
-				{/each}
-			</div>
-		</div>
-	</div>
+<footer
+    class="
+    /* Minimal theme (default) */
+    bg-transparent border-t border-neutral-300 py-8
+    
+    /* Artistic theme overrides */
+    artistic:bg-bg-secondary artistic:border-t artistic:border-neutral-200 artistic:shadow-inner
+"
+>
+    <div class="max-w-5xl mx-auto px-4">
+        <div
+            class="
+            /* Minimal theme (default) */
+            flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0
+            
+            /* Artistic theme overrides */
+            artistic:flex-row artistic:space-y-0
+        "
+        >
+            <!-- Copyright -->
+            <div
+                class="
+                /* Minimal theme (default) */
+                text-sm font-light text-text-secondary
+                
+                /* Artistic theme overrides */
+                artistic:font-normal
+            "
+            >
+                © {currentYear} Anton Lechuga.
+            </div>
+
+            <!-- Social Links -->
+            <div
+                class="
+                /* Minimal theme (default) */
+                flex space-x-6
+                
+                /* Artistic theme overrides */
+                artistic:space-x-6
+            "
+            >
+                <!-- Strava -->
+                <a
+                    href="https://www.strava.com/athletes/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                    /* Minimal theme (default) */
+                    text-text-secondary hover:text-text-primary transition-colors duration-300
+        
+                    /* Artistic theme overrides */
+                    artistic:text-text-secondary artistic:hover:text-primary
+                    "
+                    aria-label="Strava"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="m15.387 18.354-3.956-7.958h-1.92l5.875 11.825L22 10.396h-1.92l-4.693 7.958zM8.575 10.396 4.138 19.526h-1.92l6.357-13.063L15.387 18.354h-1.92L8.575 10.396z"
+                        />
+                    </svg>
+                </a>
+
+                <!-- Gmail -->
+                <a
+                    href="mailto:anton.lechuga@gmail.com"
+                    class="
+                        /* Minimal theme (default) */
+                        text-text-secondary hover:text-text-primary transition-colors duration-300
+                        
+                        /* Artistic theme overrides */
+                        artistic:text-text-secondary artistic:hover:text-primary
+                    "
+                    aria-label="Email"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.682L12 12.5l9.682-8.679h.682c.904 0 1.636.732 1.636 1.636z"
+                        />
+                    </svg>
+                </a>
+
+                <!-- GitHub -->
+                <a
+                    href="https://github.com/ant-le"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                        /* Minimal theme (default) */
+                        text-text-secondary hover:text-text-primary transition-colors duration-300
+                        
+                        /* Artistic theme overrides */
+                        artistic:text-text-secondary artistic:hover:text-primary
+                    "
+                    aria-label="GitHub"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                        />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
 </footer>
-
-<style>
-	.footer {
-		background-color: var(--color-bg-secondary);
-		border-top: 1px solid var(--color-neutral-200);
-		transition: all 0.3s ease;
-	}
-
-	.social-link {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-		color: var(--color-text-tertiary);
-		text-decoration: none;
-		transition: color 0.3s ease;
-	}
-
-	.social-link:hover {
-		color: var(--color-text-secondary);
-	}
-
-	.social-icon {
-		width: 2rem;
-		height: 2rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: var(--color-bg-tertiary);
-		border-radius: 0.25rem;
-		font-size: 0.875rem;
-		font-weight: 700;
-		color: var(--color-text-tertiary);
-		transition: all 0.3s ease;
-		position: relative;
-	}
-
-	.minimal-icon {
-		display: block;
-	}
-
-	.artistic-icon {
-		display: none;
-		font-size: 1.25rem;
-	}
-
-	.social-link:hover .social-icon {
-		background-color: var(--color-primary);
-		color: var(--color-text-light);
-	}
-
-	.social-label {
-		font-family: var(--font-family-primary);
-		font-size: 0.75rem;
-		color: var(--color-text-tertiary);
-	}
-
-	/* Minimal theme footer styling */
-	:global([data-theme="minimal"]) .footer {
-		background-color: transparent;
-		border-top: none;
-		padding: 2rem 0;
-	}
-
-	:global([data-theme="minimal"]) .social-icon {
-		display: none;
-	}
-
-	:global([data-theme="minimal"]) .social-link {
-		flex-direction: row;
-		gap: 1rem;
-		padding: 0.25rem 0;
-		font-weight: 300;
-		letter-spacing: 0.05em;
-	}
-
-	:global([data-theme="minimal"]) .social-label {
-		font-size: 0.875rem;
-		color: var(--color-text-tertiary);
-	}
-
-	/* Show artistic icons in artistic theme */
-	:global([data-theme="artistic"]) .minimal-icon {
-		display: none;
-	}
-
-	:global([data-theme="artistic"]) .artistic-icon {
-		display: block;
-	}
-
-	/* Artistic theme experimental styling */
-	:global([data-theme="artistic"]) .footer {
-		background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-		border-top: 3px solid var(--color-accent);
-		box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-		animation: footerGlow 3s ease-in-out infinite alternate;
-		padding: 2rem 0;
-	}
-
-	:global([data-theme="artistic"]) .social-link {
-		position: relative;
-		overflow: hidden;
-		border-radius: 15px;
-		padding: 0.5rem;
-		transition: all 0.3s ease;
-	}
-
-	:global([data-theme="artistic"]) .social-link::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: -100%;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-		transition: left 0.6s ease;
-	}
-
-	:global([data-theme="artistic"]) .social-link:hover::before {
-		left: 100%;
-	}
-
-	:global([data-theme="artistic"]) .social-link:hover {
-		transform: translateY(-5px) scale(1.1);
-	}
-
-	:global([data-theme="artistic"]) .social-icon {
-		background: linear-gradient(45deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
-		border-radius: 50%;
-		box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-		animation: socialIconFloat 2s ease-in-out infinite;
-	}
-
-	:global([data-theme="artistic"]) .social-link:hover .social-icon {
-		animation: socialIconSpin 0.6s ease-in-out;
-	}
-
-	@keyframes footerGlow {
-		from { box-shadow: 0 -4px 20px rgba(0,0,0,0.1); }
-		to { box-shadow: 0 -4px 30px rgba(0,0,0,0.2); }
-	}
-
-	@keyframes socialIconFloat {
-		0%, 100% { transform: translateY(0); }
-		50% { transform: translateY(-3px); }
-	}
-
-	@keyframes socialIconSpin {
-		0% { transform: rotate(0deg); }
-		100% { transform: rotate(360deg); }
-	}
-</style>

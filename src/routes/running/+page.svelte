@@ -1,107 +1,177 @@
 <script lang="ts">
-	import TextCard from '$lib/components/TextCard.svelte';
-	import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte';
-	import TrainingChart from '$lib/components/TrainingChart.svelte';
-	import { mockBlogPosts, mockRunningPBs, mockRunningTraining } from '$lib/mockData';
-	import { filterBlogPostsByCategory, getSortedRunningPBs, getWeeklyTrainingData } from '$lib/utils';
+    import { blogPosts, runningPBs, runningTraining } from '$lib/data'
+    import { filterBlogPostsByCategory } from '$lib/utils'
+    import TrainingChart from '$lib/components/TrainingChart.svelte'
+    import PersonalBest from '$lib/components/PersonalBest.svelte'
+    import BlogCard from '$lib/components/BlogCard.svelte'
+    import FullBlog from '$lib/components/FullBlog.svelte'
+    import PageHeader from '$lib/components/PageHeader.svelte'
+    import TextCard from '$lib/components/TextCard.svelte'
+    import type { BlogPost } from '$lib/types'
 
-	// Get running blog posts
-	const runningPosts = filterBlogPostsByCategory(mockBlogPosts, 'running');
-	const sortedPBs = getSortedRunningPBs(mockRunningPBs);
-	const weeklyTraining = getWeeklyTrainingData(mockRunningTraining);
+    // Get running blog posts
+    let runningPosts = $derived(filterBlogPostsByCategory(blogPosts, 'running'))
+
+    // FullBlog popup state - simplified
+    let selectedPost = $state<BlogPost | null>(null)
+
+    function openFullBlog(post: BlogPost) {
+        selectedPost = post
+    }
 </script>
 
-<div class="container">
-	<!-- Hero Section -->
-	<section class="text-center mb-16">
-		<h1 class="heading-1">
-			Running Journey
-		</h1>
-		<p class="text-body text-center max-w-3xl mx-auto">
-			From casual jogs to marathon training, documenting my passion for running and personal growth.
-		</p>
-	</section>
+<svelte:head>
+    <title>Running - Anton Lechuga</title>
+    <meta
+        name="description"
+        content="Running achievements and training by Anton Lechuga"
+    />
+</svelte:head>
 
-	<!-- Main Grid Layout -->
-	<div class="grid lg:grid-cols-3 gap-8 mb-16">
-		<!-- Left Column - Text Content and Blog Posts -->
-		<div class="lg:col-span-2 space-y-8">
-			<!-- Introduction -->
-			<TextCard 
-				text="Running has transformed my life in ways I never expected. What started as a simple way to stay fit has become a journey of self-discovery, discipline, and pushing my limits."
-				align="left"
-				variant="highlighted"
-			/>
-			
-			<!-- Blog Posts -->
-			<CardRasterHorizontal 
-				items={runningPosts}
-				type="blog"
-				title="Running Stories"
-			/>
-			
-			<!-- Second Text Block -->
-			<TextCard 
-				text="Every run teaches me something new—about my body, my mind, and my capacity for growth. Whether it's a 5K tempo run or a long marathon training session, each step brings me closer to understanding my potential."
-				align="left"
-			/>
-		</div>
+<div
+    class="
+        /* Minimal theme (default) */
+        max-w-6xl mx-auto px-4
+        
+        /* Artistic theme overrides */
+        artistic:max-w-6xl
+    "
+>
+    <PageHeader
+        title="Running"
+        subtitle="Personal bests, training insights, and the journey to sub-3 marathon."
+        align="left"
+    />
 
-		<!-- Right Column - Stats and Data -->
-		<div class="space-y-8">
-			<!-- Personal Bests -->
-			<div class="card">
-				<h3 class="heading-3">Personal Bests</h3>
-				<div class="space-y-3">
-					{#each sortedPBs as pb}
-						<div class="flex justify-between items-center p-3 bg-neutral-50 rounded border">
-							<div>
-								<span class="font-bold text-neutral-900">{pb.distance}</span>
-								<div class="text-sm text-neutral-600">{pb.eventLocation}</div>
-								<div class="text-xs text-neutral-500">{pb.eventDate.toLocaleDateString()}</div>
-							</div>
-							<div class="text-right">
-								<div class="font-bold text-primary">{pb.time}</div>
-								<div class="text-xs text-neutral-500">{pb.usedShoe}</div>
-							</div>
-						</div>
-					{/each}
-				</div>
-			</div>
+    <!-- Grid Layout: Left Side (Larger) + Right Side (Smaller) -->
+    <div
+        class="
+            /* Minimal theme (default) */
+            grid grid-cols-1 lg:grid-cols-5 gap-8
+            
+            /* Artistic theme overrides */
+            artistic:grid-cols-1 artistic:lg:grid-cols-5 artistic:gap-12
+        "
+    >
+        <!-- Left Side - Text Blocks + Horizontal Blog Scroll (Takes 3/5 of space) -->
+        <div
+            class="
+                /* Minimal theme (default) */
+                lg:col-span-3 space-y-8
+                
+                /* Artistic theme overrides */
+                artistic:lg:col-span-3 artistic:space-y-10
+            "
+        >
+            <!-- Text Blocks Section -->
+            <section
+                class="
+                    /* Minimal theme (default) */
+                    space-y-6
+                    
+                    /* Artistic theme overrides */
+                    artistic:space-y-8
+                "
+            >
+                <!-- Text Block 1 -->
+                <TextCard
+                    text="
+                            Breaking the 3-hour marathon barrier has been a long-standing goal. Through systematic training, 
+                            proper nutrition, and mental preparation, I'm working towards this ambitious target. The journey 
+                            involves building endurance, improving running economy, and developing race-day strategies."
+                />
 
-			<!-- Weekly Training Chart -->
-			<TrainingChart weeklyData={weeklyTraining} />
-		</div>
-	</div>
+                <TextCard
+                    text="
+                            My training approach combines high-mileage base building with targeted speed work. 
+                            Long runs build endurance, tempo runs improve lactate threshold, and interval training 
+                            enhances VO2 max. Recovery is prioritized through proper sleep, nutrition, and cross-training.
+                        "
+                />
 
-	<!-- Training Philosophy -->
-	<section class="mb-16">
-		<h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
-			Training Philosophy
-		</h2>
-		<div class="grid md:grid-cols-3 gap-8">
-			<TextCard 
-				text="Consistency over intensity. Building a sustainable running habit has been more valuable than any single breakthrough performance."
-				align="center"
-				variant="highlighted"
-			/>
-			<TextCard 
-				text="Listen to your body. Rest days are as important as training days, and recovery is where the real gains happen."
-				align="center"
-			/>
-			<TextCard 
-				text="Progress, not perfection. Every run is a step forward, regardless of pace or distance."
-				align="center"
-				variant="highlighted"
-			/>
-		</div>
-	</section>
+                <TextCard
+                    text="
+                            Marathon success requires more than physical fitness. Mental preparation, pacing strategy, 
+                            and nutrition planning are crucial. I focus on positive visualization, breaking the race 
+                            into manageable segments, and maintaining focus during challenging moments.
+                        "
+                />
+            </section>
+            <!-- Horizontal Blog Posts Scroll -->
+            <section
+                class="
+                    /* Minimal theme (default) */
+                    space-y-4
+                    
+                    /* Artistic theme overrides */
+                    artistic:space-y-6
+                "
+            >
+                <h2
+                    class="
+                        /* Minimal theme (default) */
+                        text-2xl font-normal text-text-primary mb-4
+                        
+                        /* Artistic theme overrides */
+                        artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent
+                    "
+                >
+                    Running Blog Posts
+                </h2>
+                <div
+                    class="
+                        /* Minimal theme (default) */
+                        overflow-x-auto pb-4
+                        
+                        /* Artistic theme overrides */
+                        artistic:overflow-x-auto artistic:pb-4
+                    "
+                >
+                    <div
+                        class="
+                            /* Minimal theme (default) */
+                            flex gap-4 min-w-max
+                            
+                            /* Artistic theme overrides */
+                            artistic:flex artistic:gap-4 artistic:min-w-max
+                        "
+                    >
+                        {#each runningPosts as post}
+                            <div
+                                class="
+                                    /* Minimal theme (default) */
+                                    w-80 flex-shrink-0
+                                    
+                                    /* Artistic theme overrides */
+                                    artistic:w-80 artistic:flex-shrink-0
+                                "
+                            >
+                                <BlogCard {post} onReadMore={openFullBlog} />
+                            </div>
+                        {/each}
+                    </div>
+                </div>
+            </section>
+        </div>
 
-	<!-- Call to Action -->
-	<section class="text-center">
-		<TextCard 
-			text="Whether you're just starting your running journey or training for your next race, I'd love to connect with fellow runners and share experiences."
-			align="center"
-		/>
-	</section>
+        <!-- Right Side - Two Smaller Sections (Takes 2/5 of space) -->
+        <div
+            class="
+                /* Minimal theme (default) */
+                lg:col-span-2 space-y-6
+                
+                /* Artistic theme overrides */
+                artistic:lg:col-span-2 artistic:space-y-8
+            "
+        >
+            <!-- Personal Bests Section -->
+            <PersonalBest pbs={runningPBs} />
+
+            <!-- Training Chart Section -->
+            <TrainingChart data={runningTraining} />
+        </div>
+    </div>
 </div>
+
+<!-- FullBlog Popup - now self-contained -->
+<FullBlog post={selectedPost} />
