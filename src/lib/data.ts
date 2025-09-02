@@ -91,7 +91,7 @@ export const musicPosts: MusicData[] = [
         creationDate: new Date('2025-06-06'),
 
         title: 'My Favourite Band',
-        desc: 'King Gizzard and the Lizzard Wizzard',
+        desc: 'King Gizzard and the Lizard Wizard',
         image: lama,
         labels: ['KGLW', 'Rock'],
         post: '', // Filepath to the full post

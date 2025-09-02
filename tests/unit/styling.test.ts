@@ -1,4 +1,3 @@
-// src/tests/styling.test.ts
 import { describe, it, expect, beforeAll } from 'vitest'
 import * as fs from 'fs/promises'
 import * as path from 'path'
