@@ -104,7 +104,7 @@ export const friendsData: FriendsData[] = [
     {
         name: 'Luca Salsetti',
         image: lama,
-        text: 'He is a genious!',
+        text: 'He is a genius!',
         role: 'Just a random dude',
     },
     {
