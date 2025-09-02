@@ -1,29 +1,37 @@
-name: Run Integration Tests and Formatting
+name: CI Checks
+
 on:
-    pull_request:
-        branches: ['main']
-    workflow_dispatch:
+  pull_request:
+    branches: ['main']
+  workflow_dispatch:
 
 jobs:
-    format:
-        name: Check Code Formatting
-        runs-on: ubuntu-latest
+  test-and-format:
+    name: Test and Format
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
 
-        steps:
-            - name: Checkout Code
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: npm
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-            - name: Install Dependencies
-              run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-            - name: Run Prettier Check
-              run: npm run check:format
+      - name: Run Prettier Format Check
+        run: npm run check:format
 
-            - name: Run Tests
-              run: npm run test
+      - name: Run Unit Tests (Vitest)
+        run: npm run test:unit
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run E2E Tests (Playwright)
+        run: npm run test:e2e
