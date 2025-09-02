@@ -1,15 +1,15 @@
-# TODO: Add integration tests
+name: CI Checks
 
-name: Run Integration Tests and Formatting
 on:
     pull_request:
         branches: ['main']
     workflow_dispatch:
 
 jobs:
-    format:
-        name: Check Code Formatting
+    test-and-format:
+        name: Test and Format
         runs-on: ubuntu-latest
+        timeout-minutes: 20
 
         steps:
             - name: Checkout Code
@@ -22,7 +22,30 @@ jobs:
                   cache: npm
 
             - name: Install Dependencies
-              run: npm install
+              run: npm ci
 
-            - name: Run Prettier Check
+            - name: Get Playwright version
+              id: playwright-version
+              run: echo "PLAYWRIGHT_VERSION=$(npm list @playwright/test | grep @playwright/test | cut -d'@' -f2)" >> $GITHUB_ENV
+
+            - name: Cache Playwright browsers
+              uses: actions/cache@v4
+              id: playwright-cache
+              with:
+                  path: ~/.cache/ms-playwright
+                  key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+                  restore-keys: |
+                      ${{ runner.os }}-playwright-
+
+            - name: Run Prettier Format Check
               run: npm run check:format
+
+            - name: Run Unit Tests (Vitest)
+              run: npm run test:unit
+
+            - name: Install Playwright Browsers
+              if: steps.playwright-cache.outputs.cache-hit != 'true'
+              run: npx playwright install --with-deps
+
+            - name: Run E2E Tests (Playwright)
+              run: npm run test:e2e

@@ -23,7 +23,7 @@
 </script>
 
 <svelte:head>
-    <title>Science - Anton Lechuga</title>
+    <title>Anton Lechuga | Science</title>
     <meta
         name="description"
         content="Scientific research and thoughts by Anton Lechuga"

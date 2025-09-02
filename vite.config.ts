@@ -6,10 +6,16 @@ export default defineConfig({
     plugins: [tailwindcss(), sveltekit()],
     test: {
         expect: { requireAssertions: true },
-        globals: true,
-        environment: 'jsdom',
-        setupFiles: ['./vitest-setup-client.ts'],
-        include: ['src/**/*.{test,spec}.{js,ts,svelte.ts}'],
-        exclude: ['src/lib/server/**'],
+        projects: [
+            {
+                extends: './vite.config.ts',
+                test: {
+                    name: 'server',
+                    environment: 'node',
+                    include: ['tests/unit/*.{test,spec}.{js,ts}'],
+                    exclude: ['src/**/*.svelte.{test,spec}.{js,ts}'],
+                },
+            },
+        ],
     },
 })
