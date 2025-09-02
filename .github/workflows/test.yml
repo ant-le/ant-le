@@ -1,5 +1,3 @@
-# TODO: Add integration tests
-
 name: Run Integration Tests and Formatting
 on:
     pull_request:
@@ -26,3 +24,6 @@ jobs:
 
             - name: Run Prettier Check
               run: npm run check:format
+
+            - name: Run Tests
+              run: npm run test

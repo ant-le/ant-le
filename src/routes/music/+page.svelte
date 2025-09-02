@@ -1,9 +1,20 @@
 <script lang="ts">
+    import { musicPosts } from '$lib/data'
+    import FullBlog from '$lib/components/FullBlog.svelte'
+    import type { BlogPost } from '$lib/types'
+    import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte'
     import PageHeader from '$lib/components/PageHeader.svelte'
+
+    // FullBlog popup state - simplified
+    let selectedPost = $state<BlogPost | null>(null)
+
+    function openFullBlog(post: BlogPost) {
+        selectedPost = post
+    }
 </script>
 
 <svelte:head>
-    <title>Music - Anton Lechuga</title>
+    <title>Anton Lechuga | Music</title>
     <meta
         name="description"
         content="Music projects and DJ sets by Anton Lechuga"
@@ -122,4 +133,5 @@
             </div>
         </div>
     </section>
+    <CardRasterHorizontal posts={musicPosts} title="My content around music" />
 </div>

@@ -31,6 +31,12 @@
         scrollbar-width: thin;
         scrollbar-color: theme('colors.neutral.500') theme('colors.neutral.200');
     }
+    .music-player-iframe iframe {
+        width: 100%;
+        border-radius: theme('borderRadius.xl');
+        border: none;
+        height: 152px; /* Standard height for compact players like Spotify's */
+    }
 }
 
 @theme {

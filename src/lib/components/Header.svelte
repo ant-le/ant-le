@@ -4,7 +4,6 @@
     import { page } from '$app/state'
     import { fly } from 'svelte/transition'
     import type { Theme } from '$lib/types'
-    import { onMount } from 'svelte'
 
     let { toggleTheme, currentTheme } = $props<{
         toggleTheme: () => void

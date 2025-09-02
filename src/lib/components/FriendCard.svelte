@@ -2,11 +2,11 @@
     import type { FriendsData } from '$lib/types'
 
     interface Props {
-        friend: FriendsData
+        post: FriendsData
         className?: string
     }
 
-    let { friend, className = '' }: Props = $props()
+    let { post, className = '' }: Props = $props()
 </script>
 
 <div
@@ -43,7 +43,7 @@
                 artistic:text-text-primary artistic:font-medium artistic:animate-[textFadeIn_1s_ease-out]
             "
             >
-                {friend.text}
+                {post.text}
             </blockquote>
         </div>
 
@@ -57,8 +57,8 @@
         "
         >
             <img
-                src={friend.image}
-                alt={friend.name}
+                src={post.image}
+                alt={post.name}
                 class="
                     /* Minimal theme (default) */
                     w-12 h-12 rounded-full object-cover border-2 border-neutral-200 flex-shrink-0
@@ -78,7 +78,7 @@
                     artistic:font-bold artistic:bg-gradient-to-r artistic:from-text-primary artistic:to-accent-2 artistic:bg-clip-text artistic:text-transparent
                 "
                 >
-                    {friend.name}
+                    {post.name}
                 </h3>
                 <p
                     class="
@@ -89,7 +89,7 @@
                     artistic:text-accent artistic:font-medium artistic:animate-[roleGlow_2s_ease-in-out_infinite_alternate]
                 "
                 >
-                    {friend.role}
+                    {post.role}
                 </p>
             </div>
         </div>

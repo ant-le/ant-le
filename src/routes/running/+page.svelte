@@ -21,7 +21,7 @@
 </script>
 
 <svelte:head>
-    <title>Running - Anton Lechuga</title>
+    <title>Anton Lechuga | Running</title>
     <meta
         name="description"
         content="Running achievements and training by Anton Lechuga"

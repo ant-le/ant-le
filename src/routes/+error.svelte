@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-    <title>Error - Anton Lechuga</title>
+    <title>Error | Anton Lechuga</title>
 </svelte:head>
 
 <main
