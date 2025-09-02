@@ -1,4 +1,4 @@
-# Hello <img target="blank" width="40px" src="images/wave.gif" />
+# Hello <img target="blank" width="40px" src="/static/images/wave.gif" />
 
 I am a Data Science graduate student interested in:
 
@@ -15,9 +15,9 @@ I am a Data Science graduate student interested in:
     <br>
     <br>
     <a href="mailto:lechuga.anton@gmail.com">
-        <img target="blank" alt="Anton Lechuga | Gmail" width="26px" src="images/gmail.svg" />
+        <img target="blank" alt="Anton Lechuga | Gmail" width="26px" src="/static/images/gmail.svg" />
     </a>
     <a href="https://twitter.com/anton_lechuga">
-        <img target="blank" alt="Anton Lechuga | Twitter" width="24px" src="images/twitter.svg" />
+        <img target="blank" alt="Anton Lechuga | Twitter" width="24px" src="/static/images/twitter.svg" />
     </a>
 </p>
