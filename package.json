@@ -7,7 +7,7 @@
         "fetch-strava": "tsc --project tsconfig.node.json && node ./dist/fetch_strava.js",
         "fetch-strava-old": "ts-node --esm --project tsconfig.node.json ./static/scripts/fetch_strava.ts",
         "dev": "vite dev",
-        "build": "npm run fetch-strava && vite build",
+        "build": "vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
