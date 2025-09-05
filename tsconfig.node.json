@@ -9,6 +9,6 @@
         "forceConsistentCasingInFileNames": true,
         "outDir": "dist" // Not strictly used by ts-node, but good practice
     },
-    "include": ["fetch-garmin.ts"], // Only include the script file
+    "include": ["fetch_strava.ts"], // Only include the script file
     "exclude": ["node_modules", "src"] // Exclude SvelteKit source files
 }
