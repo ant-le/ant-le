@@ -4,7 +4,7 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "fetch-strava": "ts-node --project tsconfig.node.json ./static/scripts/fetch_strava.ts",
+        "fetch-strava": "ts-node --esm --project tsconfig.node.json ./static/scripts/fetch_strava.ts",
         "dev": "vite dev",
         "build": "npm run fetch-strava && vite build",
         "preview": "vite preview",
