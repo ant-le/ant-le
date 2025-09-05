@@ -6,6 +6,7 @@ import {
     filterBlogPostsByTitle,
     sortBlogPostsByDate,
     getRandomBlogPosts,
+    createRandomPostsByLabels,
     getSortedRunningPBs,
     calculateTrainingSummary,
 } from '$lib/utils'
@@ -14,12 +15,12 @@ import { runningPBs } from '$lib/types/personalBests'
 import { type RunningTraining } from '$lib/types/running'
 
 // --- Centralized Test Constants & Mocks ---
-const VALID_CATEGORIES: BlogCategory[] = ['science', 'running', 'music']
 const MOCK_POSTS: BlogPost[] = [
     {
         creationDate: new Date('2024-01-10'),
         title: 'Quantum Physics Explained',
-        labels: ['quantum', 'physics'],
+        desc: 'Understanding quantum mechanics',
+        labels: ['quantum', 'physics', 'math'],
         post: '',
         image: '',
         categories: ['science'],
@@ -27,7 +28,8 @@ const MOCK_POSTS: BlogPost[] = [
     {
         creationDate: new Date('2024-03-15'),
         title: 'A Guide to Marathon Running',
-        labels: ['marathon', 'training'],
+        desc: 'Complete marathon training guide',
+        labels: ['marathon', 'training', 'running'],
         post: '',
         image: '',
         categories: ['running'],
@@ -35,10 +37,56 @@ const MOCK_POSTS: BlogPost[] = [
     {
         creationDate: new Date('2024-02-20'),
         title: 'The Art of Music Production',
+        desc: 'Music production techniques',
         labels: ['music', 'production'],
         post: '',
         image: '',
         categories: ['music'],
+    },
+    {
+        creationDate: new Date('2024-04-05'),
+        title: 'Philosophy of Mind',
+        desc: 'Exploring consciousness and mind',
+        labels: ['philosophy', 'consciousness'],
+        post: '',
+        image: '',
+        categories: ['science'],
+    },
+    {
+        creationDate: new Date('2024-05-12'),
+        title: 'Social Psychology Research',
+        desc: 'Latest findings in social psychology',
+        labels: ['social science', 'psychology'],
+        post: '',
+        image: '',
+        categories: ['science'],
+    },
+    {
+        creationDate: new Date('2024-06-18'),
+        title: 'Advanced Calculus',
+        desc: 'Deep dive into calculus concepts',
+        labels: ['math', 'calculus'],
+        post: '',
+        image: '',
+        categories: ['science'],
+    },
+    {
+        creationDate: new Date('2024-07-22'),
+        title: 'Another Philosophy Post',
+        desc: 'More philosophical thoughts',
+        labels: ['philosophy', 'ethics'],
+        post: '',
+        image: '',
+        categories: ['science'],
+    },
+    {
+        creationDate: new Date('2024-08-30'),
+        title: 'Statistics in Social Science',
+        desc: 'Statistical methods in social research',
+        labels: ['social science', 'statistics'],
+        post: '',
+        image: '',
+        categories: ['science'],
     },
 ]
 const MOCK_TRAINING_DATA: RunningTraining[] = [
@@ -67,11 +115,15 @@ describe('Utility Functions', () => {
 
     // --- Blog Post Filtering & Sorting ---
     describe('filterBlogPostsByCategory', () => {
-        it.each(VALID_CATEGORIES)(
-            'should correctly filter posts for the "%s" category',
-            (category) => {
-                const result = filterBlogPostsByCategory(MOCK_POSTS, category)
-                expect(result.length).toBe(1)
+        it.each([
+            { category: 'science', expectedCount: 6 },
+            { category: 'running', expectedCount: 1 },
+            { category: 'music', expectedCount: 1 }
+        ])(
+            'should correctly filter posts for the "$category" category',
+            ({ category, expectedCount }) => {
+                const result = filterBlogPostsByCategory(MOCK_POSTS, category as BlogCategory)
+                expect(result.length).toBe(expectedCount)
                 expect(result[0].categories).toContain(category)
             }
         )
@@ -116,10 +168,10 @@ describe('Utility Functions', () => {
     describe('sortBlogPostsByDate', () => {
         it('should sort posts by date (newest first)', () => {
             const sorted = sortBlogPostsByDate(MOCK_POSTS)
-            // Expected order: Mar 15, Feb 20, Jan 10
-            expect(sorted[0].title).toBe('A Guide to Marathon Running')
-            expect(sorted[1].title).toBe('The Art of Music Production')
-            expect(sorted[2].title).toBe('Quantum Physics Explained')
+            // Expected order: Aug 30, Jul 22, Jun 18, May 12, Apr 5, Mar 15, Feb 20, Jan 10
+            expect(sorted[0].title).toBe('Statistics in Social Science')
+            expect(sorted[1].title).toBe('Another Philosophy Post')
+            expect(sorted[2].title).toBe('Advanced Calculus')
         })
 
         it('should not modify the original array', () => {
@@ -142,6 +194,91 @@ describe('Utility Functions', () => {
                 'Quantum Physics Explained'
             )
             spy.mockRestore()
+        })
+    })
+
+    describe('createRandomPostsByCategories', () => {
+        it('should create RandomPosts object with one post per category', () => {
+            const categories = ['philosophy', 'social science', 'math']
+            const result = createRandomPostsByLabels(MOCK_POSTS, categories)
+            
+            // Check that all categories are present in the result
+            expect(Object.keys(result)).toEqual(categories)
+            
+            // Check that each category has a post (not null)
+            expect(result.philosophy).not.toBeNull()
+            expect(result['social science']).not.toBeNull()
+            expect(result.math).not.toBeNull()
+            
+            // Check that the posts have the correct labels
+            expect(result.philosophy?.labels).toContain('philosophy')
+            expect(result['social science']?.labels).toContain('social science')
+            expect(result.math?.labels).toContain('math')
+        })
+
+        it('should handle case-insensitive category matching', () => {
+            const categories = ['PHILOSOPHY', 'Social Science', 'MATH']
+            const result = createRandomPostsByLabels(MOCK_POSTS, categories)
+            
+            expect(result.PHILOSOPHY).not.toBeNull()
+            expect(result['Social Science']).not.toBeNull()
+            expect(result.MATH).not.toBeNull()
+        })
+
+        it('should return null for categories with no matching posts', () => {
+            const categories = ['philosophy', 'non-existent-category', 'math']
+            const result = createRandomPostsByLabels(MOCK_POSTS, categories)
+            
+            expect(result.philosophy).not.toBeNull()
+            expect(result['non-existent-category']).toBeNull()
+            expect(result.math).not.toBeNull()
+        })
+
+        it('should handle empty posts array', () => {
+            const categories = ['philosophy', 'math']
+            const result = createRandomPostsByLabels([], categories)
+            
+            expect(result.philosophy).toBeNull()
+            expect(result.math).toBeNull()
+        })
+
+        it('should handle empty categories array', () => {
+            const result = createRandomPostsByLabels(MOCK_POSTS, [])
+            
+            expect(Object.keys(result)).toHaveLength(0)
+        })
+
+        it('should be deterministic when Math.random is mocked', () => {
+            const spy = vi.spyOn(Math, 'random').mockReturnValue(0.1)
+            const categories = ['philosophy', 'math']
+            const result = createRandomPostsByLabels(MOCK_POSTS, categories)
+            
+            // With mocked random, we should get consistent results
+            expect(result.philosophy?.title).toBe('Philosophy of Mind')
+            expect(result.math?.title).toBe('Quantum Physics Explained')
+            
+            spy.mockRestore()
+        })
+
+        it('should handle categories with multiple matching posts by selecting one randomly', () => {
+            const categories = ['philosophy'] // We have 2 philosophy posts
+            const result = createRandomPostsByLabels(MOCK_POSTS, categories)
+            
+            expect(result.philosophy).not.toBeNull()
+            expect(result.philosophy?.labels).toContain('philosophy')
+            
+            // The result should be one of the two philosophy posts
+            const philosophyTitles = ['Philosophy of Mind', 'Another Philosophy Post']
+            expect(philosophyTitles).toContain(result.philosophy?.title)
+        })
+
+        it('should not modify the original posts array', () => {
+            const originalPosts = [...MOCK_POSTS]
+            const categories = ['philosophy', 'math']
+            
+            createRandomPostsByLabels(MOCK_POSTS, categories)
+            
+            expect(MOCK_POSTS).toEqual(originalPosts)
         })
     })
 

@@ -79,6 +79,7 @@
                     class="ml-2 md:ml-6 p-2 text-text-secondary hover:text-text-primary transition-colors duration-300 artistic:p-3 artistic:text-text-light artistic:hover:text-accent-2 artistic:bg-gradient-to-r artistic:from-primary-light artistic:to-secondary artistic:rounded-full artistic:shadow-md artistic:hover:shadow-lg artistic:transition-all artistic:hover:scale-110"
                     aria-label="Toggle theme"
                     onclick={toggleTheme}
+                    disabled
                 >
                     {#if currentTheme === 'artistic'}
                         <svg

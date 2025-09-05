@@ -11,7 +11,7 @@
     import PageHeader from '$lib/components/PageHeader.svelte'
     import TextCard from '$lib/components/TextCard.svelte'
     import { blogPosts, type BlogPost } from '$lib/types/blog'
-    import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte'
+    import CardRasterHorizontal from '$lib/components/views/CardGallery.svelte'
 
     // Get running blog posts
     let posts = $derived(filterBlogPostsByCategory(blogPosts, 'running'))
@@ -31,7 +31,7 @@
     />
 </svelte:head>
 
-<div class="flex flex-col gap-12 mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <PageHeader title="My Running Journey" className="lg:text-left" />
 
     <TextCard
@@ -39,7 +39,7 @@
         classProps="text-center lg:text-left"
     />
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 my-12">
         <div class="lg:col-span-1 flex justify-center">
             <PersonalBest pbs={runningPBs} />
         </div>

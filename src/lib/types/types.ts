@@ -17,4 +17,4 @@ export interface NavItem {
 }
 
 export type RandomCategories = 'social science' | 'math' | 'philosophy'
-export type RandomPosts = Record<RandomCategories, BlogPost | null>
+export type RandomPosts = Record<string, BlogPost | null>

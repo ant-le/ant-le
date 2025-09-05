@@ -1,51 +1,28 @@
 <script lang="ts">
-    import { fly } from 'svelte/transition'
     import { blogPosts } from '$lib/types/blog'
     import {
         filterBlogPostsByCategory,
-        filterBlogPostsByLabel,
-        getRandomBlogPosts,
+        createRandomPostsByLabels,
     } from '$lib/utils'
-    import CardGridFull from '$lib/components/CardGridFull.svelte'
+    import CardGridFull from '$lib/components/views/CardGrid.svelte'
     import FullBlog from '$lib/components/FullBlog.svelte'
     import PageHeader from '$lib/components/PageHeader.svelte'
     import TextCard from '$lib/components/TextCard.svelte'
-    import BlogCard from '$lib/components/BlogCard.svelte'
+    import BlogCard from '$lib/components/cards/BlogCard.svelte'
     import { type RandomPosts } from '$lib/types/types'
     import { type BlogPost } from '$lib/types/blog'
+    import EmptyCard from '$lib/components/cards/EmptyCard.svelte'
 
     // --- Main post lists ---
     const sciencePosts = $derived(
         filterBlogPostsByCategory(blogPosts, 'science')
     )
-    const philosophyPosts = $derived(
-        filterBlogPostsByLabel(blogPosts, 'philosophy')
-    )
-    const mathPosts = $derived(filterBlogPostsByLabel(blogPosts, 'math'))
-    const socialSciencePosts = $derived(
-        filterBlogPostsByLabel(blogPosts, 'social science')
-    )
 
     // --- State for three random posts ---
-    let randomPosts: RandomPosts = $state({
-        philosophy: null as BlogPost | null,
-        'social science': null as BlogPost | null,
-        math: null as BlogPost | null,
-    })
-
-    // --- Function to select new random posts ---
-    function reshufflePosts() {
-        randomPosts.philosophy = getRandomBlogPosts(philosophyPosts, 1)[0]
-        randomPosts['social science'] = getRandomBlogPosts(
-            socialSciencePosts,
-            1
-        )[0]
-        randomPosts.math = getRandomBlogPosts(mathPosts, 1)[0]
-    }
-
-    // --- Initial load of random posts ---
+    let randomPosts: RandomPosts = $state({})
+    const labels = ['philosophy', 'math', 'social science']
     $effect(() => {
-        reshufflePosts()
+        randomPosts = createRandomPostsByLabels(sciencePosts, labels)
     })
 
     // --- FullBlog popup state ---
@@ -63,11 +40,11 @@
     />
 </svelte:head>
 
-<div class="flex flex-col gap-12 mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <PageHeader title="Science" />
 
     <blockquote
-        class="text-xl italic font-semibold text-center text-text-tertiary max-w-3xl mx-auto"
+        class="text-xl mb-8 italic font-semibold text-center text-text-tertiary max-w-3xl mx-auto"
     >
         <p class="text-text-secondary">
             "Normal science, the activity in which most scientists inevitably
@@ -77,7 +54,7 @@
         <p>Thomas Kuhn</p>
     </blockquote>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-22">
         <TextCard
             text="Over the past years, I got to know many academic subjects. I wouldn't call myself an expert on any of them - at least so far. Having a backgound in social (political) science and applied statistics, I explored parts of philosophy, math and computer science. I am now graduating in data science, but many of the other subjects still have touching points with what I do."
         />
@@ -88,16 +65,23 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         {#each Object.entries(randomPosts) as [title, post]}
-            {#if post}
-                <div class="flex flex-col gap-3">
-                    <h3
-                        class="text-lg font-bold text-text-secondary text-center"
-                    >
-                        From {title}
-                    </h3>
-                    <BlogCard {post} {onReadMore} />
-                </div>
-            {/if}
+            <div class="flex flex-col gap-3">
+                <h3 class="text-lg font-bold text-text-secondary text-center">
+                    From {title}
+                </h3>
+                {#if post}
+                    <div class="h-full">
+                        <BlogCard {post} {onReadMore} />
+                    </div>
+                {:else}
+                    <div class="p-4">
+                        <EmptyCard
+                            title="Nothing"
+                            message="I did not find the time to write anyting on this subject :/"
+                        />
+                    </div>
+                {/if}
+            </div>
         {/each}
     </div>
 

@@ -47,6 +47,9 @@
         class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm"
         onclick={handleBackdropClick}
         transition:fade={{ duration: 300 }}
+        onkeydown={handleKeydown}
+        role="button"
+        tabindex="0"
     >
         <div
             class="relative flex w-full max-w-2xl flex-col overflow-hidden max-h-[90vh]
@@ -136,12 +139,12 @@
                     </p>
                 </div>
 
-                <a
-                    href={getPostUrl(post.post)}
+                <button
                     class="block w-full rounded-lg bg-text-primary p-4 text-center font-bold text-bg-primary transition-transform duration-200 hover:scale-[1.02]
                     artistic:bg-gradient-to-r artistic:from-primary artistic:to-accent artistic:text-text-light"
-                    >Read Full Post →</a
-                >
+                    disabled
+                    >Read Full Post →
+                </button>
             </div>
         </div>
     </div>

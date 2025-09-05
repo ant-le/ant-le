@@ -5,11 +5,9 @@ import type { BlogPost } from '$lib/types/blog'
 export interface MusicData extends BlogPost {
     iframe: string // ifrmae for spotify/apple/souncloud
 }
-
 export const musicPosts: MusicData[] = [
     {
         creationDate: new Date('2025-06-06'),
-
         title: 'King Gizzard and the Lizard Wizard',
         desc: 'Introducing my Favourite Band',
         image: kglw,
@@ -20,7 +18,6 @@ export const musicPosts: MusicData[] = [
     },
     {
         creationDate: new Date('2024-06-06'),
-
         title: 'Serenity',
         desc: 'My favourite electronic song from the past years',
         image: serenity,

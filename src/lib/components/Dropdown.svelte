@@ -30,8 +30,8 @@
     let buttonText: string = $derived(triggerLabel ?? selectedValue.label)
     let isOpen = $state(false)
 
-    let dropdownElement: HTMLDivElement
-    let triggerElement: HTMLButtonElement
+    let dropdownElement = $state<HTMLDivElement>()
+    let triggerElement = $state<HTMLButtonElement>()
 
     $effect(() => {
         if (!isOpen) {
@@ -63,7 +63,9 @@
     <button
         onclick={() => (isOpen = !isOpen)}
         bind:this={triggerElement}
-        class="inline-flex items-center gap-1 text-sm text-text-secondary artistic:text-text-tertiary hover:text-text-primary artistic:hover:text-text-primary transition-colors px-3 py-2 rounded-l artistic:hover:bg-primary/10"
+        class="inline-flex items-center gap-1 text-sm text-text-secondary artistic:text-text-tertiary
+        hover:text-text-primary artistic:hover:text-text-primary transition-colors px-3 py-2 rounded-l
+        artistic:hover:bg-primary/10"
         type="button"
     >
         {buttonText}
@@ -106,7 +108,9 @@
                                 selectedValue = option
                                 isOpen = false
                             }}
-                            class="block w-full text-left px-4 py-2 text-sm font-normal tracking-wide text-text-secondary hover:text-text-primary transition-all duration-200 artistic:text-text-light artistic:hover:bg-accent/20 artistic:hover:text-accent-2 first:rounded-t-lg last:rounded-b-lg"
+                            class="block w-full text-left px-4 py-2 text-sm font-normal tracking-wide text-text-secondary
+                    hover:text-text-primary transition-all duration-200 artistic:text-text-light
+                    artistic:hover:bg-accent/20 artistic:hover:text-accent-2 first:rounded-t-lg last:rounded-b-lg"
                         >
                             {option.label}
                         </button>

@@ -1,6 +1,6 @@
 <script lang="ts">
     import { friendsData } from '$lib/types/friends'
-    import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte'
+    import CardRasterHorizontal from '$lib/components/views/CardGallery.svelte'
     import TextCard from '$lib/components/TextCard.svelte'
     import profile from '$lib/assets/profile.webp'
     let friends = $derived(friendsData)

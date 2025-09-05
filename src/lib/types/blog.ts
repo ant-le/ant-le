@@ -17,7 +17,6 @@ export interface BlogPost {
 }
 
 export interface RunningPost extends BlogPost {}
-
 export const blogPosts: BlogPost[] = [
     {
         creationDate: new Date('2024-09-15'),

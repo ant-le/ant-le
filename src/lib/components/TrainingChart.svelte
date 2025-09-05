@@ -77,15 +77,14 @@
     let isUp = $derived(diff >= 0)
 
     // --- Interactivity Handlers ---
-    function handleMouseOver(
-        event: MouseEvent,
-        bar: (typeof bars)[0],
-        index: number
-    ) {
+    function handleMouseOver(bar: (typeof bars)[0], index: number) {
         tooltip.visible = true
         tooltip.content = `${bar.distance.toFixed(1)} km on ${bar.date.toLocaleDateString()}`
-        tooltip.x = event.pageX
-        tooltip.y = event.pageY
+
+        // Position the tooltip relative to the bar, not the mouse
+        tooltip.x = bar.x // Center of the bar
+        tooltip.y = bar.y - 10 // 10px above the bar
+
         hoveredBarIndex = index
     }
 
@@ -185,8 +184,12 @@
                                hover:-translate-y-1.5"
                         class:opacity-40={hoveredBarIndex !== null &&
                             hoveredBarIndex !== index}
-                        on:mouseover={(e) => handleMouseOver(e, bar, index)}
-                        on:mouseout={handleMouseOut}
+                        onmouseover={() => handleMouseOver(bar, index)}
+                        onmouseout={handleMouseOut}
+                        onblur={handleMouseOut}
+                        onfocus={() => handleMouseOver(bar, index)}
+                        tabindex="-1"
+                        role="graphics-symbol"
                     />
                 {/each}
             </g>
