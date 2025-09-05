@@ -10,7 +10,7 @@
         "outDir": "dist" // Not strictly used by ts-node, but good practice
     },
     "ts-node": {
-        "esm":true,
+        "esm": true,
         "transpileOnly": true
     },
     "include": ["./static/scripts/fetch_strava.ts"], // Only include the script file
