@@ -10,7 +10,7 @@
 </script>
 
 <article
-    class="relative flex-shrink-0 w-80 md:w-[32rem] bg-primary-dark rounded-xl shadow-lg flex flex-col md:flex-row border border-neutral-600 font-display transition-all duration-300"
+    class="relative flex-shrink-0 w-65 md:w-[32rem] bg-primary-dark rounded-xl shadow-lg flex flex-col md:flex-row border border-neutral-600 font-display transition-all duration-300"
 >
     {#if showPlayer}
         <div

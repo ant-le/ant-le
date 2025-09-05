@@ -1,5 +1,6 @@
 <script lang="ts">
     import { page } from '$app/state'
+    import { goto } from '$app/navigation'
     import type { Theme, NavItem } from '$lib/types/types'
     import Dropdown from './Dropdown.svelte'
     import { resolve } from '$app/paths'
@@ -23,6 +24,12 @@
     let otherNavItems: NavItem[] = $derived(
         navItems.filter((item) => item.value !== selectedNavItem.value)
     )
+
+    $effect(() => {
+        if (selectedNavItem.value !== page.url.pathname) {
+            goto(selectedNavItem.value)
+        }
+    })
 </script>
 
 <header
@@ -34,26 +41,30 @@
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <a
-                    href={navItems[0].value}
+                <button
+                    onclick={() => (selectedNavItem = navItems[0])}
                     class="
                     text-xl font-light tracking-widest text-text-primary hover:text-text-secondary transition-colors
-                    artistic:font-bold artistic:tracking-normal artistic:text-text-light artistic:hover:text-accent-2 artistic:transition-all artistic:hover:scale-105
-                "
+                    artistic:font-bold artistic:tracking-normal artistic:text-text-light artistic:hover:text-accent-2
+                    artistic:transition-all artistic:hover:scale-105
+                    "
                 >
                     Anton Lechuga
-                </a>
+                </button>
             </div>
 
             <div class="flex items-center">
                 <div class="hidden md:flex items-center space-x-8">
                     {#each navItems.slice(1) as item}
-                        <a
-                            href={item.value}
+                        <button
+                            onclick={() => (selectedNavItem = item)}
                             class="
-                                font-normal tracking-wide text-text-secondary hover:text-text-primary transition-all duration-200 relative
-                                artistic:font-medium artistic:tracking-normal artistic:text-text-light artistic:hover:text-accent-2 artistic:transition-all artistic:duration-300 artistic:hover:scale-110
-                            "
+                        font-normal tracking-wide text-text-secondary hover:text-text-primary transition-all
+                        duration-200 relative
+                        artistic:font-medium artistic:tracking-normal artistic:text-text-light
+                        artistic:hover:text-accent-2 artistic:transition-all artistic:duration-300
+                        artistic:hover:scale-110
+                        "
                             class:font-bold={selectedNavItem.value ===
                                 item.value}
                             class:text-text-primary={selectedNavItem.value ===
@@ -62,7 +73,7 @@
                                 item.value && currentTheme === 'artistic'}
                         >
                             {item.label}
-                        </a>
+                        </button>
                     {/each}
                 </div>
 
