@@ -28,7 +28,14 @@ jobs:
                   cache: npm
 
             - name: Install dependencies
-              run: npm install
+              run: npm ci
+
+            - name: Run Strava Data Fetch
+              run: npm run fetch-strava
+              env:
+                  STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+                  STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+                  STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
 
             - name: Build the SvelteKit app
               run: npm run build
@@ -37,6 +44,7 @@ jobs:
                   STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
                   STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
                   STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
