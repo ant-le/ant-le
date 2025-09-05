@@ -4,7 +4,8 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "fetch-strava": "ts-node --esm --project tsconfig.node.json ./static/scripts/fetch_strava.ts",
+        "fetch-strava": "tsc --project tsconfig.node.json && node ./dist/fetch_strava.js",
+        "fetch-strava-old": "ts-node --esm --project tsconfig.node.json ./static/scripts/fetch_strava.ts",
         "dev": "vite dev",
         "build": "npm run fetch-strava && vite build",
         "preview": "vite preview",
@@ -50,7 +51,6 @@
         "axios": "^1.11.0",
         "axios-cookiejar-support": "^6.0.4",
         "dotenv": "^17.2.1",
-        "strava-v3": "^2.2.1",
         "tough-cookie": "^5.1.2"
     }
 }
