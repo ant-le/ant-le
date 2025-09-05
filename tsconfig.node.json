@@ -13,6 +13,6 @@
         "esm":true,
         "transpileOnly": true
     },
-    "include": ["/static/scripts/fetch_strava.ts"], // Only include the script file
+    "include": ["./static/scripts/fetch_strava.ts"], // Only include the script file
     "exclude": ["node_modules", "src"] // Exclude SvelteKit source files
 }
