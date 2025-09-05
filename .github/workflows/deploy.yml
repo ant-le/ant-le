@@ -34,6 +34,9 @@ jobs:
               run: npm run build
               env:
                   BASE_PATH: '/${{ github.event.repository.name }}'
+                  STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+                  STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+                  STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3

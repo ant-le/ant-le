@@ -1,16 +1,8 @@
 <script lang="ts">
-    import { musicPosts } from '$lib/data'
-    import FullBlog from '$lib/components/FullBlog.svelte'
-    import type { BlogPost } from '$lib/types'
+    import { musicPosts } from '$lib/types/music'
     import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte'
     import PageHeader from '$lib/components/PageHeader.svelte'
-
-    // FullBlog popup state - simplified
-    let selectedPost = $state<BlogPost | null>(null)
-
-    function openFullBlog(post: BlogPost) {
-        selectedPost = post
-    }
+    import TextCard from '$lib/components/TextCard.svelte'
 </script>
 
 <svelte:head>
@@ -21,117 +13,39 @@
     />
 </svelte:head>
 
-<div
-    class="
-        /* Minimal theme (default) */
-        max-w-4xl mx-auto px-4
-        
-        /* Artistic theme overrides */
-        artistic:max-w-6xl
-    "
->
-    <PageHeader
-        title="Music"
-        subtitle="Exploring downtempo, ambient techno, and the art of sound."
+<div class="flex flex-col gap-12 mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <PageHeader title="Music" className="lg:text-center" />
+    <TextCard
+        text="To me, music is one of the greatest joys and inspirations in life. I am an amateur DJ and am currently trying to get into music production with synthesisers, a mic and some flutes. I want to share some music and artists I love and (hopefully) some of my own makings soon!"
+        classProps="text-center"
     />
-
-    <!-- Coming Soon Section -->
-    <section
-        class="
-            /* Minimal theme (default) */
-            text-center space-y-6
-            
-            /* Artistic theme overrides */
-            artistic:text-center artistic:space-y-8
-        "
+    <div
+        class="flex flex-col md:flex-row gap-12 justify-center items-center mt-16"
     >
-        <h2
-            class="
-                /* Minimal theme (default) */
-                text-3xl font-normal text-text-primary mb-4
-                
-                /* Artistic theme overrides */
-                artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse
-            "
-        >
-            Coming Soon
-        </h2>
-
-        <div
-            class="
-                /* Minimal theme (default) */
-                space-y-4 max-w-2xl mx-auto grid grid-cols-2 gap-5
-                
-                /* Artistic theme overrides */
-                artistic:space-y-6 artistic:max-w-3xl artistic:mx-auto
-            "
-        >
-            <div
+        <CardRasterHorizontal
+            posts={musicPosts}
+            title="What's already here"
+            className="text-center"
+        />
+        <section class="text-center space-y-6">
+            <h2
                 class="
-                    /* Minimal theme (default) */
-                    bg-transparent border border-neutral-300 shadow-none rounded-lg p-6 transition-all duration-300
-                    
-                    /* Artistic theme overrides */
-                    artistic:bg-bg-secondary artistic:shadow-md artistic:border-neutral-200 artistic:hover:shadow-lg
+                    text-3xl text-text-primary mb-8
+                    artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse
                 "
             >
-                <h3
-                    class="
-                        /* Minimal theme (default) */
-                        text-xl font-normal text-text-primary mb-3
-                        
-                        /* Artistic theme overrides */
-                        artistic:font-semibold
-                    "
-                >
-                    DJ Sets
-                </h3>
-                <p
-                    class="
-                        /* Minimal theme (default) */
-                        text-sm font-light text-text-secondary leading-relaxed
-                        
-                        /* Artistic theme overrides */
-                        artistic:font-normal
-                    "
-                >
-                    Techno and downtempo mixes.
-                </p>
-            </div>
-
-            <div
-                class="
-                    /* Minimal theme (default) */
-                    bg-transparent border border-neutral-300 shadow-none rounded-lg p-6 transition-all duration-300
-                    
-                    /* Artistic theme overrides */
-                    artistic:bg-bg-secondary artistic:shadow-md artistic:border-neutral-200 artistic:hover:shadow-lg
-                "
-            >
-                <h3
-                    class="
-                        /* Minimal theme (default) */
-                        text-xl font-normal text-text-primary mb-3
-                        
-                        /* Artistic theme overrides */
-                        artistic:font-semibold
-                    "
-                >
-                    Music Production
-                </h3>
-                <p
-                    class="
-                        /* Minimal theme (default) */
-                        text-sm font-light text-text-secondary leading-relaxed
-                        
-                        /* Artistic theme overrides */
-                        artistic:font-normal
-                    "
-                >
-                    Compositions and experimental sound design projects.
-                </p>
-            </div>
-        </div>
-    </section>
-    <CardRasterHorizontal posts={musicPosts} title="My content around music" />
+                Coming Soon
+            </h2>
+            <TextCard
+                text="Techno and downtempo mixes with emotional touch and energy."
+                title="DJ Sets"
+                classProps="bg-bg-tertiary rounded-lg p-6 shadow-lg transition-shadow duration-300 h-36 text-text-secondary"
+            />
+            <TextCard
+                text="Compositions and experimental sound design projects."
+                title="Music Production"
+                classProps="bg-bg-tertiary rounded-lg p-6 shadow-lg transition-shadow duration-300 h-36 text-text-secondary"
+            />
+        </section>
+    </div>
 </div>

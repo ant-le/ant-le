@@ -4,8 +4,9 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
+        "fetch-strava": "ts-node --project tsconfig.node.json ./static/scripts/fetch_strava.ts",
         "dev": "vite dev",
-        "build": "vite build",
+        "build": "npm run fetch-strava && vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -28,6 +29,7 @@
         "@testing-library/svelte": "^5.2.0-next.3",
         "@types/glob": "^8.1.0",
         "@types/node": "^24.3.0",
+        "@types/tough-cookie": "^4.0.5",
         "@vitest/browser": "^3.2.3",
         "glob": "^11.0.3",
         "jsdom": "^26.1.0",
@@ -38,9 +40,17 @@
         "svelte": "^5.0.0",
         "svelte-check": "^4.0.0",
         "tailwindcss": "^4.0.0",
-        "typescript": "^5.0.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.2",
         "vite": "^7.0.4",
         "vitest": "^3.2.3",
         "vitest-browser-svelte": "^0.1.0"
+    },
+    "dependencies": {
+        "axios": "^1.11.0",
+        "axios-cookiejar-support": "^6.0.4",
+        "dotenv": "^17.2.1",
+        "strava-v3": "^2.2.1",
+        "tough-cookie": "^5.1.2"
     }
 }

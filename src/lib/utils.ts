@@ -1,11 +1,7 @@
-import type {
-    BlogPost,
-    BlogCategory,
-    RunningPB,
-    RunningTraining,
-    WeeklyTrainingSummary,
-} from '$lib/types'
-
+import type { BlogPost, BlogCategory } from '$lib/types/blog'
+import type { RunningPB } from '$lib/types/personalBests'
+import type { RunningTraining } from '$lib/types/running'
+import type { TrainingSummary } from './types/types'
 /**
  * Formats a Date object into a readable "Month Day, Year" string.
  * @param date The date to format.
@@ -102,109 +98,100 @@ export function getSortedRunningPBs(pbs: RunningPB[]): RunningPB[] {
     )
 }
 
+// --- Helper Functions ---
+
 /**
- * Aggregates daily training data into weekly totals.
- * @param training The array of running training entries.
- * @returns A sorted array of weekly training summaries.
+ * Calculates the current week number of the year.
+ * @param date - The date to check.
+ * @returns The week number (1-53).
  */
-export function getWeeklyTrainingData(
-    training: RunningTraining[]
-): WeeklyTrainingSummary[] {
-    if (!training || training.length === 0) return []
-
-    const weeklyData = new Map<string, number>()
-    training.forEach((entry) => {
-        const weekStart = new Date(entry.date)
-        weekStart.setDate(weekStart.getDate() - weekStart.getDay()) // Start of week (Sunday)
-        const weekKey = weekStart.toISOString().split('T')[0]
-        weeklyData.set(weekKey, (weeklyData.get(weekKey) || 0) + entry.distance)
-    })
-
-    return Array.from(weeklyData.entries())
-        .map(([week, totalDistance]) => ({ week, totalDistance }))
-        .sort((a, b) => a.week.localeCompare(b.week))
+const getWeekOfYear = (date: Date): number => {
+    const startOfYear = new Date(date.getFullYear(), 0, 1)
+    const diff = date.getTime() - startOfYear.getTime()
+    const oneDay = 1000 * 60 * 60 * 24
+    const dayOfYear = Math.floor(diff / oneDay)
+    return Math.ceil((dayOfYear + startOfYear.getDay() + 1) / 7)
 }
 
 /**
- * Calculates the total running distance within a given date range (inclusive).
- * @param training The array of running training entries.
- * @param startDate The start of the period.
- * @param endDate The end of the period.
- * @returns The total distance for the period.
+ * Calculates the total distance for a list of trainings.
+ * @param trainings - An array of running activities.
+ * @returns The sum of all distances.
  */
-export function getTotalDistanceForPeriod(
-    training: RunningTraining[],
-    startDate: Date,
-    endDate: Date
-): number {
-    if (!training || training.length === 0) return 0
-    return training
-        .filter((entry) => entry.date >= startDate && entry.date <= endDate)
-        .reduce((total, entry) => total + entry.distance, 0)
+const calculateTotalDistance = (trainings: RunningTraining[]): number => {
+    return trainings.reduce((acc, training) => acc + training.distance, 0)
 }
 
 /**
- * Calculates the average daily distance for days with training, within a specific period.
- * @param training The array of running training entries.
- * @param startDate The start of the period.
- * @param endDate The end of the period.
- * @returns The average distance, excluding rest days.
+ * Calculates the total moving time for a list of trainings.
+ * @param trainings - An array of running activities.
+ * @returns The sum of all moving times in minutes.
  */
-export function getAverageDailyDistance(
-    training: RunningTraining[],
-    startDate: Date,
-    endDate: Date
-): number {
-    if (!training || training.length === 0) return 0
-
-    const periodTraining = training.filter(
-        (entry) => entry.date >= startDate && entry.date <= endDate
-    )
-    const totalDistance = periodTraining.reduce(
-        (total, entry) => total + entry.distance,
-        0
-    )
-    const daysWithTraining = periodTraining.filter(
-        (entry) => entry.distance > 0
-    ).length
-
-    return daysWithTraining > 0 ? totalDistance / daysWithTraining : 0
+const calculateTotalTime = (trainings: RunningTraining[]): number => {
+    return trainings.reduce((acc, training) => acc + training.moving_time, 0)
 }
 
-/**
- * Calculates the total distance across all training entries.
- * @param training The array of running training entries.
- * @returns The total distance.
- */
-export function getTotalDistanceAllYears(training: RunningTraining[]): number {
-    if (!training || training.length === 0) return 0
-    return training.reduce((total, entry) => total + entry.distance, 0)
-}
+// --- Main Transformation Function ---
 
 /**
- * Calculates the weekly average distance for a specific year.
- * @param training The array of running training entries.
- * @param year The year to calculate the average for.
- * @returns The average weekly distance for that year.
+ * Transforms an array of running activities into a structured summary based on a specific timeframe.
+ * @param trainings - The complete list of running activities.
+ * @param timeframe - The selected timeframe ('30', '180', '365', '730', 'all').
+ * @param currentDate - The current date, for accurate calculations.
+ * @returns A TrainingSummary object.
  */
-export function getWeeklyAverageForYear(
-    training: RunningTraining[],
-    year: number
-): number {
-    if (!training || training.length === 0) return 0
+export const calculateTrainingSummary = (
+    trainings: RunningTraining[],
+    timeframe: string = '30',
+    currentDate: Date = new Date()
+): TrainingSummary => {
+    // Filter trainings based on selected timeframe
+    let filteredTrainings: RunningTraining[]
+    let priorTrainings: RunningTraining[]
 
-    const yearStart = new Date(year, 0, 1)
-    const yearEnd = new Date(year, 11, 31)
-    const yearTraining = training.filter(
-        (entry) => entry.date >= yearStart && entry.date <= yearEnd
-    )
+    if (timeframe === 'all') {
+        filteredTrainings = trainings
+        priorTrainings = [] // No prior period for "all time"
+    } else {
+        const daysAgo = parseInt(timeframe)
+        const cutoffDate = new Date(currentDate)
+        cutoffDate.setDate(cutoffDate.getDate() - daysAgo)
 
-    if (yearTraining.length === 0) return 0
+        // Current period trainings
+        filteredTrainings = trainings.filter((t) => t.date >= cutoffDate)
 
-    const totalDistance = yearTraining.reduce(
-        (total, entry) => total + entry.distance,
-        0
-    )
-    const weeksInYear = 52.1775 // Average weeks in a year
-    return totalDistance / weeksInYear
+        // Prior period trainings (same duration, immediately before)
+        const priorCutoffDate = new Date(cutoffDate)
+        priorCutoffDate.setDate(priorCutoffDate.getDate() - daysAgo)
+        priorTrainings = trainings.filter(
+            (t) => t.date >= priorCutoffDate && t.date < cutoffDate
+        )
+    }
+
+    // Calculate current period metrics
+    const totalDistance = calculateTotalDistance(filteredTrainings)
+    const totalTimeMinutes = calculateTotalTime(filteredTrainings)
+    const totalTimeHours = totalTimeMinutes / 60
+
+    // Calculate weekly average for current period
+    const daysInPeriod = timeframe === 'all' ? 365 : parseInt(timeframe)
+    const weeksInPeriod = daysInPeriod / 7
+    const weeklyAverage = weeksInPeriod > 0 ? totalDistance / weeksInPeriod : 0
+
+    // Calculate prior period metrics for comparison
+    let prevWeeklyAverage = 0
+    if (priorTrainings.length > 0) {
+        const prevTotalDistance = calculateTotalDistance(priorTrainings)
+        const prevWeeksInPeriod = daysInPeriod / 7
+        prevWeeklyAverage =
+            prevWeeksInPeriod > 0 ? prevTotalDistance / prevWeeksInPeriod : 0
+    }
+
+    return {
+        trainings: filteredTrainings,
+        weeklyAverage: parseFloat(weeklyAverage.toFixed(2)),
+        prevWeeklyAverage: parseFloat(prevWeeklyAverage.toFixed(2)),
+        totalTime: parseFloat(totalTimeHours.toFixed(2)),
+        totalDistance: parseFloat(totalDistance.toFixed(2)),
+    }
 }

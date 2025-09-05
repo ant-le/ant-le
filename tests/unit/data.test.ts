@@ -1,14 +1,13 @@
 import { describe, it, expect } from 'vitest'
-import {
-    blogPosts,
-    runningPBs,
-    friendsData,
-    runningTraining,
-    musicPosts,
-} from '$lib/data'
-import type { BlogCategory, RunningDistance } from '$lib/types'
+import { blogPosts } from '$lib/types/blog'
+import { runningPBs } from '$lib/types/personalBests'
+import { runningTraining } from '$lib/types/running'
+import { musicPosts } from '$lib/types/music'
+import { friendsData } from '$lib/types/friends'
+import type { BlogCategory } from '$lib/types/blog'
+import type { RunningDistance } from '$lib/types/personalBests'
 
-// Central source of truth for valid enum-like data.
+// Central source of truth for valid enum-like types.
 const VALID_BLOG_CATEGORIES: BlogCategory[] = ['science', 'running', 'music']
 const VALID_RUNNING_DISTANCES: RunningDistance[] = [
     '5k',
@@ -17,7 +16,7 @@ const VALID_RUNNING_DISTANCES: RunningDistance[] = [
     'Marathon',
 ]
 
-describe('Data Integrity', () => {
+describe('types Integrity', () => {
     describe('blogPosts', () => {
         it('should contain a non-empty array', () => {
             expect(Array.isArray(blogPosts)).toBe(true)

@@ -24,6 +24,13 @@ jobs:
             - name: Install Dependencies
               run: npm ci
 
+            - name: Run Strava Data Fetch
+              run: npm run fetch-strava
+              env:
+                  STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+                  STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+                  STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+
             - name: Get Playwright version
               id: playwright-version
               run: echo "PLAYWRIGHT_VERSION=$(npm list @playwright/test | grep @playwright/test | cut -d'@' -f2)" >> $GITHUB_ENV

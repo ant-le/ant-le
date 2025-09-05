@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { friendsData } from '$lib/data'
+    import { friendsData } from '$lib/types/friends'
     import CardRasterHorizontal from '$lib/components/CardRasterHorizontal.svelte'
     import TextCard from '$lib/components/TextCard.svelte'
     import profile from '$lib/assets/profile.webp'
@@ -14,41 +14,31 @@
     />
 </svelte:head>
 
-<div class="max-w-5xl mx-auto mt-16 flex flex-col gap-16">
-    <div class="flex flex-col md:flex-row mx-auto gap-2">
-        <div class="m-auto">
+<div class="flex flex-col gap-16">
+    <div
+        class="flex flex-col md:flex-row gap-8 items-center md:items-start max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
+        <div class="flex-shrink-0">
             <img
-                class="h-auto max-w-xs sm:max-w-s transition-all duration-300 rounded-lg cursor-pointer filter grayscale hover:grayscale-0"
+                class="w-52 h-52 sm:w-64 sm:h-64 object-cover rounded-lg transition-all duration-300 filter grayscale hover:grayscale-0"
                 src={profile}
                 alt="That is me."
             />
         </div>
-        <div class="flex flex-col gap-1 p-2">
+        <div class="flex flex-col gap-4 max-w-prose">
             <TextCard
-                text="Hello, I am Anton and on this little website I want to share things I am interested in, 
-        aspects of life I care about and stuff I love doing!"
+                text="Hello, I am Anton and on this little website I want to share things I am interested in, aspects of life I care about and stuff I love doing!"
             />
-
             <TextCard
-                text="I have backgrounds in <b>political science</b> and <b>computer science</b>. 
-        My current academic interests are centered around causal inference and software development. This website is part of
-        tying to see if/how LLMs can effectively used to write code without extensive refactoring and debugging."
+                text="I have backgrounds in <b>political science</b> and <b>computer science</b>. My current academic interests are centered around causal inference and software development. This website is part of trying to see if/how LLMs can effectively be used to write code without extensive refactoring and debugging."
             />
-
             <TextCard
-                text="In my free-time, I spends a lot of time listening/mixing music
-        and running longer distances. I want to use this website to keep track
-        and share some progress I've been making..."
+                text="In my free-time, I spends a lot of time listening/mixing music and running longer distances. I want to use this website to keep track and share some progress I've been making..."
             />
         </div>
     </div>
 
-    <!-- Friends Section -->
     <section class="p-4 border-t border-neutral-200">
-        <CardRasterHorizontal
-            posts={friends}
-            className="
-        "
-        />
+        <CardRasterHorizontal posts={friends} />
     </section>
 </div>

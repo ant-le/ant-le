@@ -40,44 +40,67 @@
 }
 
 @theme {
-    /* Minimal Theme (Default) - Dark background with taupe/battleship-gray palette */
+    /* Theme 2: Nordic Twilight - Cool, serene, and inspired by natural landscapes */
 
     /* Colors */
-    --color-primary: #463f3aff; /* taupe */
-    --color-primary-light: #8a817cff; /* battleship-gray */
-    --color-primary-dark: #2a2520ff; /* darker taupe */
-    --color-secondary: #bcb8b1ff; /* silver */
-    --color-accent: #e0afa0ff; /* melon */
-    --color-accent-2: #f4f3eeff; /* isabelline */
+    --color-primary: #6a9c89; /* Muted Viridian */
+    --color-primary-light: #a3b1c2; /* Cadet Gray */
+    --color-primary-dark: #485a6e; /* Steel Blue */
+    --color-secondary: #a3b1c2; /* Cadet Gray */
+    --color-accent: #8fbca4; /* Pale Sage */
+    --color-accent-2: #b0d4b8; /* Light Moss Green */
 
     /* Neutral Colors */
-    --color-neutral-50: #f4f3eeff; /* isabelline */
-    --color-neutral-100: #e8e6e0ff; /* lighter isabelline */
-    --color-neutral-200: #bcb8b1ff; /* silver */
-    --color-neutral-300: #8a817cff; /* battleship-gray */
-    --color-neutral-400: #6b635eff; /* darker battleship-gray */
-    --color-neutral-500: #463f3aff; /* taupe */
-    --color-neutral-600: #2a2520ff; /* darker taupe */
-    --color-neutral-700: #1a1612ff; /* very dark taupe */
-    --color-neutral-800: #0f0c0aff; /* almost black */
-    --color-neutral-900: #000000ff; /* black */
+    --color-neutral-50: #e0e7ef;
+    --color-neutral-100: #cdd8e3;
+    --color-neutral-200: #a3b1c2;
+    --color-neutral-300: #7f91a5;
+    --color-neutral-400: #63768a;
+    --color-neutral-500: #485a6e;
+    --color-neutral-600: #2d3a4c;
+    --color-neutral-700: #1e2733;
+    --color-neutral-800: #13181f;
+    --color-neutral-900: #000000;
 
     /* Background Colors */
-    --color-bg-primary: #1a1612ff; /* very dark taupe */
+    --color-bg-primary: #1e2733; /* Deep Fjord Blue */
     --color-bg-secondary: transparent;
-    --color-bg-tertiary: #2a2520ff; /* darker taupe */
-    --color-bg-dark: #0f0c0aff; /* almost black */
+    --color-bg-tertiary: #2d3a4c; /* Dark Slate Blue */
+    --color-bg-dark: #13181f;
 
     /* Text Colors */
-    --color-text-primary: #f4f3eeff; /* isabelline */
-    --color-text-secondary: #bcb8b1ff; /* silver */
-    --color-text-tertiary: #8a817cff; /* battleship-gray */
+    --color-text-primary: #e0e7ef; /* Mist White */
+    --color-text-secondary: #a3b1c2; /* Cadet Gray */
+    --color-text-tertiary: #7f91a5; /* Shadow Gray */
     --color-text-light: #ffffff;
 
-    /* Typography  */
+    /* Typography */
     --font-display: 'MinimalFont', sans-serif;
-}
 
+    @keyframes heartbeat {
+        72.5% {
+            opacity: 0;
+        }
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+    --animate-heartbeat: heartbeat 1.4s linear infinite;
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+    --animate-typing: typing 2.5s steps(40, end), blink 0.75s step-end infinite;
+}
 /* Override variables for artistic theme */
 @layer theme {
     :root,
