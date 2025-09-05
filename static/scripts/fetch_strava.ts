@@ -37,7 +37,6 @@ const __dirname = path.dirname(__filename)
 const ACTIVITIES_OUTPUT_PATH = path.join(
     __dirname,
     '..',
-    '..',
     'src',
     'lib',
     'types',
