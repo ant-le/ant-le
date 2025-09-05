@@ -1,25 +1,24 @@
 <script lang="ts">
     import { fade } from 'svelte/transition'
-    import type { MusicData } from '$lib/types'
+    import type { MusicData } from '$lib/types/music'
 
-    let { post }: { post: MusicData } = $props()
-
+    let { post, onReadMore } = $props<{
+        post: MusicData
+        onReadMore: (post: MusicData) => void
+    }>()
     // Reactive state to control the visibility of the music player
     let showPlayer = $state(false)
 </script>
 
 <article
     class="
-    flex flex-col h-full rounded-xl overflow-hidden shadow-lg transition-shadow duration-300
-    bg-white artistic:bg-primary-dark artistic:shadow-xl artistic:hover:shadow-accent/20
-  "
+        flex flex-col h-full rounded-xl overflow-hidden shadow-lg transition-shadow duration-300
+        bg-bg-tertiary artistic:shadow-xl artistic:hover:shadow-accent/20
+        w-full max-w-48 sm:max-w-3xs mx-auto
+    "
 >
-    <!-- Main visual container. It's now relative to position children inside it. -->
-    <div class="relative flex-shrink-0 h-64 w-full">
-        <!-- 
-      The album art is now the persistent background. 
-      It's always here.
-    -->
+    <div class="relative flex-shrink-0 h-24 sm:h-32 w-full">
+        <!-- The album art is now the persistent background. -->
         <img
             class="absolute inset-0 w-full h-full object-cover"
             src={post.image}
@@ -27,10 +26,7 @@
         />
 
         {#if showPlayer}
-            <!-- 
-        When showPlayer is true, we display a layer on top of the image
-        that contains the iframe. This feels like an overlay, not a replacement.
-      -->
+            <!-- When showPlayer is true, we display a layer on top of the image -->
             <div
                 class="absolute inset-0 w-full h-full bg-black/70 backdrop-blur-sm flex items-center justify-center"
                 transition:fade={{ duration: 200 }}
@@ -41,10 +37,7 @@
             </div>
         {/if}
 
-        <!-- 
-      This is the interactive overlay for the Play/Close button.
-      It sits on top of the image but below the iframe player when it's active.
-    -->
+        <!-- Interactive overlay for the Play/Close button. -->
         <div
             class="absolute inset-0 group"
             class:pointer-events-none={showPlayer}
@@ -100,15 +93,29 @@
     </div>
 
     <!-- Text content below the image/player -->
-    <div class="p-5 flex-grow flex flex-col">
+    <div class="p-4 sm:p-5 flex-grow flex flex-col">
+        <!-- 
+            Responsive Changes:
+            - p-4 sm:p-5: Adjusts padding for mobile and larger screens.
+        -->
         <a href={post.post} class="hover:text-accent-2 transition-colors">
             <h3
-                class="font-bold truncate text-lg text-text-primary artistic:text-text-light"
+                class="font-bold truncate text-base sm:text-lg text-text-primary artistic:text-text-light"
             >
+                <!-- 
+                    Responsive Changes:
+                    - text-base sm:text-lg: Adjusts font size for better readability.
+                -->
                 {post.title}
             </h3>
         </a>
-        <p class="text-sm text-text-secondary artistic:text-text-light/80">
+        <p
+            class="text-xs sm:text-sm text-text-secondary artistic:text-text-light/80"
+        >
+            <!-- 
+                Responsive Changes:
+                - text-xs sm:text-sm: Adjusts font size for better readability.
+            -->
             {post.desc}
         </p>
 

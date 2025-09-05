@@ -1,16 +1,21 @@
 <script lang="ts">
-    import type { BlogPost, FriendsData, MusicData } from '$lib/types'
+    import type { MusicData } from '$lib/types/music'
+    import type { BlogPost } from '$lib/types/blog'
+    import type { FriendsData } from '$lib/types/friends'
     import BlogCard from './BlogCard.svelte'
     import FriendCard from './FriendCard.svelte'
     import MusicCard from './MusicCard.svelte'
+    import RunningCard from './RunningCard.svelte'
 
     let {
         posts,
         title,
+        onReadMore,
         className = '',
     } = $props<{
         // The array is now expected to be homogenous
         posts: BlogPost[] | FriendsData[] | MusicData[]
+        onReadMore?: (post: BlogPost) => void
         title?: string
         className?: string
     }>()
@@ -23,29 +28,26 @@
         }
         const firstPost = posts[0]
 
-        // Check for a unique property to identify the data type
+        //TODO: add workaround like this it is a bid annoying
+        // Check for a unique property to identify the types type
         if ('categories' in firstPost) {
+            if ('iframe' in firstPost) {
+                return MusicCard
+            }
+            if (firstPost.categories.includes('running')) {
+                return RunningCard
+            }
             return BlogCard
-        }
-        if ('iframe' in firstPost) {
-            return MusicCard
         }
         // Default to FriendCard if the others don't match
         return FriendCard
     })
+
+    const total = posts.length
 </script>
 
 <section class={className}>
-    <div
-        class="
-        /* Minimal theme (default) */
-        max-w-6xl mx-auto px-4
-        
-        /* Artistic theme overrides */
-        artistic:max-w-6xl artistic:bg-bg-secondary artistic:rounded-2xl artistic:shadow-xl
-        {className}
-    "
-    >
+    <div class="max-w-6xl mx-auto px-4 {className}">
         {#if title}
             <h2
                 class="
@@ -64,22 +66,25 @@
             <div class="relative overflow-hidden">
                 <!-- Left gradient fade -->
                 <div
-                    class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-bg-primary to-transparent z-10 pointer-events-none artistic:from-bg-secondary"
+                    class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-bg-primary to-transparent z-10 pointer-events-none"
                 ></div>
 
                 <!-- Right gradient fade -->
                 <div
-                    class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-bg-primary to-transparent z-10 pointer-events-none artistic:from-bg-secondary"
+                    class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-bg-primary to-transparent z-10 pointer-events-none"
                 ></div>
 
                 <!-- Scrolling container. The main change is removing the gap and padding from here. -->
                 <div class="flex overflow-x-auto pb-8 scrollbar-custom">
                     <!-- This new wrapper centers the content when it doesn't overflow -->
-                    <div class="flex flex-none mx-auto px-4 gap-6">
-                        {#each posts as post}
-                            <div class="flex-shrink-0 w-80">
-                                <CardComponent {post} />
-                            </div>
+                    <div class="flex flex-none mx-auto px-4 gap-4">
+                        {#each posts as post, index}
+                            <CardComponent
+                                {post}
+                                {onReadMore}
+                                {index}
+                                {total}
+                            />
                         {/each}
                     </div>
                 </div>

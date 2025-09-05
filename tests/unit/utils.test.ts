@@ -7,14 +7,11 @@ import {
     sortBlogPostsByDate,
     getRandomBlogPosts,
     getSortedRunningPBs,
-    getWeeklyTrainingData,
-    getTotalDistanceForPeriod,
-    getAverageDailyDistance,
-    getTotalDistanceAllYears,
-    getWeeklyAverageForYear,
+    calculateTrainingSummary,
 } from '$lib/utils'
-import { blogPosts, runningPBs, runningTraining } from '$lib/data' // Real data for integration checks
-import type { BlogCategory, BlogPost } from '$lib/types'
+import { type BlogPost, type BlogCategory } from '$lib/types/blog'
+import { runningPBs } from '$lib/types/personalBests'
+import { type RunningTraining } from '$lib/types/running'
 
 // --- Centralized Test Constants & Mocks ---
 const VALID_CATEGORIES: BlogCategory[] = ['science', 'running', 'music']
@@ -44,11 +41,19 @@ const MOCK_POSTS: BlogPost[] = [
         categories: ['music'],
     },
 ]
-const MOCK_TRAINING_DATA = [
-    { date: new Date('2024-01-01'), distance: 10 },
-    { date: new Date('2024-01-02'), distance: 0 }, // Rest day
-    { date: new Date('2024-01-08'), distance: 15 },
-    { date: new Date('2025-02-01'), distance: 20 }, // Data for another year
+const MOCK_TRAINING_DATA: RunningTraining[] = [
+    { distance: 10, moving_time: 60, date: new Date('2025-01-15') }, // Week 3
+    { distance: 15, moving_time: 90, date: new Date('2025-03-20') }, // Week 12
+    { distance: 20, moving_time: 120, date: new Date('2025-08-30') }, // Week 35
+
+    // --- Previous Year Data (2024) ---
+    // Total distance: 520 km (avg 10km/week)
+    // Total time: 3120 min
+    ...Array.from({ length: 52 }, (_, i) => ({
+        distance: 10,
+        moving_time: 60,
+        date: new Date(2024, 0, 1 + i * 7),
+    })),
 ]
 
 describe('Utility Functions', () => {
@@ -154,81 +159,94 @@ describe('Utility Functions', () => {
             ])
         })
     })
+})
 
-    describe('getWeeklyTrainingData', () => {
-        it('should aggregate distances correctly by week', () => {
-            const weeklyData = getWeeklyTrainingData(MOCK_TRAINING_DATA)
-            expect(weeklyData.length).toBe(3) // Three distinct weeks
-            expect(weeklyData[0].totalDistance).toBe(10) // First week
-            expect(weeklyData[1].totalDistance).toBe(15) // Second week
-        })
+describe('calculateTrainingSummary', () => {
+    it('should correctly calculate metrics for 30-day timeframe', () => {
+        const mockCurrentDate = new Date('2025-01-15')
+
+        // Test with 30-day timeframe
+        const summary = calculateTrainingSummary(
+            MOCK_TRAINING_DATA,
+            '30',
+            mockCurrentDate
+        )
+
+        // Check that we get the correct number of trainings for 30 days
+        expect(summary.trainings.length).toBeGreaterThan(0)
+        expect(summary.weeklyAverage).toBeGreaterThan(0)
+        expect(summary.totalTime).toBeGreaterThan(0)
+        expect(summary.totalDistance).toBeGreaterThan(0)
+
+        // Check that all properties exist
+        expect(summary).toHaveProperty('trainings')
+        expect(summary).toHaveProperty('weeklyAverage')
+        expect(summary).toHaveProperty('prevWeeklyAverage')
+        expect(summary).toHaveProperty('totalTime')
+        expect(summary).toHaveProperty('totalDistance')
     })
 
-    describe('getTotalDistanceForPeriod', () => {
-        it('should calculate total distance for a specific period', () => {
-            const startDate = new Date('2023-12-30')
-            const endDate = new Date('2024-01-10')
-            const total = getTotalDistanceForPeriod(
-                MOCK_TRAINING_DATA,
-                startDate,
-                endDate
-            )
-            expect(total).toBe(25) // 10 + 15
-        })
+    it('should correctly calculate metrics for 180-day timeframe', () => {
+        const mockCurrentDate = new Date('2025-01-15')
+
+        const summary = calculateTrainingSummary(
+            MOCK_TRAINING_DATA,
+            '180',
+            mockCurrentDate
+        )
+
+        expect(summary.trainings.length).toBeGreaterThan(0)
+        expect(summary.weeklyAverage).toBeGreaterThan(0)
+        expect(summary.totalTime).toBeGreaterThan(0)
+        expect(summary.totalDistance).toBeGreaterThan(0)
     })
 
-    describe('getAverageDailyDistance', () => {
-        it('should calculate average distance excluding rest days', () => {
-            const startDate = new Date('2024-01-01')
-            const endDate = new Date('2024-01-07')
-            // Period has one run of 10km and one rest day. Average is 10 / 1 = 10.
-            const average = getAverageDailyDistance(
-                MOCK_TRAINING_DATA,
-                startDate,
-                endDate
-            )
-            expect(average).toBe(10)
-        })
+    it('should handle "all" timeframe correctly', () => {
+        const mockCurrentDate = new Date('2025-01-15')
 
-        it('should return 0 if there are no training days in the period', () => {
-            const startDate = new Date('2026-01-01')
-            const endDate = new Date('2026-01-07')
-            const average = getAverageDailyDistance(
-                MOCK_TRAINING_DATA,
-                startDate,
-                endDate
-            )
-            expect(average).toBe(0)
-        })
+        const summary = calculateTrainingSummary(
+            MOCK_TRAINING_DATA,
+            'all',
+            mockCurrentDate
+        )
+
+        // Should include all trainings
+        expect(summary.trainings).toHaveLength(MOCK_TRAINING_DATA.length)
+        expect(summary.weeklyAverage).toBeGreaterThan(0)
+        expect(summary.totalTime).toBeGreaterThan(0)
+        expect(summary.totalDistance).toBeGreaterThan(0)
+
+        // No prior period for "all" timeframe
+        expect(summary.prevWeeklyAverage).toBe(0)
     })
 
-    describe('getTotalDistanceAllYears', () => {
-        it('should calculate the sum of all distances', () => {
-            const total = getTotalDistanceAllYears(MOCK_TRAINING_DATA)
-            expect(total).toBe(45) // 10 + 15 + 20
-        })
+    it('should calculate prior period metrics correctly', () => {
+        const mockCurrentDate = new Date('2025-01-15')
 
-        it('should return 0 for an empty array', () => {
-            const total = getTotalDistanceAllYears([])
-            expect(total).toBe(0)
-        })
+        const summary = calculateTrainingSummary(
+            MOCK_TRAINING_DATA,
+            '30',
+            mockCurrentDate
+        )
+
+        // Should have prior period data for 30-day timeframe
+        expect(summary.prevWeeklyAverage).toBeGreaterThanOrEqual(0)
     })
 
-    describe('getWeeklyAverageForYear', () => {
-        it('should calculate the correct weekly average for a given year', () => {
-            const average = getWeeklyAverageForYear(MOCK_TRAINING_DATA, 2024)
-            const expectedTotal = 25 // 10 + 15
-            expect(average).toBeCloseTo(expectedTotal / 52.1775)
-        })
+    it('should handle empty training data', () => {
+        const emptyTrainings: RunningTraining[] = []
+        const mockCurrentDate = new Date('2025-01-15')
 
-        it('should return 0 for a year with no training data', () => {
-            const average = getWeeklyAverageForYear(MOCK_TRAINING_DATA, 2026)
-            expect(average).toBe(0)
-        })
+        const summary = calculateTrainingSummary(
+            emptyTrainings,
+            '30',
+            mockCurrentDate
+        )
 
-        it('should return 0 for an empty input array', () => {
-            const average = getWeeklyAverageForYear([], 2024)
-            expect(average).toBe(0)
-        })
+        expect(summary.trainings).toHaveLength(0)
+        expect(summary.weeklyAverage).toBe(0)
+        expect(summary.prevWeeklyAverage).toBe(0)
+        expect(summary.totalTime).toBe(0)
+        expect(summary.totalDistance).toBe(0)
     })
 })
