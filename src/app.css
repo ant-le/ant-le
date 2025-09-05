@@ -74,6 +74,7 @@
     --color-text-tertiary: #7f91a5; /* Shadow Gray */
     --color-text-light: #ffffff;
 
+    --tw-gradient-stops: var(--color-neutral-800);
     /* Typography */
     --font-display: 'MinimalFont', sans-serif;
 

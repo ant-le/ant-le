@@ -12,9 +12,7 @@
     <title>Error | Anton Lechuga</title>
 </svelte:head>
 
-<main
-    class="min-h-screen flex items-center justify-center py-16 artistic:py-20"
->
+<main class="flex items-center justify-center py-16 artistic:py-20">
     <div class="text-center max-w-md mx-auto px-4 artistic:max-w-lg">
         <div
             class="

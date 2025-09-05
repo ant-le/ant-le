@@ -1,7 +1,7 @@
 import type { BlogPost, BlogCategory } from '$lib/types/blog'
 import type { RunningPB } from '$lib/types/personalBests'
 import type { RunningTraining } from '$lib/types/running'
-import type { TrainingSummary } from './types/types'
+import type { TrainingSummary, RandomPosts } from './types/types'
 /**
  * Formats a Date object into a readable "Month Day, Year" string.
  * @param date The date to format.
@@ -83,6 +83,36 @@ export function getRandomBlogPosts(
     if (!posts || posts.length === 0 || count <= 0) return []
     const shuffled = [...posts].sort(() => 0.5 - Math.random())
     return shuffled.slice(0, count)
+}
+
+/**
+ * Creates a RandomPosts object by selecting one random post for each category from the provided posts.
+ * @param posts The array of blog posts to select from.
+ * @param categories The array of category strings to create random posts for.
+ * @returns A RandomPosts object with one random post per category, or null if no posts exist for a category.
+ */
+export function createRandomPostsByLabels(
+    posts: BlogPost[],
+    labels: string[]
+): RandomPosts {
+    const result: RandomPosts = {}
+
+    for (const label of labels) {
+        // Filter posts that have this category in their labels
+        const categoryPosts = posts.filter((post) =>
+            post.labels.some((l) => l.toLowerCase() === label.toLowerCase())
+        )
+
+        // Select a random post from the filtered posts, or null if none exist
+        if (categoryPosts.length > 0) {
+            const randomPost = getRandomBlogPosts(categoryPosts, 1)[0]
+            result[label] = randomPost
+        } else {
+            result[label] = null
+        }
+    }
+
+    return result
 }
 
 /**

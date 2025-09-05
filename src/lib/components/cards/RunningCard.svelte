@@ -23,20 +23,20 @@
     )
 </script>
 
-<a
+<button
     onclick={() => onReadMore(post)}
     class="
-            group block h-full rounded-xl max-w-3xs sm:w-full
-            border border-transparent hover:border-neutral-200
-            transition-colors duration-300
-            artistic:bg-primary artistic:hover:border-accent/30
-       "
+                group block h-full rounded-xl max-w-3xs sm:w-full
+                border border-transparent hover:border-neutral-200
+                transition-colors duration-300
+                artistic:bg-primary artistic:hover:border-accent/30
+           "
 >
-    <article>
+    <article class="h-full flex flex-col">
         <div class="pt-8 h-32 w-full overflow-hidden rounded-t-xl">
             <img
                 src={post.image}
-                alt="Post image"
+                alt="Post"
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
         </div>
@@ -87,4 +87,4 @@
             </div>
         </div>
     </article>
-</a>
+</button>

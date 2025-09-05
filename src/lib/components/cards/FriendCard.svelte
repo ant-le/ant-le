@@ -12,11 +12,11 @@
 <div
     class="
         /* Minimal theme (default) */
-        bg-bg-secondary rounded-[25px] shadow-md p-4 transition-all duration-300 ease-in-out
+        bg-bg-secondary rounded-[25px] p-4 transition-all duration-300 ease-in-out
         relative overflow-hidden h-full flex flex-col w-full max-w-3xs
        
         /* Artistic theme overrides */
-        artistic:bg-gradient-to-br artistic:from-primary artistic:to-secondary artistic:shadow-lg
+        artistic:from-primary artistic:to-secondary artistic:shadow-lg
         artistic:rounded-[30px] artistic:animate-[friendCardFloat_5s_ease-in-out_infinite]
         {className}
    "
