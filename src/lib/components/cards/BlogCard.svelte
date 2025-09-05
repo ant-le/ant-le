@@ -9,11 +9,9 @@
 </script>
 
 <div
-    class="relative flex flex-col p-4 md:p-6 bg-bg-dark rounded-lg overflow-hidden group border border-neutral-700"
+    class="relative flex flex-col p-4 md:p-6 bg-bg-dark rounded-lg overflow-hidden group border border-neutral-700 h-full"
 >
-    <div
-        class="absolute inset-0 z-0 bg-[url('/starfield.svg')] opacity-20"
-    ></div>
+    <div class="absolute inset-0 z-0 opacity-20"></div>
     <div
         class="absolute inset-0 z-10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style="background: radial-gradient(circle at center, transparent, var(--color-primary-dark));"

@@ -20,7 +20,7 @@
 
     // --- State for three random posts ---
     let randomPosts: RandomPosts = $state({})
-    const labels = ['philosophy', 'math', 'social science']
+    const labels = ['philosophy', 'mathematics', 'social science']
     $effect(() => {
         randomPosts = createRandomPostsByLabels(sciencePosts, labels)
     })
@@ -44,7 +44,7 @@
     <PageHeader title="Science" />
 
     <blockquote
-        class="text-xl mb-8 italic font-semibold text-center text-text-tertiary max-w-3xl mx-auto"
+        class="text-xl mb-8 italic font-semibold text-center text-text-tertiary max-w-3xl mx-auto glimmering-background"
     >
         <p class="text-text-secondary">
             "Normal science, the activity in which most scientists inevitably
@@ -54,7 +54,7 @@
         <p>Thomas Kuhn</p>
     </blockquote>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-22">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 lg:mb-22">
         <TextCard
             text="Over the past years, I got to know many academic subjects. I wouldn't call myself an expert on any of them - at least so far. Having a backgound in social (political) science and applied statistics, I explored parts of philosophy, math and computer science. I am now graduating in data science, but many of the other subjects still have touching points with what I do."
         />
@@ -63,18 +63,22 @@
         />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 rounded-t-lg p-6 items-stretch"
+    >
         {#each Object.entries(randomPosts) as [title, post]}
-            <div class="flex flex-col gap-3">
-                <h3 class="text-lg font-bold text-text-secondary text-center">
+            <div class="flex flex-col gap-3 h-full">
+                <h3
+                    class="text-xl font-bold text-text-secondary text-left md:text-center text-pretty"
+                >
                     From {title}
                 </h3>
                 {#if post}
-                    <div class="h-full">
+                    <div class="p-2 h-full">
                         <BlogCard {post} {onReadMore} />
                     </div>
                 {:else}
-                    <div class="p-4">
+                    <div class="p-4 h-full">
                         <EmptyCard
                             title="Nothing"
                             message="I did not find the time to write anyting on this subject :/"

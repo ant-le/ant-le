@@ -118,7 +118,7 @@
             {/each}
         </div>
     {:else}
-        <div class="w-full flex justify-center ">
+        <div class="w-full flex justify-center">
             <div class="max-w-md w-full">
                 <EmptyCard />
             </div>

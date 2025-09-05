@@ -45,14 +45,12 @@
                         >
                             {pb.distance}
                         </div>
-                        <div class="text-sm sm:text-base text-text-secondary">
+                        <div class="text-sm text-text-secondary">
                             {pb.eventLocation}
                         </div>
                     </div>
                 </div>
-                <div
-                    class="text-right text-base sm:text-xl font-semibold text-text-primary"
-                >
+                <div class="text-right font-semibold text-text-primary">
                     {pb.time}
                 </div>
             </div>

@@ -99,10 +99,8 @@ export function createRandomPostsByLabels(
 
     for (const label of labels) {
         // Filter posts that have this category in their labels
-        const categoryPosts = posts.filter(post =>
-            post.labels.some(l =>
-                l.toLowerCase() === label.toLowerCase()
-            )
+        const categoryPosts = posts.filter((post) =>
+            post.labels.some((l) => l.toLowerCase() === label.toLowerCase())
         )
 
         // Select a random post from the filtered posts, or null if none exist

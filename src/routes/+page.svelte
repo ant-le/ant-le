@@ -14,18 +14,18 @@
     />
 </svelte:head>
 
-<div class="flex flex-col gap-16">
+<div class="flex flex-col gap:12 sm:gap-16">
     <div
-        class="flex flex-col md:flex-row gap-8 items-center md:items-start max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        class="flex flex-col lg:flex-row gap-2 sm:gap-8 items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
     >
         <div class="flex-shrink-0">
             <img
-                class="w-52 h-52 sm:w-64 sm:h-64 object-cover rounded-lg transition-all duration-300 filter grayscale hover:grayscale-0"
+                class="w-64 h-64 object-cover rounded-lg transition-all duration-300 filter grayscale hover:grayscale-0"
                 src={profile}
                 alt="That is me."
             />
         </div>
-        <div class="flex flex-col gap-4 max-w-prose">
+        <div class="flex flex-col max-w-prose">
             <TextCard
                 text="Hello, I am Anton and on this little website I want to share things I am interested in, aspects of life I care about and stuff I love doing!"
             />
@@ -37,8 +37,8 @@
             />
         </div>
     </div>
-
-    <section class="p-4 border-t border-neutral-200">
+    <hr class="hidden mx-32 lg:inline border-neutral-200" />
+    <section class="p-4 md:px-32 lg:p-4">
         <CardRasterHorizontal posts={friends} />
     </section>
 </div>

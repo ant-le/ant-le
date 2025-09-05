@@ -11,7 +11,7 @@
     import PageHeader from '$lib/components/PageHeader.svelte'
     import TextCard from '$lib/components/TextCard.svelte'
     import { blogPosts, type BlogPost } from '$lib/types/blog'
-    import CardRasterHorizontal from '$lib/components/views/CardGallery.svelte'
+    import CardGallery from '$lib/components/views/CardGallery.svelte'
 
     // Get running blog posts
     let posts = $derived(filterBlogPostsByCategory(blogPosts, 'running'))
@@ -31,7 +31,7 @@
     />
 </svelte:head>
 
-<div class="flex flex-col mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col mb-24 max-w-7xl mx-auto px-8">
     <PageHeader title="My Running Journey" className="lg:text-left" />
 
     <TextCard
@@ -53,7 +53,7 @@
             text="At the beginning, I was very sceptical towards all the running gear you can find out there. Now, a couple of years later, I find myself using more than 3 shoes in parallel, thinking and researching running constantly. If you are interested in what I learned and what fascinated me the most, scroll down to have a look:"
             classProps="text-center lg:text-left"
         />
-        <CardRasterHorizontal {posts} {onReadMore} />
+        <CardGallery {posts} {onReadMore} />
     </section>
 </div>
 

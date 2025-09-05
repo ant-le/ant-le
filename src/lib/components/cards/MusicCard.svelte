@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { MusicData } from '$lib/types/music' // Assuming MusicData is aliased or similar to BlogPost
-    import { fade } from 'svelte/transition' // Used in some designs for animation
+    import type { MusicData } from '$lib/types/music'
+    import { fade } from 'svelte/transition'
 
     let { post, onReadMore } = $props<{
         post: MusicData
@@ -10,8 +10,36 @@
 </script>
 
 <article
-    class="flex-shrink-0 w-80 md:w-[32rem] bg-primary-dark rounded-xl shadow-lg flex flex-col md:flex-row border border-neutral-600 font-display transition-all duration-300"
+    class="relative flex-shrink-0 w-80 md:w-[32rem] bg-primary-dark rounded-xl shadow-lg flex flex-col md:flex-row border border-neutral-600 font-display transition-all duration-300"
 >
+    {#if showPlayer}
+        <div
+            class="absolute inset-0 bg-bg-dark/80 backdrop-blur-sm rounded-xl p-4 flex items-center justify-center z-10"
+            transition:fade
+        >
+            <div class="w-full h-full p-2">
+                {@html post.iframe}
+            </div>
+
+            <button
+                onclick={() => (showPlayer = false)}
+                class="absolute top-4 right-4 z-20 p-1 bg-bg-dark/50 rounded-full text-text-light"
+                aria-label="Close"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708-.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8l-4.646-5.354a.5.5 0 0 1 0-.708z"
+                    />
+                </svg>
+            </button>
+        </div>
+    {/if}
+
     <div class="relative w-full md:w-1/2 aspect-square flex-shrink-0">
         <div class="absolute inset-0 w-full h-full p-4">
             <div
@@ -32,17 +60,6 @@
                         alt="Art for {post.title}"
                     />
 
-                    {#if showPlayer}
-                        <div
-                            class="absolute inset-0 bg-bg-dark/80 backdrop-blur-sm flex items-center justify-center rounded-full"
-                            transition:fade
-                        >
-                            <div class="w-full h-full p-2 scale-90">
-                                {@html post.iframe}
-                            </div>
-                        </div>
-                    {/if}
-
                     <div
                         class="absolute inset-0 group"
                         class:pointer-events-none={showPlayer}
@@ -53,9 +70,8 @@
                             onclick={() => (showPlayer = true)}
                             onkeydown={() => (showPlayer = true)}
                             transition:fade={{ duration: 300 }}
-                            class="w-full h-full flex
-                            items-center justify-center bg-transparent group-hover:bg-bg-dark/50 rounded-full
-                            transition-colors"
+                            class="w-full h-full flex items-center justify-center bg-transparent
+                            group-hover:bg-bg-dark/50 rounded-full transition-colors"
                         >
                             <svg
                                 width="40"
@@ -70,27 +86,6 @@
                             </svg>
                         </div>
                     </div>
-
-                    {#if showPlayer}
-                        <button
-                            onclick={() => (showPlayer = false)}
-                            class="absolute -top-2 -right-2 z-20 p-1 bg-bg-dark/50
-                        rounded-full text-text-light"
-                            aria-label="Close"
-                            transition:fade
-                        >
-                            <svg
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708-.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8l-4.646-5.354a.5.5 0 0 1 0-.708z"
-                                />
-                            </svg>
-                        </button>
-                    {/if}
                 </div>
             </div>
         </div>
@@ -99,9 +94,9 @@
     <div class="flex flex-col flex-grow p-4 md:p-6 justify-between">
         <div class="text-left">
             <h3 class="font-bold text-lg md:text-xl text-text-primary">
-                {post.title}
+                {post.piece}
             </h3>
-            <p class="text-sm text-text-secondary mt-1">{post.desc}</p>
+            <p class="text-sm text-text-secondary mt-1">{post.artist}</p>
         </div>
         <div
             class="flex items-center justify-between pt-4 mt-4 border-t border-neutral-700"
@@ -123,9 +118,10 @@
             </div>
             <button
                 onclick={() => onReadMore(post)}
-                class="text-sm font-bold text-accent-2 hover:underline
-                flex-shrink-0">INFO</button
+                class="text-sm font-bold text-accent-2 hover:underline flex-shrink-0"
             >
+                INFO
+            </button>
         </div>
     </div>
 </article>

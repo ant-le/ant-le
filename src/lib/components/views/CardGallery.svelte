@@ -76,9 +76,7 @@
                         {/each}
                     </div>
                 {:else}
-                    <div
-                        class="w-full flex items-center justify-center"
-                    >
+                    <div class="w-full flex items-center justify-center">
                         <div class="max-w-md w-full">
                             <EmptyCard />
                         </div>

@@ -21,43 +21,47 @@
     />
 </svelte:head>
 
-<div class="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col max-w-7xl mx-auto px-4">
     <PageHeader title="Music" className="lg:text-center" />
     <TextCard
         text="To me, music is one of the greatest joys and inspirations in life. I am an amateur DJ and am currently trying to get into music production with synthesisers, a mic and some flutes. I want to share some music and artists I love and (hopefully) some of my own makings soon!"
         classProps="text-center"
     />
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 md:h-full">
-        <section class="text-center space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-12 lg:h-full">
+        <section class="text-center space-y-6 lg:col-span-2">
             <h2
                 class="
-                    text-3xl text-text-primary mb-8
-                    artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse
-                "
+                text-3xl text-text-primary mb-8
+                artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse
+            "
             >
                 What I have so far:
             </h2>
-            <CardRasterHorizontal posts={musicPosts} {onReadMore} />
+            <div class="p-6">
+                <CardRasterHorizontal posts={musicPosts} {onReadMore} />
+            </div>
         </section>
         <section class="text-center space-y-6">
             <h2
                 class="
-                    text-3xl text-text-primary mb-8
-                    artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse
-                "
+                text-3xl text-text-primary mb-8
+                artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse
+            "
             >
-                Coming Soon
+                Coming Soon:
             </h2>
-            <TextCard
-                text="Techno and downtempo mixes with emotional touch and energy."
-                title="DJ Sets"
-                classProps="bg-bg-srounded-lg bg-primary-dark p-6 shadow-lg transition-shadow duration-300 h-36 text-text-secondary"
-            />
-            <TextCard
-                text="Compositions and experimental sound design projects."
-                title="Music Production"
-                classProps="bg-primary-dark rounded-lg p-6 shadow-lg transition-shadow duration-300 h-36 text-text-secondary"
-            />
+            <div class="flex flex-col gap-4">
+                <TextCard
+                    text="Techno and downtempo mixes with emotional touch and energy."
+                    title="DJ Sets"
+                    classProps="bg-primary-dark border-md rounded-lg bg-primary-dark p-6 shadow-lg transition-shadow duration-300 text-text-secondary"
+                />
+                <TextCard
+                    text="Compositions and experimental sound design projects."
+                    title="Music Production"
+                    classProps="bg-primary-dark border-md rounded-lg p-6 shadow-lg transition-shadow duration-300 text-text-secondary"
+                />
+            </div>
         </section>
     </div>
 </div>

@@ -21,23 +21,18 @@
               ? 'FINISH'
               : `${(42.2 * progress).toFixed(1)} KM`
     )
-    function handleKeyDown(event: KeyboardEvent) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            onReadMore(post)
-        }
-    }
 </script>
 
 <button
     onclick={() => onReadMore(post)}
     class="
-            group block h-full rounded-xl max-w-3xs sm:w-full
-            border border-transparent hover:border-neutral-200
-            transition-colors duration-300
-            artistic:bg-primary artistic:hover:border-accent/30
-       "
+                group block h-full rounded-xl max-w-3xs sm:w-full
+                border border-transparent hover:border-neutral-200
+                transition-colors duration-300
+                artistic:bg-primary artistic:hover:border-accent/30
+           "
 >
-    <article>
+    <article class="h-full flex flex-col">
         <div class="pt-8 h-32 w-full overflow-hidden rounded-t-xl">
             <img
                 src={post.image}

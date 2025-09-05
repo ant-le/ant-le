@@ -118,11 +118,14 @@ describe('Utility Functions', () => {
         it.each([
             { category: 'science', expectedCount: 6 },
             { category: 'running', expectedCount: 1 },
-            { category: 'music', expectedCount: 1 }
+            { category: 'music', expectedCount: 1 },
         ])(
             'should correctly filter posts for the "$category" category',
             ({ category, expectedCount }) => {
-                const result = filterBlogPostsByCategory(MOCK_POSTS, category as BlogCategory)
+                const result = filterBlogPostsByCategory(
+                    MOCK_POSTS,
+                    category as BlogCategory
+                )
                 expect(result.length).toBe(expectedCount)
                 expect(result[0].categories).toContain(category)
             }
@@ -201,15 +204,15 @@ describe('Utility Functions', () => {
         it('should create RandomPosts object with one post per category', () => {
             const categories = ['philosophy', 'social science', 'math']
             const result = createRandomPostsByLabels(MOCK_POSTS, categories)
-            
+
             // Check that all categories are present in the result
             expect(Object.keys(result)).toEqual(categories)
-            
+
             // Check that each category has a post (not null)
             expect(result.philosophy).not.toBeNull()
             expect(result['social science']).not.toBeNull()
             expect(result.math).not.toBeNull()
-            
+
             // Check that the posts have the correct labels
             expect(result.philosophy?.labels).toContain('philosophy')
             expect(result['social science']?.labels).toContain('social science')
@@ -219,7 +222,7 @@ describe('Utility Functions', () => {
         it('should handle case-insensitive category matching', () => {
             const categories = ['PHILOSOPHY', 'Social Science', 'MATH']
             const result = createRandomPostsByLabels(MOCK_POSTS, categories)
-            
+
             expect(result.PHILOSOPHY).not.toBeNull()
             expect(result['Social Science']).not.toBeNull()
             expect(result.MATH).not.toBeNull()
@@ -228,7 +231,7 @@ describe('Utility Functions', () => {
         it('should return null for categories with no matching posts', () => {
             const categories = ['philosophy', 'non-existent-category', 'math']
             const result = createRandomPostsByLabels(MOCK_POSTS, categories)
-            
+
             expect(result.philosophy).not.toBeNull()
             expect(result['non-existent-category']).toBeNull()
             expect(result.math).not.toBeNull()
@@ -237,14 +240,14 @@ describe('Utility Functions', () => {
         it('should handle empty posts array', () => {
             const categories = ['philosophy', 'math']
             const result = createRandomPostsByLabels([], categories)
-            
+
             expect(result.philosophy).toBeNull()
             expect(result.math).toBeNull()
         })
 
         it('should handle empty categories array', () => {
             const result = createRandomPostsByLabels(MOCK_POSTS, [])
-            
+
             expect(Object.keys(result)).toHaveLength(0)
         })
 
@@ -252,32 +255,35 @@ describe('Utility Functions', () => {
             const spy = vi.spyOn(Math, 'random').mockReturnValue(0.1)
             const categories = ['philosophy', 'math']
             const result = createRandomPostsByLabels(MOCK_POSTS, categories)
-            
+
             // With mocked random, we should get consistent results
             expect(result.philosophy?.title).toBe('Philosophy of Mind')
             expect(result.math?.title).toBe('Quantum Physics Explained')
-            
+
             spy.mockRestore()
         })
 
         it('should handle categories with multiple matching posts by selecting one randomly', () => {
             const categories = ['philosophy'] // We have 2 philosophy posts
             const result = createRandomPostsByLabels(MOCK_POSTS, categories)
-            
+
             expect(result.philosophy).not.toBeNull()
             expect(result.philosophy?.labels).toContain('philosophy')
-            
+
             // The result should be one of the two philosophy posts
-            const philosophyTitles = ['Philosophy of Mind', 'Another Philosophy Post']
+            const philosophyTitles = [
+                'Philosophy of Mind',
+                'Another Philosophy Post',
+            ]
             expect(philosophyTitles).toContain(result.philosophy?.title)
         })
 
         it('should not modify the original posts array', () => {
             const originalPosts = [...MOCK_POSTS]
             const categories = ['philosophy', 'math']
-            
+
             createRandomPostsByLabels(MOCK_POSTS, categories)
-            
+
             expect(MOCK_POSTS).toEqual(originalPosts)
         })
     })
