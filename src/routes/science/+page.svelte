@@ -30,6 +30,9 @@
     function onReadMore(post: BlogPost) {
         selectedPost = post
     }
+
+    let section1Visible = $state(true)
+    let section2Visible = $state(false)
 </script>
 
 <svelte:head>
@@ -41,7 +44,7 @@
 </svelte:head>
 
 <div class="flex flex-col mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <PageHeader title="Science" />
+    <PageHeader title="Science" className="lg:text-center" />
 
     <blockquote
         class="text-xl mb-8 italic font-semibold text-center text-text-tertiary max-w-3xl mx-auto glimmering-background"
@@ -62,7 +65,6 @@
             text="Over the past years, I accumalated many sheets, markdowns, youtube videos, books, articles about fascinating science facts. I have planned many times to collect these, but haven't done so far. For that reason, I introduced this block and I hope that you will find some inspiration :) - Down below, you find some selected peaces and scroll down for the full view. Enjoy!"
         />
     </div>
-
     <div
         class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 rounded-t-lg p-6 items-stretch"
     >

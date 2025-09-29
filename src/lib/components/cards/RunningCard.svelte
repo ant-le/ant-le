@@ -52,9 +52,10 @@
                 {post.desc}
             </p>
             <div
-                class="mt-8 mb-4 pt-8 flex items-center justify-between border-t border-text-primary"
+                class="mt-8 mb-4 pt-8 flex items-center justify-between border-t border-text-primary
+                artistic:border-secondary"
             >
-                <div class="text-accent-2/80">
+                <div class="text-accent-2/80 artistic:text-secondary">
                     <svg
                         width="100"
                         height="20"
@@ -80,7 +81,7 @@
                     </svg>
                 </div>
                 <p
-                    class="font-mono text-xs font-bold text-text-tertiary artistic:text-accent-2"
+                    class="font-mono text-xs font-bold text-text-tertiary artistic:text-secondary"
                 >
                     {kmText}
                 </p>

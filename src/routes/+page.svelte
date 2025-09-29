@@ -20,12 +20,12 @@
     >
         <div class="flex-shrink-0">
             <img
-                class="w-64 h-64 object-cover rounded-lg transition-all duration-300 filter grayscale hover:grayscale-0"
+                class="w-64 h-64 object-cover rounded-lg transition-all duration-300 filter grayscale hover:grayscale-0 artistic:grayscale-0"
                 src={profile}
                 alt="That is me."
             />
         </div>
-        <div class="flex flex-col max-w-prose">
+        <div class="flex flex-col max-w-md sm:max-w-lg md:max-w-2xl artistic:gap-2">
             <TextCard
                 text="Hello, I am Anton and on this little website I want to share things I am interested in, aspects of life I care about and stuff I love doing!"
             />
@@ -37,7 +37,7 @@
             />
         </div>
     </div>
-    <hr class="hidden mx-32 lg:inline border-neutral-200" />
+    <hr class="hidden mx-32 lg:inline border-neutral-200 artistic:hidden" />
     <section class="p-4 md:px-32 lg:p-4">
         <CardRasterHorizontal posts={friends} />
     </section>

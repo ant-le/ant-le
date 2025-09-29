@@ -227,7 +227,7 @@
     <div
         class="mt-4 flex items-center justify-between border-t border-neutral-300 pt-4 artistic:border-accent/20"
     >
-        <div class="text-center ml-16">
+        <div class="text-center sm:ml-16">
             <div class="text-sm text-text-tertiary">Total Time</div>
             <div class="font-semibold text-text-primary">
                 {filteredSummary.totalTime.toFixed(1)}h
@@ -239,7 +239,7 @@
                 {filteredSummary.weeklyAverage.toFixed(1)} km
             </div>
         </div>
-        <div class="text-center mr-16">
+        <div class="text-center sm:mr-16">
             <div class="text-sm text-text-tertiary">vs Prev. Period</div>
             <div
                 class="flex items-center justify-center font-semibold text-text-primary"

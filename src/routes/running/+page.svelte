@@ -31,15 +31,15 @@
     />
 </svelte:head>
 
-<div class="flex flex-col mb-24 max-w-7xl mx-auto px-8">
-    <PageHeader title="My Running Journey" className="lg:text-left" />
+<div class="flex flex-col max-w-7xl mx-auto px-8">
+    <PageHeader title="My Running Journey" className="lg:text-center" />
 
     <TextCard
         text="I enjoy running a lot since it allows me to be outside all by myself. Currently, while also pursuing personal bests, I am concentrating on getting to 100km weekly mileage. I would rather consider myself a long-distance runner, as I tend to enjoy longer runs more and I also seem to be better at them."
         classProps="text-center lg:text-left"
     />
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 my-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 my-12">
         <div class="lg:col-span-1 flex justify-center">
             <PersonalBest pbs={runningPBs} />
         </div>

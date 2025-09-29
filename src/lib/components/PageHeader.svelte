@@ -17,7 +17,7 @@
         text-3xl font-light text-text-primary mb-4 tracking-widest md:text-4xl
         
         /* Artistic theme overrides */
-        artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse artistic:tracking-normal
+        artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:tracking-normal
     "
     >
         {title}

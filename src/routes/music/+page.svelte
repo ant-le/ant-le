@@ -21,7 +21,7 @@
     />
 </svelte:head>
 
-<div class="flex flex-col max-w-7xl mx-auto px-4">
+<div class="flex flex-col max-w-7xl mx-auto px-4 md-12">
     <PageHeader title="Music" className="lg:text-center" />
     <TextCard
         text="To me, music is one of the greatest joys and inspirations in life. I am an amateur DJ and am currently trying to get into music production with synthesisers, a mic and some flutes. I want to share some music and artists I love and (hopefully) some of my own makings soon!"
@@ -37,7 +37,7 @@
             >
                 What I have so far:
             </h2>
-            <div class="p-6">
+            <div class="md:p-6">
                 <CardRasterHorizontal posts={musicPosts} {onReadMore} />
             </div>
         </section>

@@ -12,12 +12,11 @@
 <div
     class="
         /* Minimal theme (default) */
-        bg-bg-secondary rounded-[25px] p-4 transition-all duration-300 ease-in-out
-        relative overflow-hidden h-full flex flex-col w-full max-w-3xs
+        bg-bg-secondary rounded-[30px] p-4 transition-all duration-300 
+        ease-in-out relative overflow-hidden h-full flex flex-col w-full max-w-3xs
        
         /* Artistic theme overrides */
-        artistic:from-primary artistic:to-secondary artistic:shadow-lg
-        artistic:rounded-[30px] artistic:animate-[friendCardFloat_5s_ease-in-out_infinite]
+        artistic:shadow-md artistic:hover:shadow-lg artistic:hover:translate-y-1 
         {className}
    "
 >
@@ -91,17 +90,8 @@
                 </h3>
                 <p
                     class="
-                        /* Minimal theme (default) */
                         text-xs sm:text-sm text-text-tertiary italic m-0 font-light tracking-wide
-                       
-                        /* Responsive Changes:
-                             - text-xs sm:text-sm: Adjusts role font size across breakpoints.
-                             - Removed min-h-10 for more natural text flow.
-                           */
-                       
-                        /* Artistic theme overrides */
-                        artistic:text-accent artistic:font-medium
-                            artistic:animate-[roleGlow_2s_ease-in-out_infinite_alternate]
+                         artistic:from-text-primary
                    "
                 >
                     {post.role}

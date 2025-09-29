@@ -34,7 +34,7 @@
 
 <header
     class="
-    bg-transparent py-6 border-b-0
+    bg-bg-primary py-6 border-b-0 top-0 sticky z-1000
     artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:border-b-2 artistic:border-accent artistic:transition-all artistic:duration-300 artistic:shadow-lg
 "
 >
@@ -43,10 +43,10 @@
             <div class="flex items-center gap-4">
                 <button
                     onclick={() => (selectedNavItem = navItems[0])}
-                    class="
+                    class="hover:scale-105
                     text-xl font-light tracking-widest text-text-primary hover:text-text-secondary transition-colors
                     artistic:font-bold artistic:tracking-normal artistic:text-text-light artistic:hover:text-accent-2
-                    artistic:transition-all artistic:hover:scale-105
+                    artistic:transition-all
                     "
                 >
                     Anton Lechuga
@@ -59,11 +59,9 @@
                         <button
                             onclick={() => (selectedNavItem = item)}
                             class="
-                        font-normal tracking-wide text-text-secondary hover:text-text-primary transition-all
-                        duration-200 relative
-                        artistic:font-medium artistic:tracking-normal artistic:text-text-light
-                        artistic:hover:text-accent-2 artistic:transition-all artistic:duration-300
-                        artistic:hover:scale-110
+                        text-l font-normal tracking-wide text-text-secondary hover:text-text-primary transition-all
+                        duration-300 relative hover:scale-105 hover:text-accent-2
+                        artistic:tracking-normal artistic:text-text-light
                         "
                             class:font-bold={selectedNavItem.value ===
                                 item.value}
@@ -87,10 +85,9 @@
 
                 <button
                     type="button"
-                    class="ml-2 md:ml-6 p-2 text-text-secondary hover:text-text-primary transition-colors duration-300 artistic:p-3 artistic:text-text-light artistic:hover:text-accent-2 artistic:bg-gradient-to-r artistic:from-primary-light artistic:to-secondary artistic:rounded-full artistic:shadow-md artistic:hover:shadow-lg artistic:transition-all artistic:hover:scale-110"
+                    class="ml-2 md:ml-6 p-2 text-text-secondary hover:text-text-primary transition-colors duration-300 hover:scale-105 artistic:text-white"
                     aria-label="Toggle theme"
                     onclick={toggleTheme}
-                    disabled
                 >
                     {#if currentTheme === 'artistic'}
                         <svg
