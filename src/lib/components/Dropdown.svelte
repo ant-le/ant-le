@@ -63,9 +63,9 @@
     <button
         onclick={() => (isOpen = !isOpen)}
         bind:this={triggerElement}
-        class="inline-flex items-center gap-1 text-sm text-text-secondary artistic:text-text-light
-        hover:text-text-primary artistic:hover:text-text-primary transition-colors px-3 py-2 rounded-l
-        artistic:hover:bg-primary/10"
+        class="{className} inline-flex items-center gap-1 text-sm text-text-secondary artistic:text-text-light
+        hover:text-text-primary transition-colors px-3 py-2 rounded-l
+        "
         type="button"
     >
         {buttonText}

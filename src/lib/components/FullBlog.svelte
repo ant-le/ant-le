@@ -65,9 +65,7 @@
                 artistic:border-accent/20 sm:flex"
             >
                 <div class="flex-1">
-                    <h1
-                        class="mb-3 text-2xl font-bold text-text-primary artistic:text-3xl"
-                    >
+                    <h1>
                         {post.title}
                     </h1>
 
@@ -129,9 +127,7 @@
                 {/if}
 
                 <div>
-                    <h2
-                        class="mb-2 text-sm font-bold uppercase tracking-widest text-text-tertiary artistic:text-accent"
-                    >
+                    <h2>
                         tl;dr
                     </h2>
                     <p class="text-text-secondary artistic:text-text-light">

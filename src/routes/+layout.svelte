@@ -27,8 +27,8 @@
 
 <div class="font-display bg-bg-primary min-h-screen flex flex-col">
     <Header {toggleTheme} {currentTheme} />
-    <main class="flex-1 w-full flex flex-col items-center mt-16">
-        <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <main class="flex-1 w-full flex flex-col items-center py-16">
+        <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex-1">
             {@render children?.()}
         </div>
     </main>

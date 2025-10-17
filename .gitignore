@@ -1,6 +1,10 @@
 test-results
 node_modules
 
+# Agent
+AGENTS.md
+.agents/
+
 # Output
 .output
 .vercel

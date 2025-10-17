@@ -27,5 +27,5 @@
   <line x1="50" y1="260" x2="320" y2="260" stroke="#fff" stroke-width="2" opacity="0.4"/>
   
   <!-- Text -->
-  <text x="200" y="280" font-family="Arial, sans-serif" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">EXPERIMENTAL</text>
+  <text x="200" y="280" font-family="Lexend Deca, sans-serif" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">EXPERIMENTAL</text>
 </svg>

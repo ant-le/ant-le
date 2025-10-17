@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { fly } from 'svelte/transition' // 1. Import the transition
-
     import { runningPBs } from '$lib/types/personalBests'
     import { runningTraining } from '$lib/types/running'
     import { filterBlogPostsByCategory } from '$lib/utils'
@@ -8,7 +6,6 @@
     import TrainingChart from '$lib/components/TrainingChart.svelte'
     import PersonalBest from '$lib/components/PersonalBest.svelte'
     import FullBlog from '$lib/components/FullBlog.svelte'
-    import PageHeader from '$lib/components/PageHeader.svelte'
     import TextCard from '$lib/components/TextCard.svelte'
     import { blogPosts, type BlogPost } from '$lib/types/blog'
     import CardGallery from '$lib/components/views/CardGallery.svelte'
@@ -31,15 +28,13 @@
     />
 </svelte:head>
 
-<div class="flex flex-col max-w-7xl mx-auto px-8">
-    <PageHeader title="My Running Journey" className="lg:text-center" />
-
+<div class="flex flex-col gap-12">
     <TextCard
         text="I enjoy running a lot since it allows me to be outside all by myself. Currently, while also pursuing personal bests, I am concentrating on getting to 100km weekly mileage. I would rather consider myself a long-distance runner, as I tend to enjoy longer runs more and I also seem to be better at them."
         classProps="text-center lg:text-left"
     />
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 my-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div class="lg:col-span-1 flex justify-center">
             <PersonalBest pbs={runningPBs} />
         </div>

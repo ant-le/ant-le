@@ -49,15 +49,7 @@
 <section class={className}>
     <div class="max-w-6xl mx-auto px-4 {className}">
         {#if title}
-            <h2
-                class="
-            /* Minimal theme (default) */
-            text-3xl font-normal text-text-primary mb-8 pt-8
-            
-            /* Artistic theme overrides */
-            artistic:font-bold artistic:text-center artistic:mb-12 artistic:pt-10
-        "
-            >
+            <h2>
                 {title}
             </h2>
         {/if}

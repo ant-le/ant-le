@@ -11,9 +11,7 @@
 <div class="flex flex-col items-center justify-center text-center px-4 py-8">
     {#if loading}
         <Loader width="48" height="48" />
-        <h3
-            class="mt-4 text-xl sm:text-2xl font-semibold text-text-primary artistic:text-text-primary"
-        >
+        <h3>
             Loading...
         </h3>
     {:else}
@@ -31,9 +29,7 @@
                 d="M11 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-7l-3 3-3-3z"
             />
         </svg>
-        <h3
-            class="text-xl sm:text-2xl font-semibold text-text-primary artistic:text-text-primary"
-        >
+        <h3>
             {title}
         </h3>
         <p

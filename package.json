@@ -48,6 +48,7 @@
         "vitest-browser-svelte": "^0.1.0"
     },
     "dependencies": {
+        "@sveltejs/mcp": "^0.1.5",
         "axios": "^1.11.0",
         "axios-cookiejar-support": "^6.0.4",
         "dotenv": "^17.2.1",

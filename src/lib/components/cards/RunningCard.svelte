@@ -29,7 +29,7 @@
                 group block h-full rounded-xl max-w-3xs sm:w-full
                 border border-transparent hover:border-neutral-200
                 transition-colors duration-300
-                artistic:bg-primary artistic:hover:border-accent/30
+                artistic:border-accent/30
            "
 >
     <article class="h-full flex flex-col">
@@ -41,16 +41,14 @@
             />
         </div>
         <div class="p-4 flex-grow flex flex-col">
-            <h3
-                class="font-bold text-lg text-text-primary artistic:text-text-light"
-            >
+            <h4>
                 {post.title}
-            </h3>
-            <p
-                class="mt-2 line-clamp-2 text-sm text-text-secondary artistic:text-text-light/80 flex-grow"
+            </h4>
+            <h7
+                class="mt-2 line-clamp-2 flex-grow"
             >
                 {post.desc}
-            </p>
+            </h7>
             <div
                 class="mt-8 mb-4 pt-8 flex items-center justify-between border-t border-text-primary
                 artistic:border-secondary"
@@ -81,7 +79,7 @@
                     </svg>
                 </div>
                 <p
-                    class="font-mono text-xs font-bold text-text-tertiary artistic:text-secondary"
+                    class="text-xs text-accent"
                 >
                     {kmText}
                 </p>

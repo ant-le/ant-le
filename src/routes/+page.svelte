@@ -14,9 +14,9 @@
     />
 </svelte:head>
 
-<div class="flex flex-col gap:12 sm:gap-16">
+<div class="flex flex-col gap-12 sm:gap-16">
     <div
-        class="flex flex-col lg:flex-row gap-2 sm:gap-8 items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        class="flex flex-col lg:flex-row gap-4 sm:gap-8 items-center"
     >
         <div class="flex-shrink-0">
             <img
@@ -25,7 +25,7 @@
                 alt="That is me."
             />
         </div>
-        <div class="flex flex-col max-w-md sm:max-w-lg md:max-w-2xl artistic:gap-2">
+        <div class="flex flex-col max-w-md sm:max-w-lg md:max-w-3xl artistic:gap-2">
             <TextCard
                 text="Hello, I am Anton and on this little website I want to share things I am interested in, aspects of life I care about and stuff I love doing!"
             />

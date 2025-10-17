@@ -76,18 +76,9 @@
                 loading="lazy"
             />
             <div class="flex-1">
-                <h3
-                    class="
-                        /* Minimal theme (default) */
-                        text-base sm:text-lg font-normal text-text-primary mb-1 tracking-wider
-                       
-                        /* Artistic theme overrides */
-                        artistic:font-bold artistic:bg-gradient-to-r artistic:from-text-primary
-                            artistic:to-accent-2 artistic:bg-clip-text artistic:text-transparent
-                   "
-                >
+                <h6>
                     {@html post.name}
-                </h3>
+                </h6>
                 <p
                     class="
                         text-xs sm:text-sm text-text-tertiary italic m-0 font-light tracking-wide

@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* ==========================================================================
    TAILWIND V4 THEME CONFIGURATION WITH DARK MODE
@@ -40,8 +40,6 @@
 }
 
 @theme {
-    /* Theme 2: Nordic Twilight - Cool, serene, and inspired by natural landscapes */
-
     /* Colors */
     --color-primary: #6a9c89; /* Muted Viridian */
     --color-primary-light: #a3b1c2; /* Cadet Gray */
@@ -64,6 +62,8 @@
 
     /* Background Colors */
     --color-bg-primary: #1e2733; /* Deep Fjord Blue */
+    --color-bg-surface: #2d3a4c; /* A step above primary, good for cards */
+    --color-bg-overlay: #485a6e; /* A step above surface, for modals or popovers */
     --color-bg-secondary: transparent;
     --color-bg-tertiary: #2d3a4c; /* Dark Slate Blue */
     --color-bg-dark: #13181f;
@@ -76,7 +76,9 @@
 
     --tw-gradient-stops: var(--color-neutral-800);
     /* Typography */
-    --font-display: 'MinimalFont', sans-serif;
+    --font-body: 'Lexend Deca', sans-serif;
+    --font-display: 'Lexend Deca', sans-serif;
+    --font-mono: var(--font-body);
 
     @keyframes heartbeat {
         72.5% {
@@ -129,6 +131,8 @@
 
             /* Background Colors */
             --color-bg-primary: #f5f5f5; /* bright background */
+            --color-bg-surface: #ffffff; /* Pure white for cards layered on top */
+            --color-bg-overlay: #e5e5e5; /* A subtle gray for nested elements or hover states */
             --color-bg-secondary: #ffffff;
             --color-bg-tertiary: #e5e5e5;
             --color-bg-dark: #11808c; /* peacock-blue */
@@ -140,8 +144,66 @@
             --color-text-light: #ffffff;
 
             /* Typography */
-            --font-display: 'ArtisticFont', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-display: 'Poppins', sans-serif;
+            --font-mono: var(--font-body);
         }
+    }
+}
+
+@layer base {
+    html,
+    body {
+        font-family: var(--font-body);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    h7 {
+        font-family: var(--font-display);
+    }
+
+    h1 {
+        @apply text-4xl font-bold tracking-wide text-text-primary 
+        artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary 
+        artistic:bg-clip-text artistic:text-transparent
+    }
+    h2 {
+        @apply text-3xl font-bold leading-snug text-text-primary
+    }
+    h3 {
+        @apply text-2xl font-semibold text-text-primary
+    }
+    h4 {
+        @apply text-xl text-text-secondary;
+    }
+    h5 {
+        @apply font-semibold text-text-tertiary;
+    }
+    h6 {
+        @apply text-text-primary 
+        artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary 
+        artistic:bg-clip-text artistic:text-transparent
+    }
+    h7 {
+        @apply text-sm text-text-tertiary italic m-0 font-light tracking-wide
+    }
+    p {
+        @apply text-text-secondary
+    }
+}
+
+@layer utilities {
+    .font-body {
+        font-family: var(--font-body);
+    }
+
+    .font-display {
+        font-family: var(--font-display);
     }
 }
 
@@ -150,17 +212,67 @@
    ========================================================================== */
 
 @font-face {
-    font-family: 'ArtisticFont';
-    src: url('/fonts/artistic-font.ttf') format('truetype');
-    font-weight: normal;
+    font-family: 'Lexend Deca';
+    src:
+        local('Lexend Deca ExtraLight'),
+        local('LexendDeca-ExtraLight'),
+        url('/fonts/lexend-deca/lexend-deca-v25-latin-200.woff2') format('woff2');
+    font-weight: 200;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'MinimalFont';
-    src: url('/fonts/minimal-font.ttf') format('truetype');
-    font-weight: normal;
+    font-family: 'Lexend Deca';
+    src:
+        local('Lexend Deca Regular'),
+        local('LexendDeca-Regular'),
+        url('/fonts/lexend-deca/lexend-deca-v25-latin-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend Deca';
+    src:
+        local('Lexend Deca SemiBold'),
+        local('LexendDeca-SemiBold'),
+        url('/fonts/lexend-deca/lexend-deca-v25-latin-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src:
+        local('Poppins ExtraLight'),
+        local('Poppins-ExtraLight'),
+        url('/fonts/poppins/poppins-v24-latin-200.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src:
+        local('Poppins Regular'),
+        local('Poppins-Regular'),
+        url('/fonts/poppins/poppins-v24-latin-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src:
+        local('Poppins SemiBold'),
+        local('Poppins-SemiBold'),
+        url('/fonts/poppins/poppins-v24-latin-600.woff2') format('woff2');
+    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }

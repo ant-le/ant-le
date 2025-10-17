@@ -15,7 +15,10 @@
         { value: resolve('/science'), label: 'Science' },
         { value: resolve('/running'), label: 'Running' },
         { value: resolve('/music'), label: 'Music' },
+        { value: resolve('/about'), label: 'About' },
     ]
+
+    const primaryNavItems = navItems.slice(1)
 
     let selectedNavItem: NavItem = $derived(
         navItems.find((item) => item.value === page.url.pathname) || navItems[0]
@@ -30,6 +33,8 @@
             goto(selectedNavItem.value)
         }
     })
+
+    const isActive = (value: string) => selectedNavItem.value === value
 </script>
 
 <header
@@ -43,32 +48,28 @@
             <div class="flex items-center gap-4">
                 <button
                     onclick={() => (selectedNavItem = navItems[0])}
-                    class="hover:scale-105
-                    text-xl font-light tracking-widest text-text-primary hover:text-text-secondary transition-colors
-                    artistic:font-bold artistic:tracking-normal artistic:text-text-light artistic:hover:text-accent-2
-                    artistic:transition-all
-                    "
+                    class={`relative pb-1 text-xl tracking-widest transition-colors duration-300 text-text-light
+                        ${isActive(navItems[0].value)
+                            ? ''
+                            : 'font-light hover:border-text-text-light'}
+                    `}
+                    aria-current={isActive(navItems[0].value) ? 'page' : undefined}
                 >
                     Anton Lechuga
                 </button>
             </div>
 
             <div class="flex items-center">
-                <div class="hidden md:flex items-center space-x-8">
-                    {#each navItems.slice(1) as item}
+                <div class="hidden md:flex items-center gap-8">
+                    {#each primaryNavItems as item}
                         <button
                             onclick={() => (selectedNavItem = item)}
-                            class="
-                        text-l font-normal tracking-wide text-text-secondary hover:text-text-primary transition-all
-                        duration-300 relative hover:scale-105 hover:text-accent-2
-                        artistic:tracking-normal artistic:text-text-light
-                        "
-                            class:font-bold={selectedNavItem.value ===
-                                item.value}
-                            class:text-text-primary={selectedNavItem.value ===
-                                item.value}
-                            class:artistic:text-accent-2={selectedNavItem.value ===
-                                item.value && currentTheme === 'artistic'}
+                            class={`relative pb-1 text-md tracking-wide transition-all duration-300 border-b-2 border-transparent
+                                ${isActive(item.value)
+                                    ? 'font-semibold text-text-primary border-current'
+                                    : 'font-light text-text-secondary hover:text-text-primary hover:border-text-secondary artistic:text-text-light artistic:hover:text-text-primary'}
+                            `}
+                            aria-current={isActive(item.value) ? 'page' : undefined}
                         >
                             {item.label}
                         </button>

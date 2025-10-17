@@ -6,7 +6,6 @@
     } from '$lib/utils'
     import CardGridFull from '$lib/components/views/CardGrid.svelte'
     import FullBlog from '$lib/components/FullBlog.svelte'
-    import PageHeader from '$lib/components/PageHeader.svelte'
     import TextCard from '$lib/components/TextCard.svelte'
     import BlogCard from '$lib/components/cards/BlogCard.svelte'
     import { type RandomPosts } from '$lib/types/types'
@@ -31,8 +30,6 @@
         selectedPost = post
     }
 
-    let section1Visible = $state(true)
-    let section2Visible = $state(false)
 </script>
 
 <svelte:head>
@@ -43,9 +40,7 @@
     />
 </svelte:head>
 
-<div class="flex flex-col mb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <PageHeader title="Science" className="lg:text-center" />
-
+<div class="flex flex-col gap-12">
     <blockquote
         class="text-xl mb-8 italic font-semibold text-center text-text-tertiary max-w-3xl mx-auto glimmering-background"
     >
@@ -54,10 +49,10 @@
             spend almost all their time, is predicated on the assumption that
             the scientific community knows what the world is like"
         </p>
-        <p>Thomas Kuhn</p>
+        <h6>Thomas Kuhn</h6>
     </blockquote>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 lg:mb-22">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
         <TextCard
             text="Over the past years, I got to know many academic subjects. I wouldn't call myself an expert on any of them - at least so far. Having a backgound in social (political) science and applied statistics, I explored parts of philosophy, math and computer science. I am now graduating in data science, but many of the other subjects still have touching points with what I do."
         />
@@ -70,11 +65,9 @@
     >
         {#each Object.entries(randomPosts) as [title, post]}
             <div class="flex flex-col gap-3 h-full">
-                <h3
-                    class="text-xl font-bold text-text-secondary text-left md:text-center text-pretty"
-                >
+                <h4>
                     From {title}
-                </h3>
+                </h4>
                 {#if post}
                     <div class="p-2 h-full">
                         <BlogCard {post} {onReadMore} />
@@ -93,12 +86,7 @@
 
     <section>
         <div class="mt-8 mb-8">
-            <h2
-                class="
-                    text-3xl text-text-primary mb-8
-                    artistic:font-bold artistic:text-center artistic:mb-12 artistic:pt-10
-                "
-            >
+            <h2>
                 All Science-related posts
             </h2>
             <TextCard

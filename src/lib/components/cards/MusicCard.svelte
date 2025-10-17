@@ -10,11 +10,14 @@
 </script>
 
 <article
-    class="relative flex-shrink-0 w-65 md:w-[32rem] bg-primary-dark rounded-xl shadow-lg flex flex-col md:flex-row border border-neutral-600 font-display transition-all duration-300"
+    class="relative flex-shrink-0 w-65 md:w-[32rem] bg-bg-surface rounded-xl
+    shadow-lg flex flex-col md:flex-row border border-accent-2 font-display
+    transition-all duration-300"
 >
     {#if showPlayer}
         <div
-            class="absolute inset-0 bg-bg-dark/80 backdrop-blur-sm rounded-xl p-4 flex items-center justify-center z-10"
+            class="absolute inset-0 bg-bg-overlay backdrop-blur-sm rounded-xl 
+            p-4 flex items-center justify-center z-10"
             transition:fade
         >
             <div class="w-full h-full p-2">
@@ -23,7 +26,8 @@
 
             <button
                 onclick={() => (showPlayer = false)}
-                class="absolute top-4 right-4 z-20 p-1 bg-bg-dark/50 rounded-full text-text-light"
+                class="absolute top-4 right-4 z-20 p-1 bg-bg-dark/50 rounded-full 
+                text-text-light"
                 aria-label="Close"
             >
                 <svg
@@ -43,10 +47,10 @@
     <div class="relative w-full md:w-1/2 aspect-square flex-shrink-0">
         <div class="absolute inset-0 w-full h-full p-4">
             <div
-                class="relative w-full h-full bg-neutral-800 rounded-lg border-2 border-neutral-900 flex items-center justify-center"
+                class="relative w-full h-full bg-bg-dark rounded-lg flex items-center justify-center"
             >
                 <div
-                    class="absolute top-2 left-2 text-xs text-secondary font-bold"
+                    class="absolute top-2 left-2 text-xs text-bg-overlay font-bold"
                 >
                     ANTI-SKIP
                 </div>
@@ -93,7 +97,7 @@
 
     <div class="flex flex-col flex-grow p-4 md:p-6 justify-between">
         <div class="text-left">
-            <h3 class="font-bold text-lg md:text-xl text-text-primary">
+            <h3>
                 {post.piece}
             </h3>
             <p class="text-sm text-text-secondary mt-1">{post.artist}</p>
@@ -103,14 +107,14 @@
         >
             <div class="flex items-center gap-2">
                 <div
-                    class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-bg-dark font-bold text-xs"
+                    class="w-10 h-10 rounded-full bg-accent-2 flex items-center justify-center text-bg-overlay font-bold text-xs"
                 >
                     BASS
                 </div>
                 <div class="flex flex-wrap gap-1">
                     {#each post.labels as label}
                         <span
-                            class="px-2 py-0.5 text-[10px] bg-primary text-text-light rounded"
+                            class="px-2 py-0.5 text-[10px] bg-accent text-bg-overlay rounded"
                             >{label}</span
                         >
                     {/each}
@@ -118,8 +122,8 @@
             </div>
             <button
                 onclick={() => onReadMore(post)}
-                class="text-sm font-bold text-accent-2 hover:underline flex-shrink-0"
-            >
+                class="text-sm font-bold text-accent hover:underline flex-shrink-0">
+        
                 INFO
             </button>
         </div>

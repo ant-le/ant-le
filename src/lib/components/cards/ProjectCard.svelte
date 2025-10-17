@@ -9,7 +9,7 @@
 </script>
 
 <div
-    class="relative font-mono bg-neutral-900 rounded-lg h-56 md:h-60 overflow-hidden group p-1 border border-neutral-700"
+    class="relative font-display bg-neutral-900 rounded-lg h-56 md:h-60 overflow-hidden group p-1 border border-neutral-700"
 >
     <div class="absolute top-2 left-3 flex gap-1.5">
         <div class="w-3 h-3 rounded-full bg-neutral-600"></div>
@@ -20,15 +20,12 @@
     <div class="p-6 pt-10 flex flex-col h-full">
         <div class="flex-grow">
             <p class="text-accent-2">
-                <span class="text-primary-light">user@gemini</span>:<span
-                    class="text-secondary">~/posts</span
+                <span class="text-primary-light">anton@lechuga</span>:<span
+                    class="text-secondary">~/projects</span
                 >$ ./load-post.sh
             </p>
-            <h3
-                class="text-xl md:text-2xl font-bold text-text-primary mt-2 line-clamp-2 whitespace-nowrap overflow-hidden typing-effect group-hover:animate-typing"
-            >
-                {post.title}
-                <span
+            <h3>
+                {post.title}<span
                     class="inline-block w-2.5 h-[1.3rem] md:h-[1.6rem] bg-text-primary ml-1 animate-blink align-bottom"
                 ></span>
             </h3>
@@ -67,19 +64,15 @@
         from {
             width: 0;
         }
+
         to {
             width: 100%;
         }
     }
+
     @keyframes blink {
         50% {
             opacity: 0;
         }
-    }
-    .animate-typing {
-        /* Adjust animation duration based on title length if you want */
-        animation:
-            typing 2.5s steps(40, end),
-            blink 0.75s step-end infinite;
     }
 </style>

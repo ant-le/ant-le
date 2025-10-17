@@ -96,7 +96,8 @@
 
 {#if tooltip.visible}
     <div
-        class="pointer-events-none fixed z-10 rounded-md bg-bg-tertiary p-2 text-sm text-text-light shadow-lg"
+        class="pointer-events-none fixed z-10 rounded-md bg-bg-tertiary p-2 
+        text-sm text-text-light shadow-lg"
         style="left: {tooltip.x + 10}px; top: {tooltip.y - 30}px;"
         in:fly={{ y: -5, duration: 200 }}
     >
@@ -106,17 +107,19 @@
 
 <div
     class="w-full transition-all duration-300
-    artistic:rounded-2xl artistic:border artistic:border-neutral-200 artistic:bg-bg-primary artistic:p-8 artistic:shadow-md
+    artistic:rounded-2xl artistic:p-8 artistic:shadow-md artistic:bg-primary/5 
+    artistic:border-2 artistic:border-accent/30
     {className}"
 >
     <div class="flex items-center justify-between pb-4">
         <div>
-            <h5 class="text-xl font-bold text-text-primary">Training Volume</h5>
+            <h5>Training Volume</h5>
             <p class="text-sm font-normal text-text-secondary">
                 {selectedTimeFilter.label}
             </p>
         </div>
         <Dropdown
+            className="artistic:text-text-primary"
             options={timeFilterOptions}
             bind:selectedValue={selectedTimeFilter}
             position="bottom"
@@ -134,11 +137,11 @@
                 <linearGradient id="bar-gradient" x1="0" y1="0" x2="0" y2="1">
                     <stop
                         offset="0%"
-                        stop-color="var(--color-accent-light, #60a5fa)"
+                        stop-color="var(--color-bg-dark)"
                     />
                     <stop
                         offset="100%"
-                        stop-color="var(--color-accent, #2563eb)"
+                        stop-color="var(--color-primary-dark)"
                     />
                 </linearGradient>
             </defs>

@@ -36,12 +36,7 @@
             </svg>
         </div>
 
-        <h1
-            class="
-                text-4xl font-normal text-text-primary mb-4 tracking-wide
-                artistic:text-5xl artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:animate-pulse artistic:tracking-normal
-            "
-        >
+        <h1>
             {status}
         </h1>
 
@@ -61,12 +56,7 @@
                     artistic:mb-12 artistic:p-6 artistic:bg-bg-secondary artistic:rounded-lg artistic:border-neutral-200 artistic:shadow-md
                 "
             >
-                <h3
-                    class="
-                        text-sm font-normal text-text-primary mb-2
-                        artistic:font-semibold
-                    "
-                >
+                <h3>
                     Error Details:
                 </h3>
                 <pre
