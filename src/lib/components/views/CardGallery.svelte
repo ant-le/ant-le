@@ -47,7 +47,7 @@
 </script>
 
 <section class={className}>
-    <div class="max-w-6xl mx-auto px-4 {className}">
+    <div class="max-w-6xl mx-auto {className}">
         {#if title}
             <h2>
                 {title}
@@ -57,7 +57,7 @@
         <div class="relative overflow-hidden">
             <div class="flex overflow-x-auto pb-8 scrollbar-custom">
                 {#if posts && posts.length > 0}
-                    <div class="flex flex-none mx-auto px-4 gap-4">
+                    <div class="flex flex-none mx-auto gap-4">
                         {#each posts as post, index}
                             <CardComponent
                                 {post}

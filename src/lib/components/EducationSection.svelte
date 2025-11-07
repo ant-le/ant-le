@@ -5,69 +5,145 @@
     let { entries }: { entries: CVEducationEntry[] } = $props()
 
     const timelineEntries = $derived([...entries].reverse())
+    const degreeEntries = $derived(
+        timelineEntries.filter((entry) =>
+            /\b(MA|MS|MSc|BA|BSc|Bachelor|Master)\b/i.test(entry.degree)
+        )
+    )
+    const additionalEntries = $derived(
+        timelineEntries.filter((entry) => !degreeEntries.includes(entry))
+    )
 
     function formatLabel(label: string) {
         return label
     }
 </script>
 
-<div class="mt-6 overflow-x-auto pb-4 scrollbar-custom">
-    <div
-        class="relative flex min-w-full items-start justify-between gap-6 px-2"
-    >
+<div class="mt-6 space-y-10">
+    <div class="overflow-x-auto pb-6 scrollbar-custom">
         <div
-            class="pointer-events-none absolute left-0 right-0 top-10 h-0.5 bg-neutral-300/70 artistic:bg-accent/30"
-        ></div>
-        {#each timelineEntries as entry, index (entry.degree)}
+            class="relative mx-auto flex min-w-full flex-wrap items-end justify-between gap-10 px-4"
+        >
             <div
-                class="group/item relative z-10 flex min-w-[14rem] flex-1 shrink-0 flex-col items-center gap-3 text-center"
-            >
-                <div class="text-xs font-semibold text-text-tertiary">
-                    <span>{formatLabel(entry.period.from)}</span>
-                    {#if entry.period.to && entry.period.to !== entry.period.from}
-                        <span class="block">{formatLabel(entry.period.to)}</span
-                        >
-                    {/if}
-                </div>
-
-                <div
-                    class="h-4 w-4 rounded-full border-2 border-neutral-300/80 bg-bg-secondary transition-colors group-hover/item:border-accent artistic:border-accent/50 artistic:group-hover/item:border-accent"
-                ></div>
-
-                <div class="space-y-3 text-left">
-                    <h3>
-                        {entry.degree}
-                    </h3>
-                    <p
-                        class="text-xs uppercase tracking-wide text-text-tertiary"
+                class="pointer-events-none absolute bottom-6 left-4 right-4 h-[2px] rounded-full bg-gradient-to-r from-transparent via-bg-tertiary/60 to-transparent artistic:via-text-primary/40"
+                aria-hidden="true"
+            ></div>
+            {#each degreeEntries as entry (entry.degree)}
+                <article
+                    class="group/degree relative z-10 flex w-full max-w-[22rem] flex-col items-center text-center md:w-auto md:flex-1"
+                >
+                    <div
+                        class="w-full rounded-3xl border border-bg-tertiary/60 bg-bg-secondary/85 p-6 text-left shadow-md transition-all duration-200 group-hover/degree:-translate-y-1 group-hover/degree:border-text-primary/40 group-hover/degree:shadow-lg artistic:border-text-primary artistic:bg-accent-yellow/65"
                     >
-                        {entry.institution} · {entry.location}
-                    </p>
-                    <ul
-                        class="flex flex-wrap gap-2 text-[11px] uppercase tracking-wide text-text-tertiary artistic:text-text-light"
-                    >
-                        {#each entry.focus as focus (focus)}
-                            <li
-                                class="rounded-full border border-neutral-300 px-3 py-1 artistic:border-accent/40"
+                        <h3 class="text-lg font-semibold text-text-primary">
+                            {entry.degree}
+                        </h3>
+                        <p class="mt-2 text-xs uppercase tracking-[0.18em] text-text-secondary/70 artistic:text-text-primary/80">
+                            {entry.institution} · {entry.location}
+                        </p>
+
+                        {#if entry.focus && entry.focus.length}
+                            <ul
+                                class="mt-5 flex flex-wrap gap-2 text-[11px] uppercase tracking-wide text-text-secondary/70 artistic:text-text-primary/80"
                             >
-                                {focus}
-                            </li>
-                        {/each}
-                    </ul>
-                    {#if entry.details}
-                        <ul
-                            class="space-y-1.5 text-xs text-text-secondary leading-relaxed"
-                        >
-                            {#each entry.details as detail (detail)}
-                                <li class="flex items-start gap-2">
-                                    <CvIcon type="bullet" className="mt-0.5" />
-                                    <span>{detail}</span>
-                                </li>
-                            {/each}
-                        </ul>
-                    {/if}
-                </div>
-            </div>
-        {/each}
+                                {#each entry.focus as focus (focus)}
+                                    <li
+                                        class="rounded-full border border-bg-tertiary/60 bg-bg-secondary px-3 py-1 leading-none artistic:border-text-primary/50 artistic:bg-white/20"
+                                    >
+                                        {focus}
+                                    </li>
+                                {/each}
+                            </ul>
+                        {/if}
+
+                        {#if entry.details && entry.details.length}
+                            <ul class="mt-5 space-y-1.5 text-sm leading-relaxed text-text-secondary">
+                                {#each entry.details as detail (detail)}
+                                    <li class="flex items-start gap-2">
+                                        <CvIcon type="bullet" className="mt-0.5 shrink-0" />
+                                        <span>{detail}</span>
+                                    </li>
+                                {/each}
+                            </ul>
+                        {/if}
+                    </div>
+                    <div
+                        class="mt-5 flex h-6 w-6 items-center justify-center rounded-full border-2 border-bg-tertiary/70 bg-bg-secondary text-accent-orange shadow-sm artistic:border-text-primary artistic:bg-accent-pink/50"
+                        aria-hidden="true"
+                    >
+                        <span class="h-2.5 w-2.5 rounded-full bg-accent-orange artistic:bg-text-primary"></span>
+                    </div>
+                    <div
+                        class="mt-2 text-xs font-semibold uppercase tracking-wide text-text-secondary/70"
+                    >
+                        <span>{formatLabel(entry.period.from)}</span>
+                        {#if entry.period.to && entry.period.to !== entry.period.from}
+                            <span class="ml-2 text-text-secondary/60">
+                                {formatLabel(entry.period.to)}
+                            </span>
+                        {/if}
+                    </div>
+                </article>
+            {/each}
+        </div>
     </div>
+
+    {#if additionalEntries.length}
+        <div class="space-y-6">
+            <h4 class="text-sm font-semibold uppercase tracking-[0.2em] text-text-secondary/70 artistic:text-text-primary/80">
+                Complementary Studies & Exchanges
+            </h4>
+            <div class="grid gap-6 md:grid-cols-2">
+                {#each additionalEntries as entry (entry.degree)}
+                    <article
+                        class="group/supplement relative overflow-hidden rounded-2xl border border-bg-tertiary/60 bg-bg-secondary/70 p-5 shadow-md transition-colors duration-200 group-hover/supplement:border-text-primary/50 artistic:border-text-primary artistic:bg-accent-green/55 artistic:shadow-[0_12px_30px_rgba(0,0,0,0.35)]"
+                    >
+                        <header class="flex flex-col gap-2">
+                            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-text-secondary/70 artistic:text-text-primary/80">
+                                {formatLabel(entry.period.from)}
+                                {#if entry.period.to && entry.period.to !== entry.period.from}
+                                    <span class="mx-1 text-text-secondary/60 artistic:text-text-primary/70">–</span>
+                                    {formatLabel(entry.period.to)}
+                                {/if}
+                            </p>
+                            <h3 class="text-base font-semibold text-text-primary">
+                                {entry.degree}
+                            </h3>
+                            <p class="text-sm font-medium text-text-secondary">
+                                {entry.institution}
+                                <span class="block text-xs uppercase tracking-wide text-text-secondary/70 artistic:text-text-primary/80">
+                                    {entry.location}
+                                </span>
+                            </p>
+                        </header>
+
+                        {#if entry.focus && entry.focus.length}
+                            <ul
+                                class="mt-4 flex flex-wrap gap-2 text-[11px] uppercase tracking-wide text-text-secondary/70 artistic:text-text-primary/80"
+                            >
+                                {#each entry.focus as focus (focus)}
+                                    <li
+                                        class="rounded-full border border-bg-tertiary/60 bg-bg-secondary/80 px-3 py-1 leading-none artistic:border-text-primary/50 artistic:bg-white/20"
+                                    >
+                                        {focus}
+                                    </li>
+                                {/each}
+                            </ul>
+                        {/if}
+
+                        {#if entry.details && entry.details.length}
+                            <ul class="mt-4 space-y-1.5 text-sm leading-relaxed text-text-secondary">
+                                {#each entry.details as detail (detail)}
+                                    <li class="flex items-start gap-2">
+                                        <CvIcon type="bullet" className="mt-0.5 shrink-0" />
+                                        <span>{detail}</span>
+                                    </li>
+                                {/each}
+                            </ul>
+                        {/if}
+                    </article>
+                {/each}
+            </div>
+        </div>
+    {/if}
 </div>

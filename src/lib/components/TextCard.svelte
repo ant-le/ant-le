@@ -13,14 +13,14 @@
 
 
 <div
-    class="transition-all duration-300 b-8 p-2
-    text-text-secondary font-light text-base lg:text-lg
+    class="transition-all duration-300 b-8 p-2 font-body
+    text-text-secondary font-normal text-base lg:text-lg
         {classProps}"
 >
     {#if title}
         <h3>{title}</h3>
     {/if}
-    <p class="font-light tracking-wide leading-relaxed">
+    <p class="font-normal tracking-wide leading-relaxed">
         {@html text}
     </p>
 </div>

@@ -15,22 +15,23 @@
         height: 8px;
     }
     .scrollbar-custom::-webkit-scrollbar-track {
-        background: theme('colors.neutral.200');
+        background: var(--color-accent-yellow);
         border-radius: 10px;
     }
     .scrollbar-custom::-webkit-scrollbar-thumb {
-        background: theme('colors.neutral.500');
+        background: var(--color-accent-yellow);
         border-radius: 10px;
     }
     .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-        background: theme('colors.neutral.600');
+        background: var(--color-accent-yellow);
     }
 
     /* For Firefox */
     .scrollbar-custom {
         scrollbar-width: thin;
-        scrollbar-color: theme('colors.neutral.500') theme('colors.neutral.200');
+        scrollbar-color: var(--color-accent-yellow) var(--color-accent-yellow); /* CHANGED */
     }
+
     .music-player-iframe iframe {
         width: 100%;
         border-radius: theme('borderRadius.xl');
@@ -40,113 +41,56 @@
 }
 
 @theme {
-    /* Colors */
-    --color-primary: #6a9c89; /* Muted Viridian */
-    --color-primary-light: #a3b1c2; /* Cadet Gray */
-    --color-primary-dark: #485a6e; /* Steel Blue */
-    --color-secondary: #a3b1c2; /* Cadet Gray */
-    --color-accent: #8fbca4; /* Pale Sage */
-    --color-accent-2: #b0d4b8; /* Light Moss Green */
+    /* --- Backgrounds --- */
+    --color-bg-primary: #121212;    /* Near-black */
+    --color-bg-secondary: #1E1E1E;  /* Dark gray */
+    --color-bg-tertiary: #2C2C2C;  /* Another dark gray */
 
-    /* Neutral Colors */
-    --color-neutral-50: #e0e7ef;
-    --color-neutral-100: #cdd8e3;
-    --color-neutral-200: #a3b1c2;
-    --color-neutral-300: #7f91a5;
-    --color-neutral-400: #63768a;
-    --color-neutral-500: #485a6e;
-    --color-neutral-600: #2d3a4c;
-    --color-neutral-700: #1e2733;
-    --color-neutral-800: #13181f;
-    --color-neutral-900: #000000;
+    /* --- Neutral Text Colors --- */
+    --color-text-primary: #F1F1F1;    /* Off-white */
+    --color-text-secondary: #AAAAAA;   /* Medium gray */
+    --color-text-light: #121212;      /* Near-black */
 
-    /* Background Colors */
-    --color-bg-primary: #1e2733; /* Deep Fjord Blue */
-    --color-bg-surface: #2d3a4c; /* A step above primary, good for cards */
-    --color-bg-overlay: #485a6e; /* A step above surface, for modals or popovers */
-    --color-bg-secondary: transparent;
-    --color-bg-tertiary: #2d3a4c; /* Dark Slate Blue */
-    --color-bg-dark: #13181f;
+    /* --- Monochrome "Accent" Palette --- */
+    --color-accent-yellow: #404040;   /* Mid-gray */
+    --color-accent-pink: #F1F1F1;     /* Off-white */
+    --color-accent-orange: #121212;  /* Medium gray */
+    --color-accent-green: #121212;    /* Off-white */
+    --color-accent-cyan: #AAAAAA;    /* Medium gray */
+    --color-accent-violet: #F1F1F1;  /* Off-white  */
 
-    /* Text Colors */
-    --color-text-primary: #e0e7ef; /* Mist White */
-    --color-text-secondary: #a3b1c2; /* Cadet Gray */
-    --color-text-tertiary: #7f91a5; /* Shadow Gray */
-    --color-text-light: #ffffff;
-
-    --tw-gradient-stops: var(--color-neutral-800);
     /* Typography */
     --font-body: 'Lexend Deca', sans-serif;
     --font-display: 'Lexend Deca', sans-serif;
     --font-mono: var(--font-body);
-
-    @keyframes heartbeat {
-        72.5% {
-            opacity: 0;
-        }
-        to {
-            stroke-dashoffset: 0;
-        }
-    }
-    --animate-heartbeat: heartbeat 1.4s linear infinite;
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-    @keyframes blink {
-        50% {
-            opacity: 0;
-        }
-    }
-    --animate-typing: typing 2.5s steps(40, end), blink 0.75s step-end infinite;
 }
 /* Override variables for artistic theme */
 @layer theme {
     :root,
     :host {
-        @variant artistic {
-            /* Artistic Theme - Bright background with psychedelic color palette */
-            --color-primary: #3a2170; /* royal-purple */
-            --color-primary-light: #5a2f90; /* lighter royal-purple */
-            --color-primary-dark: #2a1650; /* darker royal-purple */
-            --color-secondary: #db831c; /* marigold */
-            --color-accent: #be2924; /* crimson */
-            --color-accent-2: #de4959; /* watermelon */
+    @variant artistic {
+        /* --- Backgrounds --- */
+        --color-bg-primary: #FFFFFF;
+        --color-bg-secondary: #F8F9FA;  /* Off-white */
+        --color-bg-tertiary: #E9ECEF;  /* Light gray */
 
-            /* Neutral Colors */
-            --color-neutral-50: #ffffff;
-            --color-neutral-100: #f5f5f5; /* bright background */
-            --color-neutral-200: #e5e5e5;
-            --color-neutral-300: #d4d4d4;
-            --color-neutral-400: #a3a3a3;
-            --color-neutral-500: #737373;
-            --color-neutral-600: #525252;
-            --color-neutral-700: #404040;
-            --color-neutral-800: #262626;
-            --color-neutral-900: #171717;
+        /* --- Text Colors --- */
+        --color-text-primary: #212529;  
+        --color-text-secondary: #404040;   /* Subtitles, captions, helper text */
+        --color-text-light: #FFFFFF;      /* For text on dark/color backgrounds */
 
-            /* Background Colors */
-            --color-bg-primary: #f5f5f5; /* bright background */
-            --color-bg-surface: #ffffff; /* Pure white for cards layered on top */
-            --color-bg-overlay: #e5e5e5; /* A subtle gray for nested elements or hover states */
-            --color-bg-secondary: #ffffff;
-            --color-bg-tertiary: #e5e5e5;
-            --color-bg-dark: #11808c; /* peacock-blue */
-
-            /* Text Colors */
-            --color-text-primary: #171717;
-            --color-text-secondary: #404040;
-            --color-text-tertiary: #737373;
-            --color-text-light: #ffffff;
-
-            /* Typography */
-            --font-body: 'Poppins', sans-serif;
-            --font-display: 'Poppins', sans-serif;
-            --font-mono: var(--font-body);
+        /* --- Accent Palette (Your Full Palette) --- */
+        --color-accent-yellow: #FCDA03;   /* Lemon Chrome (for Illustrations) */
+        --color-accent-pink: #FF69B4;     /* Hot Pink */
+        --color-accent-orange: #E34234;  /* Vermillion Orange */
+        --color-accent-green: #7CFC00;   /* Grass Green */
+        --color-accent-cyan: #00FFFF;    /* Cyan Blue */
+        --color-accent-violet: #BF00FF;  /* Bright Violet */
+        
+        /* Typography */
+        --font-body: 'Spicy Rice', sans-serif;
+        --font-display: 'Spicy Rice', sans-serif;
+        --font-mono: var(--font-body);
         }
     }
 }
@@ -155,6 +99,8 @@
     html,
     body {
         font-family: var(--font-body);
+        @apply bg-[var(--color-bg-primary)] text-[var(--color-text-primary)];
+
     }
 
     h1,
@@ -168,32 +114,30 @@
     }
 
     h1 {
-        @apply text-4xl font-bold tracking-wide text-text-primary 
-        artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary 
+        @apply text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-text-primary
         artistic:bg-clip-text artistic:text-transparent
     }
     h2 {
-        @apply text-3xl font-bold leading-snug text-text-primary
+        @apply text-3xl md:text-4xl font-semibold leading-snug text-text-primary
     }
     h3 {
-        @apply text-2xl font-semibold text-text-primary
+        @apply text-2xl font-semibold leading-snug text-text-primary
     }
     h4 {
-        @apply text-xl text-text-secondary;
+        @apply text-xl font-semibold leading-relaxed text-text-secondary;
     }
     h5 {
-        @apply font-semibold text-text-tertiary;
+        @apply text-lg font-semibold leading-normal text-text-secondary;
     }
     h6 {
-        @apply text-text-primary 
-        artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary 
+        @apply text-sm font-semibold tracking-wide text-text-primary 
         artistic:bg-clip-text artistic:text-transparent
     }
     h7 {
-        @apply text-sm text-text-tertiary italic m-0 font-light tracking-wide
+        @apply text-xs text-text-primary italic m-0 font-extralight tracking-wide
     }
     p {
-        @apply text-text-secondary
+        @apply text-base leading-relaxed text-text-secondary
     }
 }
 
@@ -208,8 +152,18 @@
 }
 
 /* ==========================================================================
-   FONT DEFINITIONS
+   FONT DEFINITIONS (200 / 400 / 600 weights shipped for Lexend & Poppins)
    ========================================================================== */
+@font-face {
+    font-family: 'Spicy Rice';
+    src:
+        local('Spicy Rice Regular'),
+        local('Spicy-Rice-Regular'),
+        url('/fonts/lexend-deca/spicy-rice.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
 @font-face {
     font-family: 'Lexend Deca';

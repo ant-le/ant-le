@@ -16,8 +16,8 @@
     <div class="text-center max-w-md mx-auto px-4 artistic:max-w-lg">
         <div
             class="
-                inline-flex items-center justify-center w-30 h-30 rounded-full bg-transparent border-2 border-neutral-300 transition-all duration-300 shadow-none mb-8
-                artistic:bg-gradient-to-br artistic:from-primary-light artistic:to-secondary artistic:border-neutral-200 artistic:animate-pulse artistic:shadow-lg artistic:mb-12
+                inline-flex items-center justify-center w-30 h-30 rounded-full border border-bg-tertiary/60 bg-bg-secondary/70 transition-all duration-300 shadow-none mb-8 backdrop-blur-sm
+                artistic:bg-gradient-to-br artistic:from-accent-yellow artistic:to-accent-pink artistic:border-text-primary/60 artistic:animate-pulse artistic:shadow-[0_16px_38px_rgba(0,0,0,0.35)] artistic:mb-12
             "
         >
             <svg
@@ -42,7 +42,7 @@
 
         <p
             class="
-                text-lg font-light text-text-secondary mb-8 tracking-wide
+                text-lg font-normal text-text-secondary mb-8 tracking-wide
                 artistic:text-xl artistic:font-normal artistic:tracking-normal artistic:mb-12
             "
         >
@@ -52,8 +52,8 @@
         {#if status !== 404 && error?.stack}
             <div
                 class="
-                    mb-8 p-4 bg-neutral-100 rounded-md text-left border border-neutral-300
-                    artistic:mb-12 artistic:p-6 artistic:bg-bg-secondary artistic:rounded-lg artistic:border-neutral-200 artistic:shadow-md
+                    mb-8 rounded-2xl border border-bg-tertiary/60 bg-bg-secondary/70 p-4 text-left shadow-sm transition-colors duration-300
+                    artistic:mb-12 artistic:p-6 artistic:bg-accent-green/55 artistic:border-text-primary/50 artistic:shadow-[0_12px_32px_rgba(0,0,0,0.3)]
                 "
             >
                 <h3>
@@ -61,7 +61,7 @@
                 </h3>
                 <pre
                     class="
-                        text-xs font-light text-text-tertiary whitespace-pre-wrap
+                        text-xs font-normal text-text-secondary/70 whitespace-pre-wrap
                         artistic:font-normal artistic:text-text-secondary
                     ">
                 {error.stack}
@@ -73,10 +73,9 @@
             <button
                 onclick={() => goto(resolve('/'))}
                 class="
-                inline-flex items-center gap-2 px-6 py-3 bg-transparent text-text-secondary border border-neutral-300
-                rounded-none shadow-none hover:text-text-primary hover:bg-transparent transition-all duration-300
-                artistic:font-medium artistic:bg-primary artistic:text-text-light artistic:rounded-full
-                artistic:shadow-md artistic:hover:scale-105 artistic:border-transparent
+                inline-flex items-center gap-2 rounded-full border border-bg-tertiary/60 px-6 py-3 text-text-secondary transition-all duration-300
+                bg-bg-secondary/60 hover:bg-bg-tertiary/60 hover:text-text-primary
+                artistic:font-semibold artistic:bg-accent-orange/70 artistic:text-text-primary artistic:shadow-[0_10px_30px_rgba(0,0,0,0.28)] artistic:hover:scale-105 artistic:border-transparent
                 "
             >
                 <svg
@@ -97,7 +96,7 @@
             </button>
 
             <p
-                class="text-sm font-light text-text-tertiary artistic:font-normal artistic:text-text-secondary"
+                class="text-sm font-normal text-text-secondary/70 artistic:font-normal artistic:text-text-secondary"
             >
                 Or try navigating to a different page using the menu above.
             </p>

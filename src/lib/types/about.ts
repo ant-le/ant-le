@@ -167,16 +167,16 @@ const cvData: Record<CVLanguage, CVContent> = {
                 'MSc Data Science candidate at TU Wien with professional experience across analytics consulting, academic research, and web development.',
             skillGroups: [
                 {
-                    title: 'Programming',
-                    items: ['Python', 'TypeScript', 'Svelte', 'Go', 'SQL', 'R'],
+                    title: 'Programming Languages & Frameworks',
+                    items: ['TypeScript (Svelte)', 'Python', 'Go', 'SQL', 'R', 'Java', 'PHP', 'Bash'],
                 },
                 {
-                    title: 'ML & Stats',
-                    items: ['Causal inference', 'Bayesian modelling (Stan)', 'Forecasting', 'Experimental design'],
+                    title: 'Data & Machine Learning',
+                    items: ['Deep Learning (PyTorch)', 'Causal Inference', 'Probibalistic Modelling (Jax, Pyro, Stan)'],
                 },
                 {
-                    title: 'DevOps',
-                    items: ['PostgreSQL', 'Docker', 'Git', 'Linux'],
+                    title: 'Cloud & DevOps',
+                    items: ['Docker', 'Kubernetes', 'GitHub Actions', 'Terraform', 'Linux', 'Git'],
                 },
             ],
             languages: [
@@ -257,6 +257,7 @@ const cvData: Record<CVLanguage, CVContent> = {
                     focus: ['Machine Learning', 'Causal Inference', 'Data Engineering'],
                     details: [
                         'Graduate coursework in advanced machine learning, predictive modelling, and data infrastructure.',
+                        'First-year electives in algorithms, numerical optimisation, and applied probability.',
                         'Research projects on causal inference for socio-technical systems.',
                     ],
                 },
@@ -276,6 +277,7 @@ const cvData: Record<CVLanguage, CVContent> = {
                     focus: ['Quantitative Methods', 'Comparative Politics', 'Econometrics'],
                     details: [
                         'Teaching assistance for quantitative research courses.',
+                        'Final-year concentration on computational social science, linear algebra, and stochastic processes.',
                         'Bachelor thesis on political behaviour using statistical modelling.',
                     ],
                 },
@@ -356,16 +358,28 @@ const cvData: Record<CVLanguage, CVContent> = {
                 'MSc-Studierender Data Science an der TU Wien mit Beratungserfahrung in Analytics, akademischer Forschungspraxis und Webentwicklung.',
             skillGroups: [
                 {
-                    title: 'Programmierung',
-                    items: ['Python', 'TypeScript', 'Svelte', 'Go', 'SQL', 'R', 'C++ (basics)','Lua (basics)', 'Java', 'PHP'],
+                    title: 'Programmiersprachen & Frameworks',
+                    items: ['TypeScript', 'JavaScript', 'Python', 'Go', 'SQL', 'R', 'Java', 'PHP', 'Bash'],
                 },
                 {
-                    title: 'ML & Statistik',
-                    items: ['Pytorch', 'Jax', 'Probibalistic Modelling', 'Python (Numpy, Pandas, Matplotlib, Sk-Learn)'],
+                    title: 'Frontend-Ökosystem',
+                    items: ['React', 'Next.js', 'Svelte', 'Tailwind CSS', 'HTML5', 'CSS3', 'Designsysteme'],
                 },
                 {
-                    title: 'DevOps',
-                    items: ['PostgreSQL', 'Docker', 'Git', 'Linux'],
+                    title: 'Backend & Datenplattformen',
+                    items: ['Node.js', 'Express', 'REST-APIs', 'GraphQL', 'PostgreSQL', 'MongoDB', 'Redis'],
+                },
+                {
+                    title: 'Data & Machine Learning',
+                    items: ['Pandas', 'scikit-learn', 'PyTorch', 'TensorFlow', 'Kausalinferenz', 'Bayesianische Modellierung (Stan)', 'Forecasting', 'Experimentelles Design'],
+                },
+                {
+                    title: 'Cloud & DevOps',
+                    items: ['Docker', 'Kubernetes', 'AWS', 'GitHub Actions', 'Terraform', 'Linux', 'CI/CD-Pipelines', 'Git'],
+                },
+                {
+                    title: 'Testing & Analytics Tools',
+                    items: ['Jest', 'Playwright', 'Vitest', 'dbt', 'Looker Studio'],
                 },
             ],
             languages: [
@@ -446,6 +460,7 @@ const cvData: Record<CVLanguage, CVContent> = {
                     focus: ['Machine Learning', 'Kausalinferenz', 'Data Engineering'],
                     details: [
                         'Vertiefung in maschinellem Lernen, Datenengineering und statistischer Modellierung.',
+                        'Erstes Studienjahr mit Schwerpunkten in Algorithmen, numerischer Optimierung und angewandter Wahrscheinlichkeit.',
                         'Forschungsarbeiten zu kausaler Analyse in sozio-technischen Systemen.',
                     ],
                 },
@@ -465,6 +480,7 @@ const cvData: Record<CVLanguage, CVContent> = {
                     focus: ['Quantitative Methoden', 'Vergleichende Politikwissenschaft', 'Ökonometrie'],
                     details: [
                         'Mitwirkung an Tutorien und Statistik-Workshops für Studierende.',
+                        'Schwerpunkt im Abschlussjahr auf Computational Social Science, Linearer Algebra und stochastischen Prozessen.',
                         'Abschlussarbeit zu politischem Verhalten mit quantitativen Methoden.',
                     ],
                 },

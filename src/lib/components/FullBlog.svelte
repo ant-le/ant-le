@@ -53,16 +53,16 @@
     >
         <div
             class="relative flex w-full max-w-2xl flex-col overflow-hidden max-h-[90vh]
-            bg-bg-primary border border-neutral-300 shadow-xl rounded-xl
-            artistic:rounded-2xl artistic:border-2 artistic:border-accent/20 artistic:shadow-2xl"
+            rounded-2xl border border-bg-tertiary/70 bg-bg-secondary/95 text-text-primary shadow-2xl backdrop-blur-md transition-colors duration-300
+            artistic:border-text-primary artistic:bg-accent-yellow/90 artistic:text-text-light artistic:shadow-[0_18px_45px_rgba(0,0,0,0.45)]"
             transition:slide={{
                 duration: 400,
                 easing: quintOut,
             }}
         >
             <div
-                class="flex-shrink-0 items-start justify-between border-b border-neutral-200 p-6
-                artistic:border-accent/20 sm:flex"
+                class="flex-shrink-0 items-start justify-between border-b border-bg-tertiary/60 p-6
+                artistic:border-text-primary/50 sm:flex"
             >
                 <div class="flex-1">
                     <h1>
@@ -72,9 +72,9 @@
                     <div class="mb-4 flex flex-wrap items-center gap-2">
                         {#each post.categories as category}
                             <span
-                                class="rounded-md px-3 py-1 text-bg-primary text-xs font-bold uppercase tracking-wider
-                                bg-neutral-200 border border-neutral-300
-                                artistic:border-primary/30 artistic:bg-primary/10 artistic:text-primary"
+                                class="rounded-md px-3 py-1 text-xs font-semibold uppercase tracking-wider
+                                border border-bg-tertiary/60 bg-bg-tertiary text-text-primary
+                                artistic:border-text-primary/60 artistic:bg-accent-pink/40 artistic:text-text-primary"
                             >
                                 {category}
                             </span>
@@ -82,21 +82,21 @@
                         {#each post.labels as label}
                             <span
                                 class="rounded-full px-3 py-1 text-xs
-                                bg-neutral-100 text-bg-primary border border-neutral-300
-                                artistic:border-accent/30 artistic:bg-accent/10 artistic:text-accent"
+                                border border-bg-tertiary/60 bg-bg-tertiary/70 text-text-primary
+                                artistic:border-text-primary/60 artistic:bg-accent-green/45 artistic:text-text-primary"
                             >
                                 {label}
                             </span>
                         {/each}
                     </div>
 
-                    <p class="text-sm font-light text-text-tertiary">
+                    <p class="text-sm font-normal text-text-secondary/80">
                         {formatDate(post.creationDate)}
                     </p>
                 </div>
                 <button
                     onclick={close}
-                    class="ml-auto mt-2 rounded-full p-2 text-text-secondary transition-all duration-200 hover:bg-neutral-200 hover:text-text-primary artistic:hover:bg-accent/20 sm:ml-4 sm:mt-0"
+                    class="ml-auto mt-2 rounded-full p-2 text-text-secondary transition-all duration-200 hover:bg-bg-tertiary/70 hover:text-text-primary artistic:hover:bg-accent-violet/35 sm:ml-4 sm:mt-0"
                     aria-label="Close"
                 >
                     <svg
@@ -121,8 +121,8 @@
                     <img
                         src={post.image}
                         alt={post.title}
-                        class="mb-6 h-auto w-full max-h-80 rounded-xl object-cover shadow-md
-                        artistic:rounded-2xl artistic:border artistic:border-accent/20 artistic:shadow-lg"
+                        class="mb-6 h-auto w-full max-h-80 rounded-2xl border border-bg-tertiary/50 object-cover shadow-lg
+                        artistic:border-text-primary/40 artistic:shadow-[0_12px_30px_rgba(0,0,0,0.35)]"
                     />
                 {/if}
 
@@ -136,8 +136,8 @@
                 </div>
 
                 <button
-                    class="block w-full rounded-lg bg-text-primary p-4 text-center font-bold text-bg-primary transition-transform duration-200 hover:scale-[1.02]
-                    artistic:bg-gradient-to-r artistic:from-primary artistic:to-accent artistic:text-text-light"
+                    class="block w-full rounded-lg bg-accent-orange p-4 text-center font-semibold text-text-primary transition-transform duration-200 hover:scale-[1.02]
+                    artistic:bg-gradient-to-r artistic:from-accent-pink artistic:to-accent-violet artistic:text-text-light"
                     disabled
                     >Read Full Post →
                 </button>

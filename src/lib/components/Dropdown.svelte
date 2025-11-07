@@ -64,7 +64,7 @@
         onclick={() => (isOpen = !isOpen)}
         bind:this={triggerElement}
         class="{className} inline-flex items-center gap-1 text-sm text-text-secondary artistic:text-text-light
-        hover:text-text-primary transition-colors px-3 py-2 rounded-l
+        hover:text-text-primary hover:bg-bg-tertiary/40 transition-colors px-3 py-2 rounded-l
         "
         type="button"
     >
@@ -92,14 +92,15 @@
             bind:this={dropdownElement}
             class="absolute z-10 {positionClasses[
                 currentPosition
-            ]} min-w-25 bg-bg-primary shadow-lg rounded-lg overflow-hidden border border-neutral-300 artistic:border-accent/20 artistic:bg-gradient-to-b artistic:from-primary artistic:to-primary-dark artistic:shadow-xl"
+            ]} min-w-40 rounded-xl border border-bg-tertiary/60 bg-bg-secondary/95 text-text-primary shadow-2xl backdrop-blur-sm transition-colors duration-300
+            artistic:border-text-primary artistic:bg-accent-yellow artistic:text-text-light artistic:shadow-[0_10px_35px_rgba(0,0,0,0.35)]"
             transition:fly={{
                 y: position === 'bottom' ? -10 : 10,
                 duration: 250,
             }}
         >
             <ul
-                class="py-2 text-sm divide-y divide-neutral-100 artistic:divide-accent/20"
+                class="py-2 text-sm divide-y divide-bg-tertiary/50 artistic:divide-text-primary/40"
             >
                 {#each options as option}
                     <li>
@@ -109,8 +110,8 @@
                                 isOpen = false
                             }}
                             class="block w-full text-left px-4 py-2 text-sm font-normal tracking-wide text-text-secondary
-                    hover:text-text-primary transition-all duration-200 artistic:text-text-light
-                    artistic:hover:bg-accent/20 artistic:hover:text-accent-2 first:rounded-t-lg last:rounded-b-lg"
+                    hover:text-text-primary hover:bg-bg-tertiary/60 transition-all duration-200 artistic:text-text-light
+                    artistic:hover:bg-accent-pink/30 artistic:hover:text-text-primary first:rounded-t-lg last:rounded-b-lg"
                         >
                             {option.label}
                         </button>

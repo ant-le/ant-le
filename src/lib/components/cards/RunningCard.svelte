@@ -26,21 +26,19 @@
 <button
     onclick={() => onReadMore(post)}
     class="
-                group block h-full rounded-xl max-w-3xs sm:w-full
-                border border-transparent hover:border-neutral-200
-                transition-colors duration-300
-                artistic:border-accent/30
-           "
+            group block h-full max-w-3xs sm:w-full overflow-hidden rounded-2xl border border-bg-tertiary/60 bg-bg-secondary/85 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg
+            artistic:border-accent-yellow/30 artistic:bg-accent-orange/65 artistic:shadow-[0_12px_32px_rgba(0,0,0,0.35)] artistic:hover:-translate-y-1.5
+      "
 >
-    <article class="h-full flex flex-col">
-        <div class="pt-8 h-32 w-full overflow-hidden rounded-t-xl">
+    <article class="flex h-full flex-col">
+        <div class="h-32 w-full overflow-hidden">
             <img
                 src={post.image}
                 alt="Post"
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
         </div>
-        <div class="p-4 flex-grow flex flex-col">
+        <div class="flex flex-grow flex-col p-4">
             <h4>
                 {post.title}
             </h4>
@@ -50,10 +48,9 @@
                 {post.desc}
             </h7>
             <div
-                class="mt-8 mb-4 pt-8 flex items-center justify-between border-t border-text-primary
-                artistic:border-secondary"
+                class="mt-8 mb-4 flex items-center justify-between border-t border-bg-tertiary/60 pt-8 artistic:border-text-primary/40"
             >
-                <div class="text-accent-2/80 artistic:text-secondary">
+                <div class="text-accent-yellow">
                     <svg
                         width="100"
                         height="20"
@@ -78,9 +75,7 @@
                         />
                     </svg>
                 </div>
-                <p
-                    class="text-xs text-accent"
-                >
+                <p class="text-xs text-accent-yellow">
                     {kmText}
                 </p>
             </div>

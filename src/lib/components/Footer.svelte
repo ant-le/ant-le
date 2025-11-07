@@ -7,7 +7,7 @@
 </script>
 
 <footer
-    class="bg-bg-secondary py-8 artistic:border-neutral-200 artistic:shadow-inner"
+    class="bg-bg-secondary border-t border-bg-tertiary py-8 text-text-secondary transition-colors duration-500"
 >
     <div class="flex flex-col items-center gap-2">
         <div class="flex space-x-6">
@@ -15,7 +15,7 @@
                 href="https://www.strava.com/athletes/antonlechuga"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-secondary hover:text-text-primary transition-colors duration-300"
+                class="text-text-primary hover:text-accent-yellow transition-colors duration-300"
                 aria-label="Strava"
             >
                 <svg class="w-5 h-5" viewBox="0 0 192 192" fill="none">
@@ -32,7 +32,7 @@
             <!-- Gmail -->
             <a
                 href="mailto:anton.lechuga@gmail.com"
-                class="text-text-secondary hover:text-text-primary transition-colors duration-300"
+                class="text-text-primary hover:text-accent-green transition-colors duration-300"
                 aria-label="Email"
             >
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@
                 href="https://github.com/ant-le"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-secondary hover:text-text-primary transition-colors duration-300"
+                class="text-text-primary hover:text-accent-cyan transition-colors duration-300"
                 aria-label="GitHub"
             >
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -62,7 +62,7 @@
                 href="https://soundcloud.com/antonlechuga"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-secondary hover:text-text-primary transition-colors duration-300"
+                class="text-text-primary hover:text-accent-violet transition-colors duration-300"
                 aria-label="SoundCloud"
             >
                 <svg

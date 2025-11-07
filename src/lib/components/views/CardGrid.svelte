@@ -56,8 +56,8 @@
     <!-- Filter Controls -->
     <div
         class="
-        flex flex-col sm:flex-row gap-4 items-start sm:items-center
-        artistic:p-4 artistic:bg-gradient-to-r artistic:from-primary/10 artistic:to-secondary/10 artistic:rounded-xl artistic:border-2 artistic:border-accent/30 artistic:shadow-lg
+        flex flex-col sm:flex-row gap-4 items-start sm:items-center border border-bg-tertiary/60 bg-bg-secondary/70 p-4 backdrop-blur-sm transition-colors duration-300
+        artistic:border-text-primary artistic:bg-accent-yellow/70 artistic:shadow-[0_12px_35px_rgba(0,0,0,0.35)]
     "
     >
         <!-- Search Input -->
@@ -67,8 +67,8 @@
                 placeholder="Search by title..."
                 bind:value={searchTerm}
                 class="
-                    w-full px-3 py-2 bg-transparent border border-neutral-300 text-text-primary placeholder-text-tertiary focus:outline-none focus:border-text-primary transition-colors duration-200
-                    artistic:bg-gradient-to-r artistic:from-bg-secondary artistic:to-primary/5 artistic:border-2 artistic:border-accent/50 artistic:rounded-lg artistic:focus:border-accent artistic:placeholder-text-secondary artistic:text-text-primary artistic:shadow-md artistic:focus:shadow-lg artistic:transition-all artistic:duration-300
+                    w-full px-3 py-2 bg-bg-primary/80 border border-bg-tertiary/60 text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:border-text-primary focus:bg-bg-primary transition-colors duration-200
+                    artistic:bg-white/20 artistic:text-text-primary artistic:placeholder:text-text-primary/70 artistic:border-text-primary/60 artistic:shadow-lg artistic:focus:border-text-primary artistic:focus:bg-accent-pink/20 artistic:transition-all artistic:duration-300
                 "
             />
         </div>
@@ -77,8 +77,8 @@
         <select
             bind:value={selectedLabel}
             class="
-                px-3 py-2 bg-transparent border border-neutral-300 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-200
-                artistic:bg-gradient-to-r artistic:from-secondary/20 artistic:to-accent/20 artistic:border-2 artistic:border-secondary artistic:rounded-lg artistic:focus:border-accent artistic:text-text-primary artistic:shadow-md artistic:focus:shadow-lg artistic:transition-all artistic:duration-300
+                px-3 py-2 border border-bg-tertiary/60 bg-bg-primary/80 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-300
+                artistic:bg-accent-violet/40 artistic:border-text-primary/50 artistic:text-text-primary artistic:shadow-lg artistic:focus:border-text-primary
             "
         >
             <option value="">All Labels</option>
@@ -91,8 +91,8 @@
         <select
             bind:value={sortOrder}
             class="
-                px-3 py-2 bg-transparent border border-neutral-300 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-200
-                artistic:bg-gradient-to-r artistic:from-accent/20 artistic:to-accent-2/20 artistic:border-2 artistic:border-accent artistic:rounded-lg artistic:focus:border-accent-2 artistic:text-text-primary artistic:shadow-md artistic:focus:shadow-lg artistic:transition-all artistic:duration-300
+                px-3 py-2 border border-bg-tertiary/60 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-200
+                bg-accent-cyan/70 artistic:border-text-primary/50 artistic:text-text-primary artistic:shadow-lg artistic:focus:border-text-primary artistic:transition-all artistic:duration-300
             "
         >
             <option value="newest">Newest First</option>
@@ -103,8 +103,8 @@
     <!-- Results Count -->
     <div
         class="
-        text-sm font-light text-text-secondary
-        artistic:bg-gradient-to-r artistic:from-primary/10 artistic:to-secondary/10 artistic:px-4 artistic:py-2 artistic:rounded-lg artistic:border artistic:border-accent/30 artistic:shadow-md artistic:animate-pulse
+        inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-normal text-text-secondary
+        border-text-primary/40 bg-accent-cyan/60 shadow-md
     "
     >
         Showing {filteredPosts.length} of {posts.length} posts

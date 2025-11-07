@@ -96,8 +96,8 @@
 
 {#if tooltip.visible}
     <div
-        class="pointer-events-none fixed z-10 rounded-md bg-bg-tertiary p-2 
-        text-sm text-text-light shadow-lg"
+        class="pointer-events-none fixed z-20 border border-bg-tertiary/60 bg-bg-secondary/95 px-3 py-2 text-sm text-text-primary shadow-lg backdrop-blur-md
+        artistic:border-accent-orange/30 artistic:bg-accent-orange/50 artistic:text-text-light"
         style="left: {tooltip.x + 10}px; top: {tooltip.y - 30}px;"
         in:fly={{ y: -5, duration: 200 }}
     >
@@ -106,20 +106,18 @@
 {/if}
 
 <div
-    class="w-full transition-all duration-300
-    artistic:rounded-2xl artistic:p-8 artistic:shadow-md artistic:bg-primary/5 
-    artistic:border-2 artistic:border-accent/30
-    {className}"
+    class="w-full border p-8 shadow-lg transition-all duration-300 backdrop-blur-sm {className}
+    bg-accent-orange/65"
 >
     <div class="flex items-center justify-between pb-4">
         <div>
-            <h5>Training Volume</h5>
+            <h5 class="text-text-primary">Training Volume</h5>
             <p class="text-sm font-normal text-text-secondary">
                 {selectedTimeFilter.label}
             </p>
         </div>
         <Dropdown
-            className="artistic:text-text-primary"
+            className="rounded-full border border-bg-tertiary/60 bg-bg-primary/80 text-text-primary px-3 py-1 artistic:border-text-primary/50 artistic:bg-white/10 artistic:text-text-primary"
             options={timeFilterOptions}
             bind:selectedValue={selectedTimeFilter}
             position="bottom"
@@ -137,11 +135,11 @@
                 <linearGradient id="bar-gradient" x1="0" y1="0" x2="0" y2="1">
                     <stop
                         offset="0%"
-                        stop-color="var(--color-bg-dark)"
+                        stop-color="var(--color-bg-secondary)"
                     />
                     <stop
                         offset="100%"
-                        stop-color="var(--color-primary-dark)"
+                        stop-color="var(--color-bg-primary)"
                     />
                 </linearGradient>
             </defs>
@@ -157,7 +155,7 @@
                         y1={y}
                         x2={viewBoxWidth - padding.right}
                         y2={y}
-                        class="stroke-current text-neutral-300 artistic:text-accent/20"
+                        class="stroke-current text-text-secondary/40 artistic:text-text-primary/50"
                         stroke-width="1.5"
                         stroke-dasharray="2 4"
                     />
@@ -166,7 +164,7 @@
                         y={y + 5}
                         text-anchor="end"
                         font-size="18"
-                        class="font-medium fill-current text-text-tertiary artistic:text-text-tertiary"
+                        class="font-semibold fill-current text-text-secondary/70 artistic:text-text-primary/70"
                         >{value} km</text
                     >
                 </g>
@@ -182,7 +180,7 @@
                         rx="2"
                         ry="2"
                         class="origin-bottom transition-all duration-200
-                               fill-neutral-400
+                               fill-accent-orange
                                artistic:fill-[url(#bar-gradient)]
                                hover:-translate-y-1.5"
                         class:opacity-40={hoveredBarIndex !== null &&
@@ -210,7 +208,7 @@
                         y={viewBoxHeight - 20}
                         text-anchor="middle"
                         font-size="14"
-                        class="fill-current text-text-tertiary artistic:text-tertiary"
+                        class="fill-current text-text-secondary/80 artistic:text-text-primary/70"
                     >
                         {selectedTimeFilter.value === '30'
                             ? entry.date.toLocaleDateString('default', {
@@ -228,27 +226,27 @@
     </div>
 
     <div
-        class="mt-4 flex items-center justify-between border-t border-neutral-300 pt-4 artistic:border-accent/20"
+        class="mt-4 flex items-center justify-between border-t border-bg-tertiary/60 pt-4 artistic:border-text-primary/40"
     >
         <div class="text-center sm:ml-16">
-            <div class="text-sm text-text-tertiary">Total Time</div>
-            <div class="font-semibold text-text-primary">
+            <div class="text-sm text-text-secondary/70">Total Time</div>
+            <div class="font-semibold text-text-secondary">
                 {filteredSummary.totalTime.toFixed(1)}h
             </div>
         </div>
         <div class="text-center">
-            <div class="text-sm text-text-tertiary">Weekly Avg</div>
-            <div class="font-semibold text-text-primary">
+            <div class="text-sm text-text-secondary/70">Weekly Avg</div>
+            <div class="font-semibold text-text-secondary">
                 {filteredSummary.weeklyAverage.toFixed(1)} km
             </div>
         </div>
         <div class="text-center sm:mr-16">
-            <div class="text-sm text-text-tertiary">vs Prev. Period</div>
+            <div class="text-sm text-text-secondary/70">vs Prev. Period</div>
             <div
-                class="flex items-center justify-center font-semibold text-text-primary"
+                class="flex items-center justify-center font-semibold text-text-secondary"
             >
                 <svg
-                    class="h-3 w-3 me-1.5 text-text-primary"
+                    class="h-3 w-3 me-1.5 text-accent-yellow"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     style="transform: {isUp ? 'rotate(180deg)' : 'rotate(0)'};"

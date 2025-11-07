@@ -10,14 +10,13 @@
 </script>
 
 <article
-    class="relative flex-shrink-0 w-65 md:w-[32rem] bg-bg-surface rounded-xl
-    shadow-lg flex flex-col md:flex-row border border-accent-2 font-display
-    transition-all duration-300"
+    class="relative flex-shrink-0 w-65 md:w-[32rem] rounded-3xl border border-bg-tertiary/60 bg-bg-secondary/85 shadow-xl transition-all duration-300 backdrop-blur-sm flex flex-col md:flex-row
+    artistic:border-text-primary artistic:bg-accent-violet/70 artistic:shadow-[0_18px_45px_rgba(0,0,0,0.45)]"
 >
     {#if showPlayer}
         <div
-            class="absolute inset-0 bg-bg-overlay backdrop-blur-sm rounded-xl 
-            p-4 flex items-center justify-center z-10"
+            class="absolute inset-0 z-10 flex items-center justify-center rounded-3xl border border-bg-tertiary/60 bg-bg-secondary/90 p-4 backdrop-blur-md
+            artistic:border-text-primary/50 artistic:bg-accent-yellow/85"
             transition:fade
         >
             <div class="w-full h-full p-2">
@@ -26,8 +25,7 @@
 
             <button
                 onclick={() => (showPlayer = false)}
-                class="absolute top-4 right-4 z-20 p-1 bg-bg-dark/50 rounded-full 
-                text-text-light"
+                class="absolute top-4 right-4 z-20 rounded-full bg-bg-tertiary/50 p-1 text-text-primary transition-colors duration-200 hover:bg-bg-tertiary/80 artistic:bg-text-primary/20 artistic:text-text-primary artistic:hover:bg-text-primary/40"
                 aria-label="Close"
             >
                 <svg
@@ -47,16 +45,16 @@
     <div class="relative w-full md:w-1/2 aspect-square flex-shrink-0">
         <div class="absolute inset-0 w-full h-full p-4">
             <div
-                class="relative w-full h-full bg-bg-dark rounded-lg flex items-center justify-center"
+                class="relative flex h-full w-full items-center justify-center rounded-2xl border border-bg-tertiary/60 bg-bg-primary/90"
             >
                 <div
-                    class="absolute top-2 left-2 text-xs text-bg-overlay font-bold"
+                    class="absolute left-3 top-3 text-xs font-semibold tracking-wide text-text-secondary/70 artistic:text-text-primary/80"
                 >
                     ANTI-SKIP
                 </div>
 
                 <div
-                    class="relative w-3/5 aspect-square bg-bg-tertiary rounded-full border-4 border-neutral-600 p-1"
+                    class="relative aspect-square w-3/5 rounded-full border-4 border-bg-tertiary/60 bg-bg-tertiary p-1 artistic:border-text-primary/50 artistic:bg-accent-pink/40"
                 >
                     <img
                         class="w-full h-full object-cover rounded-full"
@@ -74,14 +72,14 @@
                             onclick={() => (showPlayer = true)}
                             onkeydown={() => (showPlayer = true)}
                             transition:fade={{ duration: 300 }}
-                            class="w-full h-full flex items-center justify-center bg-transparent
-                            group-hover:bg-bg-dark/50 rounded-full transition-colors"
+                            class="flex h-full w-full items-center justify-center rounded-full bg-transparent transition-colors
+                            group-hover:bg-bg-tertiary/70 artistic:group-hover:bg-text-primary/30"
                         >
                             <svg
                                 width="40"
                                 height="40"
                                 fill="currentColor"
-                                class="text-accent-2 opacity-0 group-hover:opacity-100"
+                                class="opacity-0 text-accent-cyan group-hover:opacity-100 artistic:text-text-primary"
                                 viewBox="0 0 16 16"
                             >
                                 <path
@@ -95,7 +93,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col flex-grow p-4 md:p-6 justify-between">
+    <div class="flex flex-grow flex-col justify-between p-4 md:p-6">
         <div class="text-left">
             <h3>
                 {post.piece}
@@ -103,18 +101,18 @@
             <p class="text-sm text-text-secondary mt-1">{post.artist}</p>
         </div>
         <div
-            class="flex items-center justify-between pt-4 mt-4 border-t border-neutral-700"
+            class="mt-4 flex items-center justify-between border-t border-bg-tertiary/60 pt-4 artistic:border-text-primary/50"
         >
             <div class="flex items-center gap-2">
                 <div
-                    class="w-10 h-10 rounded-full bg-accent-2 flex items-center justify-center text-bg-overlay font-bold text-xs"
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-cyan text-xs font-semibold text-accent-yellow artistic:bg-text-primary"
                 >
                     BASS
                 </div>
                 <div class="flex flex-wrap gap-1">
                     {#each post.labels as label}
                         <span
-                            class="px-2 py-0.5 text-[10px] bg-accent text-bg-overlay rounded"
+                            class="rounded px-2 py-0.5 text-[10px] bg-accent-orange artistic:bg-text-primary text-accent-yellow"
                             >{label}</span
                         >
                     {/each}
@@ -122,8 +120,8 @@
             </div>
             <button
                 onclick={() => onReadMore(post)}
-                class="text-sm font-bold text-accent hover:underline flex-shrink-0">
-        
+                class="flex-shrink-0 text-sm font-semibold text-accent-violet transition-colors duration-200 hover:underline artistic:text-text-primary">
+
                 INFO
             </button>
         </div>

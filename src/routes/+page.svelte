@@ -14,18 +14,16 @@
     />
 </svelte:head>
 
-<div class="flex flex-col gap-12 sm:gap-16">
-    <div
-        class="flex flex-col lg:flex-row gap-4 sm:gap-8 items-center"
-    >
-        <div class="flex-shrink-0">
+<div class="flex flex-col artistic:border-x max-w-7xl mx-auto">
+    <div class="grid grid-cols-4">
+        <div class="p-16 h-full bg-bg-primary col-span-1">
             <img
-                class="w-64 h-64 object-cover rounded-lg transition-all duration-300 filter grayscale hover:grayscale-0 artistic:grayscale-0"
+                class="w-48 h-48 object-cover transition-all duration-300 shadow-lg border filter grayscale hover:grayscale-0 artistic:grayscale-0 mx-auto"
                 src={profile}
                 alt="That is me."
             />
         </div>
-        <div class="flex flex-col max-w-md sm:max-w-lg md:max-w-3xl artistic:gap-2">
+        <div class="flex flex-col artistic:border-l p-8 bg-accent-green/10 col-span-3">
             <TextCard
                 text="Hello, I am Anton and on this little website I want to share things I am interested in, aspects of life I care about and stuff I love doing!"
             />
@@ -34,11 +32,12 @@
             />
             <TextCard
                 text="In my free-time, I spends a lot of time listening/mixing music and running longer distances. I want to use this website to keep track and share some progress I've been making..."
+                classProps="pb-4"
             />
         </div>
     </div>
-    <hr class="hidden mx-32 lg:inline border-neutral-200 artistic:hidden" />
-    <section class="p-4 md:px-32 lg:p-4">
+    <section class="max-w-7xl px-8 artistic:border-t pt-8 bg-bg-secondary/30">
+        <h3 class="mb-6">Here's what my friends have to say about me:</h3>
         <CardRasterHorizontal posts={friends} />
     </section>
 </div>

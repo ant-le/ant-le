@@ -9,8 +9,8 @@
 
     const isBullet = type === 'bullet'
     const baseClasses = isBullet
-        ? 'inline-flex h-3 w-3 items-center justify-center text-text-primary artistic:text-accent'
-        : 'inline-flex h-1.5 w-1.5 items-center justify-center text-neutral-400 artistic:text-accent/60'
+        ? 'inline-flex h-3 w-3 items-center justify-center text-accent-orange artistic:text-text-primary'
+        : 'inline-flex h-1.5 w-1.5 items-center justify-center text-text-secondary/60 artistic:text-text-primary/60'
 </script>
 
 <span class={`${baseClasses} ${className}`} aria-hidden="true">
