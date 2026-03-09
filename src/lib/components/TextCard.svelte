@@ -10,17 +10,15 @@
     }>()
 </script>
 
-
-
 <div
-    class="transition-all duration-300 b-8 p-2 font-body
-    text-text-secondary font-normal text-base lg:text-lg
+    class="mb-6 font-body text-base font-normal text-text-secondary transition-all duration-300 lg:text-lg
+    artistic:text-text-primary
         {classProps}"
 >
     {#if title}
-        <h3>{title}</h3>
+        <h3 class="mb-3">{title}</h3>
     {/if}
-    <p class="font-normal tracking-wide leading-relaxed">
+    <p class="font-normal leading-relaxed">
         {@html text}
     </p>
 </div>

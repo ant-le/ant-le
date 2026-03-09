@@ -40,8 +40,8 @@
 <header
     class="
     bg-bg-primary py-6 border-b-0 top-0 sticky z-1000 transition-all duration-300
-    artistic:text-text-light artistic:bg-accent-yellow artistic:border-b-2
-    artistic:border-text-primary artistic:shadow-lg
+    artistic:text-text-light artistic:bg-accent-yellow artistic:border-b-4
+    artistic:border-text-primary artistic:shadow-[4px_4px_0px_rgba(0,0,0,1)]
 "
 >
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -98,7 +98,7 @@
 
                 <button
                     type="button"
-                    class="ml-2 md:ml-6 p-2 hover:text-text-primary transition-colors duration-300 hover:scale-105 artistic:text-white"
+                    class="ml-2 md:ml-6 p-2 hover:text-text-primary transition-colors duration-300 hover:scale-105 artistic:text-text-light"
                     aria-label="Toggle theme"
                     onclick={toggleTheme}
                 >

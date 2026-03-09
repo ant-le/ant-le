@@ -57,7 +57,7 @@
     <div
         class="
         flex flex-col sm:flex-row gap-4 items-start sm:items-center border border-bg-tertiary/60 bg-bg-secondary/70 p-4 backdrop-blur-sm transition-colors duration-300
-        artistic:border-text-primary artistic:bg-accent-yellow/70 artistic:shadow-[0_12px_35px_rgba(0,0,0,0.35)]
+        artistic:border-4 artistic:border-text-primary artistic:bg-accent-yellow artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]
     "
     >
         <!-- Search Input -->
@@ -68,7 +68,7 @@
                 bind:value={searchTerm}
                 class="
                     w-full px-3 py-2 bg-bg-primary/80 border border-bg-tertiary/60 text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:border-text-primary focus:bg-bg-primary transition-colors duration-200
-                    artistic:bg-white/20 artistic:text-text-primary artistic:placeholder:text-text-primary/70 artistic:border-text-primary/60 artistic:shadow-lg artistic:focus:border-text-primary artistic:focus:bg-accent-pink/20 artistic:transition-all artistic:duration-300
+                    artistic:bg-bg-primary artistic:text-text-primary artistic:placeholder:text-text-secondary artistic:border-4 artistic:border-text-primary artistic:focus:border-text-primary artistic:focus:bg-accent-pink
                 "
             />
         </div>
@@ -78,7 +78,7 @@
             bind:value={selectedLabel}
             class="
                 px-3 py-2 border border-bg-tertiary/60 bg-bg-primary/80 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-300
-                artistic:bg-accent-violet/40 artistic:border-text-primary/50 artistic:text-text-primary artistic:shadow-lg artistic:focus:border-text-primary
+                artistic:bg-accent-pink artistic:border-4 artistic:border-text-primary artistic:text-text-light artistic:focus:border-text-primary
             "
         >
             <option value="">All Labels</option>
@@ -91,8 +91,8 @@
         <select
             bind:value={sortOrder}
             class="
-                px-3 py-2 border border-bg-tertiary/60 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-200
-                bg-accent-cyan/70 artistic:border-text-primary/50 artistic:text-text-primary artistic:shadow-lg artistic:focus:border-text-primary artistic:transition-all artistic:duration-300
+                px-3 py-2 border border-bg-tertiary/60 bg-bg-primary/80 text-text-primary focus:outline-none focus:border-text-primary transition-colors duration-200
+                artistic:bg-accent-cyan artistic:border-4 artistic:border-text-primary artistic:text-text-primary artistic:focus:border-text-primary
             "
         >
             <option value="newest">Newest First</option>
@@ -104,7 +104,8 @@
     <div
         class="
         inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-normal text-text-secondary
-        border-text-primary/40 bg-accent-cyan/60 shadow-md
+        border-bg-tertiary/60 bg-bg-secondary/70 shadow-sm
+        artistic:border-4 artistic:border-text-primary artistic:bg-accent-cyan artistic:shadow-[4px_4px_0px_rgba(0,0,0,1)] artistic:text-text-primary
     "
     >
         Showing {filteredPosts.length} of {posts.length} posts

@@ -7,7 +7,8 @@
 </script>
 
 <footer
-    class="bg-bg-secondary border-t border-bg-tertiary py-8 text-text-secondary transition-colors duration-500"
+    class="bg-bg-secondary border-t border-bg-tertiary py-8 text-text-secondary transition-colors duration-500
+    artistic:bg-accent-yellow artistic:border-t-4 artistic:border-text-primary artistic:text-text-primary"
 >
     <div class="flex flex-col items-center gap-2">
         <div class="flex space-x-6">
@@ -15,7 +16,7 @@
                 href="https://www.strava.com/athletes/antonlechuga"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-primary hover:text-accent-yellow transition-colors duration-300"
+                class="text-text-primary hover:text-accent-yellow transition-colors duration-300 artistic:hover:text-accent-pink artistic:hover:scale-125"
                 aria-label="Strava"
             >
                 <svg class="w-5 h-5" viewBox="0 0 192 192" fill="none">
@@ -32,7 +33,7 @@
             <!-- Gmail -->
             <a
                 href="mailto:anton.lechuga@gmail.com"
-                class="text-text-primary hover:text-accent-green transition-colors duration-300"
+                class="text-text-primary hover:text-accent-green transition-colors duration-300 artistic:hover:text-accent-violet artistic:hover:scale-125"
                 aria-label="Email"
             >
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -47,7 +48,7 @@
                 href="https://github.com/ant-le"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-primary hover:text-accent-cyan transition-colors duration-300"
+                class="text-text-primary hover:text-accent-cyan transition-colors duration-300 artistic:hover:text-accent-orange artistic:hover:scale-125"
                 aria-label="GitHub"
             >
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -62,7 +63,7 @@
                 href="https://soundcloud.com/antonlechuga"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-primary hover:text-accent-violet transition-colors duration-300"
+                class="text-text-primary hover:text-accent-violet transition-colors duration-300 artistic:hover:text-accent-cyan artistic:hover:scale-125"
                 aria-label="SoundCloud"
             >
                 <svg
@@ -129,7 +130,9 @@
                 </svg>
             </a>
         </div>
-        <div class="text-sm font-normal text-text-secondary">
+        <div
+            class="text-sm font-normal text-text-secondary artistic:text-text-primary artistic:font-bold"
+        >
             Last updated: {buildDate}
         </div>
     </div>

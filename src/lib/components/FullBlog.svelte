@@ -54,7 +54,7 @@
         <div
             class="relative flex w-full max-w-2xl flex-col overflow-hidden max-h-[90vh]
             rounded-2xl border border-bg-tertiary/70 bg-bg-secondary/95 text-text-primary shadow-2xl backdrop-blur-md transition-colors duration-300
-            artistic:border-text-primary artistic:bg-accent-yellow/90 artistic:text-text-light artistic:shadow-[0_18px_45px_rgba(0,0,0,0.45)]"
+            artistic:border-4 artistic:border-text-primary artistic:bg-accent-yellow artistic:text-text-light artistic:shadow-[12px_12px_0px_rgba(0,0,0,1)]"
             transition:slide={{
                 duration: 400,
                 easing: quintOut,
@@ -62,7 +62,7 @@
         >
             <div
                 class="flex-shrink-0 items-start justify-between border-b border-bg-tertiary/60 p-6
-                artistic:border-text-primary/50 sm:flex"
+                artistic:border-b-4 artistic:border-text-primary sm:flex"
             >
                 <div class="flex-1">
                     <h1>
@@ -74,7 +74,7 @@
                             <span
                                 class="rounded-md px-3 py-1 text-xs font-semibold uppercase tracking-wider
                                 border border-bg-tertiary/60 bg-bg-tertiary text-text-primary
-                                artistic:border-text-primary/60 artistic:bg-accent-pink/40 artistic:text-text-primary"
+                                artistic:border-4 artistic:border-text-primary artistic:bg-accent-pink artistic:text-text-light"
                             >
                                 {category}
                             </span>
@@ -83,7 +83,7 @@
                             <span
                                 class="rounded-full px-3 py-1 text-xs
                                 border border-bg-tertiary/60 bg-bg-tertiary/70 text-text-primary
-                                artistic:border-text-primary/60 artistic:bg-accent-green/45 artistic:text-text-primary"
+                                artistic:border-4 artistic:border-text-primary artistic:bg-bg-primary artistic:text-text-primary"
                             >
                                 {label}
                             </span>
@@ -96,7 +96,7 @@
                 </div>
                 <button
                     onclick={close}
-                    class="ml-auto mt-2 rounded-full p-2 text-text-secondary transition-all duration-200 hover:bg-bg-tertiary/70 hover:text-text-primary artistic:hover:bg-accent-violet/35 sm:ml-4 sm:mt-0"
+                    class="ml-auto mt-2 rounded-full p-2 text-text-secondary transition-all duration-200 hover:bg-bg-tertiary/70 hover:text-text-primary artistic:hover:bg-accent-violet sm:ml-4 sm:mt-0"
                     aria-label="Close"
                 >
                     <svg
@@ -122,14 +122,12 @@
                         src={post.image}
                         alt={post.title}
                         class="mb-6 h-auto w-full max-h-80 rounded-2xl border border-bg-tertiary/50 object-cover shadow-lg
-                        artistic:border-text-primary/40 artistic:shadow-[0_12px_30px_rgba(0,0,0,0.35)]"
+                        artistic:border-4 artistic:border-text-primary artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                     />
                 {/if}
 
                 <div>
-                    <h2>
-                        tl;dr
-                    </h2>
+                    <h2>tl;dr</h2>
                     <p class="text-text-secondary artistic:text-text-light">
                         {post.desc}
                     </p>
@@ -137,7 +135,7 @@
 
                 <button
                     class="block w-full rounded-lg bg-accent-orange p-4 text-center font-semibold text-text-primary transition-transform duration-200 hover:scale-[1.02]
-                    artistic:bg-gradient-to-r artistic:from-accent-pink artistic:to-accent-violet artistic:text-text-light"
+                    artistic:bg-accent-pink artistic:text-text-light artistic:border-4 artistic:border-text-primary artistic:shadow-[6px_6px_0px_rgba(0,0,0,1)]"
                     disabled
                     >Read Full Post →
                 </button>

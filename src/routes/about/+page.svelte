@@ -57,17 +57,17 @@
 </svelte:head>
 
 <section
-    class="rounded-3xl border border-accent-yellow bg-bg-secondary/80 p-6 md:p-10 shadow-lg backdrop-blur-sm transition-colors duration-300
-    artistic:bg-bg-secondary artistic:shadow-[0_18px_45px_rgba(0,0,0,0.38)]"
+    class="my-8 rounded-3xl border border-accent-yellow bg-bg-secondary/80 p-8 md:p-14 shadow-lg backdrop-blur-sm transition-colors duration-300
+    artistic:my-12 artistic:border-4 artistic:border-text-primary artistic:bg-bg-secondary artistic:shadow-[12px_12px_0px_rgba(0,0,0,1)]"
 >
-    <div class="space-y-12">
+    <div class="space-y-16">
         <header
-            class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+            class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
         >
             <h1>Curriculum Vitae</h1>
             <div
                 class="flex flex-wrap items-center gap-3 rounded-full border border-bg-tertiary/60 bg-bg-secondary/70 px-4 py-2 text-sm shadow-sm transition-colors duration-300
-                artistic:border-text-primary/60 artistic:bg-white/15 artistic:shadow-[0_8px_24px_rgba(0,0,0,0.28)]"
+                artistic:border-4 artistic:border-text-primary artistic:bg-bg-primary artistic:shadow-[4px_4px_0px_rgba(0,0,0,1)]"
             >
                 <Dropdown
                     options={languageOptions}
@@ -84,11 +84,11 @@
             </div>
         </header>
 
-        <div class="space-y-12">
+        <div class="space-y-16">
             <div
-                class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16"
+                class="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20"
             >
-                <aside class="space-y-8">
+                <aside class="space-y-10">
                     <h3>Summary</h3>
                     <section class="space-y-4">
                         <p>{currentCV.sections.introduction}</p>
@@ -123,9 +123,9 @@
 
                     <section class="space-y-3">
                         <h3>Languages</h3>
-                                <ul
-                                    class="flex flex-wrap items-center gap-y-1.5 text-text-secondary/70"
-                                >
+                        <ul
+                            class="flex flex-wrap items-center gap-y-1.5 text-text-secondary/70"
+                        >
                             {#each currentCV.sections.languages as language, index (language.name)}
                                 <li class="flex items-center gap-2 pr-3">
                                     {#if index !== 0}
@@ -140,33 +140,32 @@
                     </section>
                 </aside>
 
-                <div class="space-y-8">
+                <div class="space-y-10">
                     <section
-                        class="space-y-4 border-b border-bg-tertiary/60 pb-6 last:border-b-0 artistic:border-b-0"
+                        class="space-y-6 border-b border-bg-tertiary/60 pb-8 last:border-b-0 artistic:border-b-0"
                     >
                         <h3>Professional Experience</h3>
-                        <div class="space-y-4">
+                        <div class="space-y-6">
                             {#each currentCV.sections.experience as role (`${role.role}-${role.organisation}-${role.period.from}`)}
                                 {@const entryId = `${role.role}-${role.organisation}-${role.period.from}`}
                                 <details
                                     class="group/entry overflow-hidden rounded-2xl border border-bg-tertiary/60 bg-bg-secondary/70 shadow-sm transition-colors duration-200 open:border-accent-orange/60 open:shadow-lg
-                                    artistic:border-text-primary artistic:bg-accent-pink/25 artistic:shadow-[0_12px_30px_rgba(0,0,0,0.3)]"
+                                    artistic:border-4 artistic:border-text-primary artistic:bg-accent-yellow artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                                     open={openExperienceId === entryId}
                                     ontoggle={(event) =>
-                                        handleExperienceToggle(entryId, event)
-                                    }
+                                        handleExperienceToggle(entryId, event)}
                                 >
                                     <summary
-                                        class="flex cursor-pointer list-none items-start gap-4 px-5 py-4 text-left md:items-center"
+                                        class="flex cursor-pointer list-none items-start gap-4 px-6 py-5 text-left md:items-center"
                                     >
                                         <span
-                                            class="flex h-5 w-5 shrink-0 items-center justify-center text-text-secondary/60 transition-transform duration-200 origin-center group-open/entry:rotate-90 artistic:text-accent"
+                                            class="flex h-5 w-5 shrink-0 items-center justify-center text-text-secondary/60 transition-transform duration-200 origin-center group-open/entry:rotate-90 artistic:text-accent-pink"
                                         >
                                             ▶
                                         </span>
 
                                         <div
-                                            class="text-sm font-semibold text-text-secondary/70 md:text-right"
+                                            class="text-sm font-semibold text-text-secondary/70 md:text-right artistic:text-text-primary/80"
                                         >
                                             <span>{role.period.to}</span>
                                             <span class="block"
@@ -178,11 +177,11 @@
                                                 {role.role}
                                             </h4>
                                             <p
-                                                class="text-sm font-semibold text-text-secondary"
+                                                class="text-sm font-semibold text-text-secondary artistic:text-text-primary/90"
                                             >
                                                 {role.organisation}
                                                 <span
-                                                    class="text-xs uppercase tracking-wide text-text-secondary/60"
+                                                    class="text-xs uppercase tracking-wide text-text-secondary/60 artistic:text-text-primary/70"
                                                 >
                                                     {CV_SEPARATOR}
                                                     {role.location}
@@ -190,20 +189,20 @@
                                             </p>
                                         </div>
                                     </summary>
-                                    <div class="space-y-4 px-5 pb-5">
+                                    <div class="space-y-4 px-6 pb-6">
                                         <ul
-                                            class="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-wide text-text-secondary/70"
+                                            class="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-wide text-text-secondary/70 artistic:text-text-primary/80"
                                         >
                                             {#each role.tools as tool (tool)}
                                                 <li
-                                                    class="rounded-full border border-bg-tertiary/60 bg-bg-secondary/70 px-3 py-1 leading-none artistic:border-text-primary/50 artistic:bg-white/20"
+                                                    class="rounded-full border border-bg-tertiary/60 bg-bg-secondary/70 px-3 py-1 leading-none artistic:border-4 artistic:border-text-primary artistic:bg-bg-primary"
                                                 >
                                                     {tool}
                                                 </li>
                                             {/each}
                                         </ul>
                                         <ul
-                                            class="flex flex-col flex-wrap gap-2 px-4 text-text-secondary/75"
+                                            class="flex flex-col flex-wrap gap-2 px-4 text-text-secondary/75 artistic:text-text-primary/90"
                                         >
                                             {#each role.achievements as achievement (achievement)}
                                                 <li
@@ -224,17 +223,17 @@
             <CollapsibleSection
                 title="Education"
                 summary="B.A. Social Science - M.Sc. Data Science"
-                className="border-t border-bg-tertiary/60 pt-6 artistic:border-text-primary/40"
-                contentClass="mt-4"
+                className="border-t border-bg-tertiary/60 pt-8 artistic:border-t-4 artistic:border-text-primary"
+                contentClass="mt-6"
             >
                 <EducationSection entries={currentCV.sections.education} />
             </CollapsibleSection>
 
             <CollapsibleSection
                 title="Selected Projects"
-                className="border-t border-bg-tertiary/60 pt-6 artistic:border-text-primary/40"
+                className="border-t border-bg-tertiary/60 pt-8 artistic:border-t-4 artistic:border-text-primary"
             >
-                <div class="space-y-4">
+                <div class="space-y-6">
                     <p>
                         A rotating set of research, engineering, and creative
                         work. Most of these projects expand on topics like
@@ -245,7 +244,7 @@
                         class="relative overflow-x-auto pb-4 scrollbar-custom"
                         tabindex="-1"
                     >
-                        <div class="flex min-w-full gap-4 md:min-w-0">
+                        <div class="flex min-w-full gap-6 md:min-w-0">
                             {#each projectPosts as project (`${project.title}-${project.post}`)}
                                 <div class="w-72 flex-shrink-0 md:w-80">
                                     <ProjectCard
@@ -261,11 +260,11 @@
 
             <CollapsibleSection
                 title="Additional Involvement"
-                className="border-t border-bg-tertiary/60 pt-6 artistic:border-text-primary/40"
-                contentClass="mt-4"
+                className="border-t border-bg-tertiary/60 pt-8 artistic:border-t-4 artistic:border-text-primary"
+                contentClass="mt-6"
             >
                 <div
-                    class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16"
+                    class="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20"
                 >
                     {#if currentCV.sections.interests}
                         <div class="space-y-6">
@@ -291,17 +290,19 @@
                             {/each}
                         </div>
                     {/if}
-                    <div class="space-y-4">
+                    <div
+                        class="space-y-6 border border-bg-tertiary/60 p-6 artistic:border-4 artistic:border-text-primary artistic:bg-bg-primary md:p-8"
+                    >
                         {#each currentCV.sections.involvement as item (`${item.role}-${item.organisation}-${item.period.from}`)}
                             <details
                                 class="group/entry overflow-hidden rounded-2xl border border-bg-tertiary/60 bg-bg-secondary/70 shadow-sm transition-colors duration-200 open:border-accent-violet/60 open:shadow-lg
-                                artistic:border-text-primary artistic:bg-accent-green/40 artistic:shadow-[0_12px_30px_rgba(0,0,0,0.32)]"
+                                artistic:border-4 artistic:border-text-primary artistic:bg-bg-secondary artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                             >
                                 <summary
-                                    class="flex cursor-pointer list-none items-start gap-4 px-5 py-4 text-left"
+                                    class="flex cursor-pointer list-none items-start gap-4 px-6 py-5 text-left"
                                 >
                                     <span
-                                        class="flex h-5 w-5 shrink-0 items-center justify-center text-text-secondary/60 transition-transform duration-200 origin-center group-open/entry:rotate-90 artistic:text-accent"
+                                        class="flex h-5 w-5 shrink-0 items-center justify-center text-text-secondary/60 transition-transform duration-200 origin-center group-open/entry:rotate-90 artistic:text-accent-pink"
                                     >
                                         ▶
                                     </span>
@@ -334,7 +335,7 @@
                                         </div>
                                     </header>
                                 </summary>
-                                <div class="px-5 pb-5">
+                                <div class="px-6 pb-6">
                                     <ul
                                         class="space-y-2 text-sm font-normal tracking-wide text-text-secondary leading-relaxed"
                                     >

@@ -97,7 +97,7 @@
 {#if tooltip.visible}
     <div
         class="pointer-events-none fixed z-20 border border-bg-tertiary/60 bg-bg-secondary/95 px-3 py-2 text-sm text-text-primary shadow-lg backdrop-blur-md
-        artistic:border-accent-orange/30 artistic:bg-accent-orange/50 artistic:text-text-light"
+        artistic:border-4 artistic:border-text-primary artistic:bg-accent-orange artistic:text-text-light"
         style="left: {tooltip.x + 10}px; top: {tooltip.y - 30}px;"
         in:fly={{ y: -5, duration: 200 }}
     >
@@ -106,8 +106,8 @@
 {/if}
 
 <div
-    class="w-full border p-8 shadow-lg transition-all duration-300 backdrop-blur-sm {className}
-    bg-accent-orange/65"
+    class="w-full border p-8 md:p-10 shadow-lg transition-all duration-300 backdrop-blur-sm {className}
+    bg-bg-secondary artistic:bg-accent-orange artistic:border-4 artistic:border-text-primary"
 >
     <div class="flex items-center justify-between pb-4">
         <div>
@@ -117,7 +117,7 @@
             </p>
         </div>
         <Dropdown
-            className="rounded-full border border-bg-tertiary/60 bg-bg-primary/80 text-text-primary px-3 py-1 artistic:border-text-primary/50 artistic:bg-white/10 artistic:text-text-primary"
+            className="rounded-full border border-bg-tertiary/60 bg-bg-primary/80 text-text-primary px-3 py-1 artistic:border-4 artistic:border-text-primary artistic:bg-bg-primary artistic:text-text-primary"
             options={timeFilterOptions}
             bind:selectedValue={selectedTimeFilter}
             position="bottom"
@@ -133,14 +133,8 @@
         >
             <defs>
                 <linearGradient id="bar-gradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                        offset="0%"
-                        stop-color="var(--color-bg-secondary)"
-                    />
-                    <stop
-                        offset="100%"
-                        stop-color="var(--color-bg-primary)"
-                    />
+                    <stop offset="0%" stop-color="var(--color-bg-secondary)" />
+                    <stop offset="100%" stop-color="var(--color-bg-primary)" />
                 </linearGradient>
             </defs>
 
@@ -226,7 +220,7 @@
     </div>
 
     <div
-        class="mt-4 flex items-center justify-between border-t border-bg-tertiary/60 pt-4 artistic:border-text-primary/40"
+        class="mt-4 flex items-center justify-between border-t border-bg-tertiary/60 pt-4 artistic:border-t-4 artistic:border-text-primary"
     >
         <div class="text-center sm:ml-16">
             <div class="text-sm text-text-secondary/70">Total Time</div>

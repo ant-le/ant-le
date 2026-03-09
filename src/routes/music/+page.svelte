@@ -21,35 +21,44 @@
     />
 </svelte:head>
 
-<div class="grid grid-cols-3 h-full">
-    <div class="col-span-2 border-r p-8">
+<div class="flex flex-col artistic:border-x-4 artistic:border-text-primary">
+    <!-- Intro -->
+    <div
+        class="px-8 py-12 md:px-16 md:py-16 lg:px-24 lg:py-20 bg-bg-secondary text-center"
+    >
         <TextCard
             text="To me, music is one of the greatest joys and inspirations in life. I am an amateur DJ and am currently trying to get into music production with synthesisers, a mic and some flutes. I want to share some music and artists I love and (hopefully) some of my own makings soon!"
-            classProps="text-center"
+            classProps="max-w-3xl mx-auto text-center"
         />
-
-        <Divider />
-        <section class="text-center space-y-6 lg:col-span-2">
-            <h2>What I am listen to at the moment:</h2>
-            <div class="md:p-6">
-                <CardRasterHorizontal posts={musicPosts} {onReadMore} />
-            </div>
-        </section>
-        <Divider />
     </div>
 
-    <section class="text-center p-8 col-span-1">
+    <Divider />
+
+    <!-- Listening section -->
+    <section
+        class="px-8 py-12 md:px-16 md:py-16 lg:px-24 lg:py-20 text-center space-y-10"
+    >
+        <h2>What I am listen to at the moment:</h2>
+        <CardRasterHorizontal posts={musicPosts} {onReadMore} />
+    </section>
+
+    <Divider />
+
+    <!-- Coming Soon -->
+    <section class="px-8 py-12 md:px-16 md:py-16 lg:px-24 lg:py-20 text-center">
         <h2>Coming Soon:</h2>
-        <div class="flex mt-8 flex-col gap-8">
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-10 max-w-4xl mx-auto"
+        >
             <TextCard
                 text="Techno and downtempo mixes with emotional touch and energy."
                 title="DJ Sets"
-                classProps="border border-bg-tertiary/60 bg-bg-secondary/80 p-6 shadow-lg transition-shadow duration-300 hover:shadow-xl backdrop-blur-sm artistic:border-text-primary artistic:bg-accent-yellow/45 artistic:shadow-[0_12px_32px_rgba(0,0,0,0.32)]"
+                classProps="border border-bg-tertiary/60 bg-bg-secondary/80 p-8 md:p-10 shadow-lg transition-shadow duration-300 hover:shadow-xl backdrop-blur-sm artistic:border-4 artistic:border-text-primary artistic:bg-accent-yellow artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
             />
             <TextCard
                 text="Compositions and experimental sound design projects."
                 title="Music Production"
-                classProps="border border-bg-tertiary/60 bg-bg-secondary/80 p-6 shadow-lg transition-shadow duration-300 hover:shadow-xl backdrop-blur-sm artistic:border-text-primary artistic:bg-accent-violet/45 artistic:shadow-[0_12px_32px_rgba(0,0,0,0.32)]"
+                classProps="border border-bg-tertiary/60 bg-bg-secondary/80 p-8 md:p-10 shadow-lg transition-shadow duration-300 hover:shadow-xl backdrop-blur-sm artistic:border-4 artistic:border-text-primary artistic:bg-accent-violet artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
             />
         </div>
     </section>

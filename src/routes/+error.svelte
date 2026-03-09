@@ -17,7 +17,7 @@
         <div
             class="
                 inline-flex items-center justify-center w-30 h-30 rounded-full border border-bg-tertiary/60 bg-bg-secondary/70 transition-all duration-300 shadow-none mb-8 backdrop-blur-sm
-                artistic:bg-gradient-to-br artistic:from-accent-yellow artistic:to-accent-pink artistic:border-text-primary/60 artistic:animate-pulse artistic:shadow-[0_16px_38px_rgba(0,0,0,0.35)] artistic:mb-12
+                artistic:bg-accent-yellow artistic:border-4 artistic:border-text-primary artistic:animate-none artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)] artistic:mb-12
             "
         >
             <svg
@@ -53,12 +53,10 @@
             <div
                 class="
                     mb-8 rounded-2xl border border-bg-tertiary/60 bg-bg-secondary/70 p-4 text-left shadow-sm transition-colors duration-300
-                    artistic:mb-12 artistic:p-6 artistic:bg-accent-green/55 artistic:border-text-primary/50 artistic:shadow-[0_12px_32px_rgba(0,0,0,0.3)]
+                    artistic:mb-12 artistic:p-6 artistic:bg-accent-yellow artistic:border-4 artistic:border-text-primary artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]
                 "
             >
-                <h3>
-                    Error Details:
-                </h3>
+                <h3>Error Details:</h3>
                 <pre
                     class="
                         text-xs font-normal text-text-secondary/70 whitespace-pre-wrap
@@ -75,7 +73,7 @@
                 class="
                 inline-flex items-center gap-2 rounded-full border border-bg-tertiary/60 px-6 py-3 text-text-secondary transition-all duration-300
                 bg-bg-secondary/60 hover:bg-bg-tertiary/60 hover:text-text-primary
-                artistic:font-semibold artistic:bg-accent-orange/70 artistic:text-text-primary artistic:shadow-[0_10px_30px_rgba(0,0,0,0.28)] artistic:hover:scale-105 artistic:border-transparent
+                artistic:font-semibold artistic:bg-accent-pink artistic:text-text-light artistic:border-4 artistic:border-text-primary artistic:shadow-[6px_6px_0px_rgba(0,0,0,1)] artistic:hover:scale-105 artistic:hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]
                 "
             >
                 <svg

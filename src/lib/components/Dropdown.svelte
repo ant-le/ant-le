@@ -93,7 +93,7 @@
             class="absolute z-10 {positionClasses[
                 currentPosition
             ]} min-w-40 rounded-xl border border-bg-tertiary/60 bg-bg-secondary/95 text-text-primary shadow-2xl backdrop-blur-sm transition-colors duration-300
-            artistic:border-text-primary artistic:bg-accent-yellow artistic:text-text-light artistic:shadow-[0_10px_35px_rgba(0,0,0,0.35)]"
+            artistic:border-4 artistic:border-text-primary artistic:bg-accent-yellow artistic:text-text-light artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
             transition:fly={{
                 y: position === 'bottom' ? -10 : 10,
                 duration: 250,
@@ -111,7 +111,7 @@
                             }}
                             class="block w-full text-left px-4 py-2 text-sm font-normal tracking-wide text-text-secondary
                     hover:text-text-primary hover:bg-bg-tertiary/60 transition-all duration-200 artistic:text-text-light
-                    artistic:hover:bg-accent-pink/30 artistic:hover:text-text-primary first:rounded-t-lg last:rounded-b-lg"
+                    artistic:hover:bg-accent-pink artistic:hover:text-text-light first:rounded-t-lg last:rounded-b-lg"
                         >
                             {option.label}
                         </button>

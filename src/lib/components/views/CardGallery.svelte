@@ -47,15 +47,19 @@
 </script>
 
 <section class={className}>
-    <div class="max-w-6xl mx-auto {className}">
+    <div class="max-w-6xl mx-auto px-4 {className}">
         {#if title}
             <h2>
                 {title}
             </h2>
         {/if}
 
-        <div class="relative overflow-hidden">
-            <div class="flex overflow-x-auto pb-8 scrollbar-custom">
+        <div
+            class="relative overflow-hidden artistic:border-4 artistic:border-text-primary artistic:bg-bg-secondary artistic:p-4"
+        >
+            <div
+                class="flex overflow-x-auto pb-8 scrollbar-custom artistic:gap-0"
+            >
                 {#if posts && posts.length > 0}
                     <div class="flex flex-none mx-auto gap-4">
                         {#each posts as post, index}

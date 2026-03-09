@@ -29,7 +29,7 @@
         <div class="flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <span
-                    class="text-xs text-text-secondary/60 transition-transform duration-200 group-open:rotate-90 artistic:text-accent"
+                    class="text-xs text-text-secondary/60 transition-transform duration-200 group-open:rotate-90 artistic:text-accent-pink"
                     aria-hidden="true"
                 >
                     ▶

@@ -11,9 +11,7 @@
 <div class="flex flex-col items-center justify-center text-center px-4 py-8">
     {#if loading}
         <Loader width="48" height="48" />
-        <h3>
-            Loading...
-        </h3>
+        <h3>Loading...</h3>
     {:else}
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +21,7 @@
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="w-12 h-12 text-text-secondary mb-4 artistic:text-accent"
+            class="w-12 h-12 text-text-secondary mb-4 artistic:text-accent-yellow"
         >
             <path
                 d="M11 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-7l-3 3-3-3z"

@@ -40,9 +40,12 @@
     />
 </svelte:head>
 
-<div class="flex flex-col gap-12 pt-12 bg-accent-cyan/20 border-x">
+<div
+    class="flex flex-col gap-12 pt-12 bg-bg-primary border-x border-bg-tertiary/60 artistic:bg-bg-primary artistic:border-x-4 artistic:border-text-primary"
+>
     <div
-        class="bg-bg-secondary p-12 max-w-7xl mx-auto backdrop-blur-sm border border-text-secondary"
+        class="bg-bg-secondary p-12 max-w-7xl mx-auto backdrop-blur-sm border border-text-secondary
+        artistic:bg-accent-yellow artistic:border-4 artistic:border-text-primary artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
     >
         <blockquote
             class="text-xl font-semibold
@@ -54,7 +57,7 @@
             <h4>Thomas Kuhn</h4>
         </blockquote>
     </div>
-    <div class="px-8 pt-8 pb-18 backdrop-blur-sm">
+    <div class="px-8 pt-8 pb-18">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <TextCard
                 text="Over the past years, I got to know many academic subjects. I wouldn't call myself an expert on any of them - at least so far. Having a backgound in social (political) science and applied statistics, I explored parts of philosophy, math and computer science. I am now graduating in data science, but many of the other subjects still have touching points with what I do."
@@ -66,7 +69,8 @@
         <div class="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
             {#each Object.entries(randomPosts) as [title, post]}
                 <div
-                    class="flex h-full flex-col gap-4 mt-12 border-t border-text-secondary/30 p-4 transition-colors duration-300 hover:border-accent-yellow"
+                    class="flex h-full flex-col gap-4 mt-12 border-t border-text-secondary/30 p-4 transition-colors duration-300 hover:border-accent-yellow
+                    artistic:border-t-4 artistic:border-text-primary artistic:bg-accent-yellow artistic:p-6 artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)] artistic:hover:border-accent-yellow"
                 >
                     <h4>
                         From {title}
@@ -88,7 +92,9 @@
         </div>
     </div>
     <Divider />
-    <section class="p-8 mt-5">
+    <section
+        class="p-8 mt-5 artistic:bg-bg-secondary artistic:border-t-4 artistic:border-text-primary artistic:p-12"
+    >
         <h2>All Science-related posts</h2>
         <TextCard
             text="In the hope of writing many stories on science, here you can find all science posts with some selection tools:"

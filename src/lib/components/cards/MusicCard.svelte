@@ -11,12 +11,12 @@
 
 <article
     class="relative flex-shrink-0 w-65 md:w-[32rem] rounded-3xl border border-bg-tertiary/60 bg-bg-secondary/85 shadow-xl transition-all duration-300 backdrop-blur-sm flex flex-col md:flex-row
-    artistic:border-text-primary artistic:bg-accent-violet/70 artistic:shadow-[0_18px_45px_rgba(0,0,0,0.45)]"
+    artistic:border-4 artistic:border-text-primary artistic:bg-accent-violet artistic:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
 >
     {#if showPlayer}
         <div
             class="absolute inset-0 z-10 flex items-center justify-center rounded-3xl border border-bg-tertiary/60 bg-bg-secondary/90 p-4 backdrop-blur-md
-            artistic:border-text-primary/50 artistic:bg-accent-yellow/85"
+            artistic:border-4 artistic:border-text-primary artistic:bg-accent-yellow"
             transition:fade
         >
             <div class="w-full h-full p-2">
@@ -25,7 +25,7 @@
 
             <button
                 onclick={() => (showPlayer = false)}
-                class="absolute top-4 right-4 z-20 rounded-full bg-bg-tertiary/50 p-1 text-text-primary transition-colors duration-200 hover:bg-bg-tertiary/80 artistic:bg-text-primary/20 artistic:text-text-primary artistic:hover:bg-text-primary/40"
+                class="absolute top-4 right-4 z-20 rounded-full bg-bg-tertiary/50 p-1 text-text-primary transition-colors duration-200 hover:bg-bg-tertiary/80 artistic:bg-text-primary artistic:text-text-light artistic:hover:bg-accent-pink"
                 aria-label="Close"
             >
                 <svg
@@ -54,7 +54,7 @@
                 </div>
 
                 <div
-                    class="relative aspect-square w-3/5 rounded-full border-4 border-bg-tertiary/60 bg-bg-tertiary p-1 artistic:border-text-primary/50 artistic:bg-accent-pink/40"
+                    class="relative aspect-square w-3/5 rounded-full border-4 border-bg-tertiary/60 bg-bg-tertiary p-1 artistic:border-text-primary artistic:bg-accent-pink"
                 >
                     <img
                         class="w-full h-full object-cover rounded-full"
@@ -73,7 +73,7 @@
                             onkeydown={() => (showPlayer = true)}
                             transition:fade={{ duration: 300 }}
                             class="flex h-full w-full items-center justify-center rounded-full bg-transparent transition-colors
-                            group-hover:bg-bg-tertiary/70 artistic:group-hover:bg-text-primary/30"
+                            group-hover:bg-bg-tertiary/70 artistic:group-hover:bg-text-primary/60"
                         >
                             <svg
                                 width="40"
@@ -101,7 +101,7 @@
             <p class="text-sm text-text-secondary mt-1">{post.artist}</p>
         </div>
         <div
-            class="mt-4 flex items-center justify-between border-t border-bg-tertiary/60 pt-4 artistic:border-text-primary/50"
+            class="mt-4 flex items-center justify-between border-t border-bg-tertiary/60 pt-4 artistic:border-t-4 artistic:border-text-primary"
         >
             <div class="flex items-center gap-2">
                 <div
@@ -120,8 +120,8 @@
             </div>
             <button
                 onclick={() => onReadMore(post)}
-                class="flex-shrink-0 text-sm font-semibold text-accent-violet transition-colors duration-200 hover:underline artistic:text-text-primary">
-
+                class="flex-shrink-0 text-sm font-semibold text-accent-violet transition-colors duration-200 hover:underline artistic:text-text-primary"
+            >
                 INFO
             </button>
         </div>

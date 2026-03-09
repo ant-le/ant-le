@@ -7,14 +7,14 @@
     <svg {width} {height} viewBox="0 0 64 48">
         <polyline
             points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"
-            class="fill-none stroke-text-secondary stroke-[3]"
+            class="fill-none stroke-text-secondary stroke-[3] artistic:stroke-text-primary artistic:stroke-[5]"
             stroke-linecap="round"
             stroke-linejoin="round"
         />
 
         <polyline
             points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24"
-            class="fill-none stroke-text-primary stroke-[3] animate-heartbeat"
+            class="fill-none stroke-text-primary stroke-[3] animate-heartbeat artistic:stroke-accent-pink artistic:stroke-[5]"
             stroke-linecap="round"
             stroke-linejoin="round"
             style="stroke-dasharray: 48, 144; stroke-dashoffset: 192;"

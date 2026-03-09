@@ -16,8 +16,8 @@
         /* Minimal theme (default) */
         text-3xl font-light text-text-primary mb-4 tracking-widest md:text-4xl
         
-        /* Artistic theme overrides */
-        artistic:font-bold artistic:bg-gradient-to-r artistic:from-primary artistic:to-secondary artistic:bg-clip-text artistic:text-transparent artistic:tracking-normal
+        /* Artistic theme overrides - BRUTALIST: solid color, no gradients */
+        artistic:font-bold artistic:text-text-primary artistic:tracking-normal artistic:underline artistic:decoration-accent-pink artistic:decoration-8 artistic:underline-offset-4
     "
     >
         {title}

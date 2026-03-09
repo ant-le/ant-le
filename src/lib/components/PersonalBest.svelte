@@ -8,15 +8,13 @@
 </script>
 
 <div
-    class="w-full border-y border-l p-6 shadow-lg transition-all duration-300 backdrop-blur-sm {className}
-    bg-accent-orange/65"
+    class="w-full h-full border-y border-l p-8 md:p-10 shadow-lg transition-all duration-300 backdrop-blur-sm {className}
+    bg-bg-secondary artistic:bg-accent-yellow artistic:border-4 artistic:border-text-primary"
 >
     <div
-        class="mb-2 border-b border-bg-tertiary/60 pb-4 artistic:border-text-primary/40"
+        class="mb-4 border-b border-bg-tertiary/60 pb-6 artistic:border-b-4 artistic:border-text-primary"
     >
-        <h5 class="text-text-primary">
-            Personal Bests
-        </h5>
+        <h5 class="text-text-primary">Personal Bests</h5>
         <p class="text-sm sm:text-base font-normal text-text-secondary">
             All time
         </p>
@@ -25,7 +23,7 @@
     <div>
         {#each pbs as pb}
             <div
-                class="flex items-center justify-between border-b border-dashed border-bg-tertiary/50 py-3 last:border-b-0 artistic:border-accent-violet"
+                class="flex items-center justify-between border-b border-dashed border-bg-tertiary/50 py-4 last:border-b-0 artistic:border-text-primary artistic:border-solid artistic:border-b-2"
             >
                 <div class="flex items-center gap-4">
                     <svg
