@@ -1,23 +1,42 @@
-# Hello <img target="blank" width="40px" src="images/wave.gif" />
+# sv
 
-I am a Data Science graduate student interested in:
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-- Bayesian Statistics
-- Causal Inference
-- Artificial Intelligence
+## Creating a project
 
-<p align="center">
-    <i>"Enjoy the little detours to the fullest.</i>
-    <br>
-    <i>Because that's where you'll find things more important than what you want!"</i>
-    <br>
-    <i>- Ging Freeces (HxH)</i>
-    <br>
-    <br>
-    <a href="mailto:lechuga.anton@gmail.com">
-        <img target="blank" alt="Anton Lechuga | Gmail" width="26px" src="images/gmail.svg" />
-    </a>
-    <a href="https://twitter.com/anton_lechuga">
-        <img target="blank" alt="Anton Lechuga | Twitter" width="24px" src="images/twitter.svg" />
-    </a>
-</p>
+If you're seeing this, you've probably already done this step. Congrats!
+
+```sh
+# create a new project
+npx sv create my-app
+```
+
+To recreate this project with the same configuration:
+
+```sh
+# recreate this project
+npx sv@0.15.4 create --template minimal --types ts --add prettier tailwindcss="plugins:typography,forms" paraglide="languageTags:en, de+demo:no" mcp="ide:opencode" --install npm website
+```
+
+## Developing
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```sh
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```sh
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

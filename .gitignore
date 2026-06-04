@@ -1,5 +1,11 @@
 test-results
 node_modules
+legacy
+
+# AI Stuff
+AGENTS.md
+.opencode
+opencode.json
 
 # Output
 .output

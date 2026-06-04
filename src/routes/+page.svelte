@@ -1,44 +1,112 @@
 <script lang="ts">
-    import { friendsData } from '$lib/types/friends'
-    import CardRasterHorizontal from '$lib/components/views/CardGallery.svelte'
-    import TextCard from '$lib/components/TextCard.svelte'
-    import profile from '$lib/assets/profile.webp'
-    let friends = $derived(friendsData)
+    import type { Pathname } from '$app/types'
+    import { resolve } from '$app/paths'
+    import HeroProfile from '$lib/components/home/HeroProfile.svelte'
+    import MusicSection from '$lib/components/home/MusicSection.svelte'
+    import QuoteBlock from '$lib/components/home/QuoteBlock.svelte'
+    import ReferencesSection from '$lib/components/home/ReferencesSection.svelte'
+    import type { Friend } from '$lib/components/home/ReferenceCard.svelte'
+    import RunningSection from '$lib/components/home/RunningSection.svelte'
+    import ScrollReveal from '$lib/components/home/ScrollReveal.svelte'
+    import SiteHeader from '$lib/components/home/SiteHeader.svelte'
+    import WorkStudySection from '$lib/components/home/WorkStudySection.svelte'
+    import { m } from '$lib/paraglide/messages.js'
+
+    const socialLinks = {
+        github: 'https://github.com/ant-le',
+        linkedin: 'https://www.linkedin.com/',
+    }
+
+    const sectionLinks = {
+        strava: 'https://www.strava.com/athletes/ant-le',
+        soundcloud: 'https://soundcloud.com/ant-le',
+    }
+
+    const profileImage = resolve('/images/profile.webp' as Pathname)
+
+    const runningPBs: readonly [string, string][] = [
+        ['5k', '18:12'],
+        ['10k', '39:58'],
+        ['Half', '1:26:57'],
+        ['Marathon', '3:05:57'],
+    ]
+
+    const musicList = $derived([
+        m.music_artist_pink_floyd(),
+        m.music_artist_king_gizzard(),
+        m.music_artist_belocca_nusha(),
+        m.music_artist_steven_wilson(),
+    ])
+
+    const friends: Friend[] = $derived([
+        {
+            name: 'Kristian Ristic',
+            role: m.friend_kristian_role(),
+            text: m.friend_kristian_text(),
+            image: resolve('/images/kristian.jpg' as Pathname),
+        },
+        {
+            name: 'Tilman Kerl',
+            role: m.friend_tilman_role(),
+            text: m.friend_tilman_text(),
+            image: resolve('/images/tilman.jpg' as Pathname),
+        },
+        {
+            name: 'Luca Salsetti',
+            role: m.friend_luca_role(),
+            text: m.friend_luca_text(),
+            image: resolve('/images/lama.jpg' as Pathname),
+        },
+        {
+            name: 'Anton Lechuga',
+            role: m.friend_anton_role(),
+            text: m.friend_anton_text(),
+            image: resolve('/images/anton.webp' as Pathname),
+        },
+    ])
 </script>
 
 <svelte:head>
-    <title>Anton Lechuga | Home</title>
-    <meta
-        name="description"
-        content="Personal website of Anton Lechuga - Scientist, Runner, and Music Enthusiast"
-    />
+    <title>{m.site_title()}</title>
+    <meta name="description" content={m.meta_description()} />
 </svelte:head>
 
-<div class="flex flex-col gap:12 sm:gap-16">
-    <div
-        class="flex flex-col lg:flex-row gap-2 sm:gap-8 items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-    >
-        <div class="flex-shrink-0">
-            <img
-                class="w-64 h-64 object-cover rounded-lg transition-all duration-300 filter grayscale hover:grayscale-0"
-                src={profile}
-                alt="That is me."
-            />
-        </div>
-        <div class="flex flex-col max-w-prose">
-            <TextCard
-                text="Hello, I am Anton and on this little website I want to share things I am interested in, aspects of life I care about and stuff I love doing!"
-            />
-            <TextCard
-                text="I have backgrounds in <b>political science</b> and <b>computer science</b>. My current academic interests are centered around causal inference and software development. This website is part of trying to see if/how LLMs can effectively be used to write code without extensive refactoring and debugging."
-            />
-            <TextCard
-                text="In my free-time, I spends a lot of time listening/mixing music and running longer distances. I want to use this website to keep track and share some progress I've been making..."
-            />
-        </div>
+<main class="min-h-screen w-full bg-paper-muted text-ink">
+    <div class="flex min-h-screen w-full flex-col bg-paper">
+        <SiteHeader {socialLinks} />
+
+        <section
+            class="grid flex-1 border-b-4 border-ink lg:grid-cols-[0.9fr_1.3fr]"
+        >
+            <ScrollReveal>
+                <HeroProfile image={profileImage} />
+            </ScrollReveal>
+            <ScrollReveal delay={90}>
+                <WorkStudySection />
+            </ScrollReveal>
+        </section>
+
+        <ScrollReveal>
+            <QuoteBlock />
+        </ScrollReveal>
+
+        <section class="grid border-b-4 border-ink lg:grid-cols-2" id="running">
+            <ScrollReveal>
+                <RunningSection
+                    personalBests={runningPBs}
+                    stravaHref={sectionLinks.strava}
+                />
+            </ScrollReveal>
+            <ScrollReveal delay={90}>
+                <MusicSection
+                    artists={musicList}
+                    soundcloudHref={sectionLinks.soundcloud}
+                />
+            </ScrollReveal>
+        </section>
+
+        <ScrollReveal>
+            <ReferencesSection {friends} />
+        </ScrollReveal>
     </div>
-    <hr class="hidden mx-32 lg:inline border-neutral-200" />
-    <section class="p-4 md:px-32 lg:p-4">
-        <CardRasterHorizontal posts={friends} />
-    </section>
-</div>
+</main>
