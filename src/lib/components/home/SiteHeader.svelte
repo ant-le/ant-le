@@ -1,9 +1,8 @@
 <script lang="ts">
     import type { Pathname } from '$app/types'
     import { resolve } from '$app/paths'
-    import { page } from '$app/state'
     import { m } from '$lib/paraglide/messages.js'
-    import { setLocale } from '$lib/paraglide/runtime.js'
+    import { getLocale, setLocale } from '$lib/paraglide/runtime.js'
     import NavIconLink from './NavIconLink.svelte'
 
     type SocialLinks = {
@@ -12,23 +11,19 @@
     }
 
     let { socialLinks }: { socialLinks: SocialLinks } = $props()
+    let currentLocale = $state(getLocale())
 
     const homeHref = resolve('/' as Pathname)
-    const germanHref = resolve('/de' as Pathname)
-    const isGermanPage = $derived(
-        page.url.pathname === germanHref ||
-            page.url.pathname.startsWith(`${germanHref}/`)
-    )
-    const languageHref = $derived(isGermanPage ? homeHref : germanHref)
-    const nextLocale = $derived(isGermanPage ? 'en' : 'de')
+    const nextLocale = $derived(currentLocale === 'de' ? 'en' : 'de')
 
     function switchLanguage(event: MouseEvent) {
         event.preventDefault()
         document.documentElement.classList.add('is-language-changing')
+        currentLocale = nextLocale
         setLocale(nextLocale, { reload: false })
 
         window.setTimeout(() => {
-            window.location.href = languageHref
+            window.location.href = homeHref
         }, 180)
     }
 </script>
@@ -71,7 +66,7 @@
         </NavIconLink>
         <a
             class="nav-text nav-language"
-            href={languageHref}
+            href={homeHref}
             onclick={switchLanguage}
         >
             {m.language_label()}
