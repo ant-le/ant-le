@@ -1,8 +1,9 @@
 <script lang="ts">
     import type { Pathname } from '$app/types'
-    import { resolve } from '$app/paths'
+    import { base, resolve } from '$app/paths'
+    import { page } from '$app/state'
     import { m } from '$lib/paraglide/messages.js'
-    import { getLocale, setLocale } from '$lib/paraglide/runtime.js'
+    import { getLocale, localizeHref } from '$lib/paraglide/runtime.js'
     import NavIconLink from './NavIconLink.svelte'
 
     type SocialLinks = {
@@ -11,21 +12,21 @@
     }
 
     let { socialLinks }: { socialLinks: SocialLinks } = $props()
-    let currentLocale = $state(getLocale())
 
     const homeHref = resolve('/' as Pathname)
-    const nextLocale = $derived(currentLocale === 'de' ? 'en' : 'de')
-
-    function switchLanguage(event: MouseEvent) {
-        event.preventDefault()
-        document.documentElement.classList.add('is-language-changing')
-        currentLocale = nextLocale
-        setLocale(nextLocale, { reload: false })
-
-        window.setTimeout(() => {
-            window.location.href = homeHref
-        }, 180)
-    }
+    const appPathname = $derived(
+        page.url.pathname === base
+            ? '/'
+            : page.url.pathname.startsWith(`${base}/`)
+              ? page.url.pathname.slice(base.length)
+              : page.url.pathname
+    )
+    const nextLocale = $derived(getLocale() === 'de' ? 'en' : 'de')
+    const languageHref = $derived(
+        resolve(
+            localizeHref(appPathname || '/', { locale: nextLocale }) as Pathname
+        )
+    )
 </script>
 
 <header
@@ -66,8 +67,8 @@
         </NavIconLink>
         <a
             class="nav-text nav-language"
-            href={homeHref}
-            onclick={switchLanguage}
+            href={languageHref}
+            data-sveltekit-reload
         >
             {m.language_label()}
         </a>
