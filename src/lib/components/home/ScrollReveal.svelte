@@ -20,10 +20,8 @@
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (!entry?.isIntersecting) return
-
-                element.classList.add('is-visible')
-                observer.disconnect()
+                if (!entry) return
+                element.classList.toggle('is-visible', entry.isIntersecting)
             },
             { rootMargin: '0px 0px -12% 0px', threshold: 0.15 }
         )

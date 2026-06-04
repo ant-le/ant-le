@@ -1,0 +1,28 @@
+\documentclass[letterpaper]{deedy-resume}
+\usepackage{graphicx}
+\usepackage{tikz}
+\begin{document}
+
+\noindent
+\begin{minipage}[c]{0.2\textwidth}
+\begin{tikzpicture}
+    \clip (0,0) circle (1.5cm);
+    \node at (0,0) {\includegraphics[width=3cm]{anton.png}};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}[c]{0.75\textwidth}
+\raggedright
+{\fontsize{40pt}{60pt}
+\fontspec[Path = fonts/lato/]{Lato-Hai}\selectfont Anton Luis
+\fontspec[Path = fonts/lato/]{Lato-Lig}\selectfont Lechuga} \\[5pt]
+\color{headings}
+\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{14pt}\selectfont 
+\href{mailto:anton.luis.lechuga@proton.me}{anton.luis.lechuga@proton.me} | +49 160 98774825 \\
+Neustiftgasse 107/12a, 1070 Wien, Österreich
+\end{minipage}
+
+\vspace{10pt}
+\noindent\makebox[\linewidth]{\color{headings}\rule{\paperwidth}{0.4pt}}
+\vspace{10pt}
+
+\end{document}
