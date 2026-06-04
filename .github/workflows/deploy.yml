@@ -49,6 +49,9 @@ jobs:
             - name: Build the SvelteKit app
               run: npm run build
 
+            - name: Add GitHub Pages SPA fallback
+              run: cp build/index.html build/404.html
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
