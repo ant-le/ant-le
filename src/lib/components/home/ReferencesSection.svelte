@@ -8,7 +8,7 @@
 
 <section class="p-5 md:p-10">
     <h2
-        class="w-fit border-4 border-ink bg-brand-purple px-5 py-3 text-3xl font-black uppercase text-white shadow-brutal-lg max-lg:mx-auto max-lg:text-center md:text-5xl"
+        class="section-title bg-brand-purple text-white max-lg:mx-auto max-lg:text-center"
     >
         {m.friends_title()}
     </h2>

@@ -146,7 +146,7 @@ a {
         font-size: clamp(2.25rem, 7vw, 5rem);
         font-weight: 900;
         line-height: 0.9;
-        letter-spacing: -0.08em;
+        letter-spacing: -0.02em;
         text-transform: uppercase;
     }
 
