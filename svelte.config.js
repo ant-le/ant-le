@@ -12,7 +12,7 @@ const config = {
             base: process.env.BASE_PATH || '',
         },
         adapter: adapter({
-            fallback: '200.html',
+            fallback: 'index.html',
         }),
     },
 }
