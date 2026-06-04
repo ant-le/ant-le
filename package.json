@@ -4,12 +4,12 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "dev": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url cookie baseLocale --emit-ts-declarations --silent && vite dev",
-        "build": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url cookie baseLocale --emit-ts-declarations --silent && vite build",
+        "dev": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --emit-ts-declarations --silent && vite dev",
+        "build": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --emit-ts-declarations --silent && vite build",
         "preview": "export NODE_OPTIONS=--disable-warning=DEP0205; vite preview",
         "prepare": "export NODE_OPTIONS=--disable-warning=DEP0205; svelte-kit sync || echo ''",
-        "check": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url cookie baseLocale --emit-ts-declarations --silent && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-        "check:watch": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url cookie baseLocale --emit-ts-declarations --silent && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+        "check": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --emit-ts-declarations --silent && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "export NODE_OPTIONS=--disable-warning=DEP0205; paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --emit-ts-declarations --silent && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "lint": "prettier --check .",
         "format": "prettier --write ."
     },
