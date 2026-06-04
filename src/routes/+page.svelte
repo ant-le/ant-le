@@ -31,12 +31,11 @@
         ['Marathon', '3:05:57'],
     ]
 
-    const musicList = $derived([
-        m.music_artist_pink_floyd(),
-        m.music_artist_king_gizzard(),
-        m.music_artist_belocca_nusha(),
-        m.music_artist_steven_wilson(),
-    ])
+    const albums: readonly [string, string][] = [
+        ['Hand. Cannot. Erase.', 'Steven Wilson'],
+        ['Rush', 'Rush'],
+        ['PetroDragonic Apocalypse', 'King Gizzard & the Lizard Wizard'],
+    ]
 
     const friends: Friend[] = $derived([
         {
@@ -99,7 +98,7 @@
             </ScrollReveal>
             <ScrollReveal delay={90}>
                 <MusicSection
-                    artists={musicList}
+                    {albums}
                     soundcloudHref={sectionLinks.soundcloud}
                 />
             </ScrollReveal>

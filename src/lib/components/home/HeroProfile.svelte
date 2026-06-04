@@ -5,13 +5,13 @@
 </script>
 
 <div
-    class="grid min-h-[70vh] place-items-stretch border-b-4 border-ink bg-brand-teal p-4 lg:border-b-0 lg:border-r-4"
+    class="grid h-full min-h-[40vh] place-items-center border-b-4 border-ink bg-brand-teal p-4 lg:border-b-0 lg:border-r-4"
 >
     <div
-        class="relative min-h-96 rotate-[-1deg] overflow-hidden border-4 border-ink bg-brand-red shadow-brutal-lg"
+        class="relative h-96 w-full max-w-md rotate-[-1deg] overflow-hidden border-4 border-ink bg-brand-red shadow-brutal-lg"
     >
         <img
-            class="h-full min-h-96 w-full object-cover grayscale contrast-125"
+            class="h-full w-full object-cover grayscale contrast-125"
             src={image}
             alt="Anton Lechuga"
         />

@@ -9,7 +9,7 @@
 </script>
 
 <article
-    class="border-b-4 border-ink bg-paper p-5 max-lg:text-center md:p-10 lg:border-b-0 lg:border-r-4"
+    class="h-full border-b-4 border-ink bg-paper p-5 max-lg:text-center md:p-10 lg:border-b-0 lg:border-r-4"
 >
     <div class="title-action-row">
         <h2 class="section-title bg-brand-red">{m.running_title()}</h2>
@@ -17,7 +17,7 @@
             class="action-link bg-brand-orange"
             href={stravaHref}
             target="_blank"
-            rel="noreferrer">{m.strava_label()}</a
+            rel="noreferrer">{m.follow_label()}</a
         >
     </div>
     <p class="mt-6 text-2xl font-bold leading-tight">

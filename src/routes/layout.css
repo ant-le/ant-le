@@ -60,10 +60,6 @@ a {
 }
 
 @layer components {
-    .display-font {
-        font-family: var(--font-display);
-    }
-
     .nav-icon,
     .nav-text {
         display: grid;
@@ -93,10 +89,6 @@ a {
     .nav-linkedin:hover {
         background: var(--color-brand-teal);
         color: white;
-    }
-
-    .nav-strava:hover {
-        background: var(--color-brand-orange);
     }
 
     .nav-language:hover {

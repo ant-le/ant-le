@@ -21,14 +21,7 @@
         </div>
     </div>
     <div class="grid gap-4 text-xl font-semibold leading-tight md:grid-cols-3">
-        <p class="brutal-card">
-            {m.study_intro()}
-            <strong>{m.political_science()}</strong>
-            {m.study_connector()}
-            <strong>{m.computer_science()}</strong>. {m.study_focus()}
-            <strong>{m.causal_inference()}</strong>
-            {m.study_end()}
-        </p>
+        <p class="brutal-card">{m.study_text()}</p>
         <p class="brutal-card">{m.work_text()}</p>
         <p class="brutal-card">{m.life_text()}</p>
     </div>
