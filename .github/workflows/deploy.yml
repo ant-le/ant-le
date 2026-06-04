@@ -35,11 +35,6 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Stage CV for website links
-              run: |
-                  mkdir -p static/cv
-                  cp cv/main.pdf static/cv/main.pdf
-
             - name: Configure GitHub Pages
               uses: actions/configure-pages@v5
 
