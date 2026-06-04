@@ -14,12 +14,12 @@
 
     const socialLinks = {
         github: 'https://github.com/ant-le',
-        linkedin: 'https://www.linkedin.com/',
+        linkedin: 'https://at.linkedin.com/in/anton-luis-lechuga-b9a4572bb',
     }
 
     const sectionLinks = {
-        strava: 'https://www.strava.com/athletes/ant-le',
-        soundcloud: 'https://soundcloud.com/ant-le',
+        strava: 'https://www.strava.com/athletes/118526108',
+        soundcloud: 'https://soundcloud.com/antonlechuga',
     }
 
     const profileImage = resolve('/images/profile.webp' as Pathname)
