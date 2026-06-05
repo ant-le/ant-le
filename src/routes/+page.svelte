@@ -74,8 +74,8 @@
     <meta name="description" content={m.meta_description()} />
 </svelte:head>
 
-<main class="min-h-screen w-full bg-paper-muted text-ink">
-    <div class="flex min-h-screen w-full flex-col bg-paper">
+<main class="bg-paper-muted text-ink min-h-screen w-full">
+    <div class="bg-paper flex min-h-screen w-full flex-col">
         <SiteHeader {socialLinks} />
 
         {#key localeStore.current}
@@ -84,7 +84,7 @@
                 transition:fly={languageTransition}
             >
                 <section
-                    class="grid flex-1 border-b-4 border-ink lg:grid-cols-[0.9fr_1.3fr]"
+                    class="border-ink grid flex-1 border-b-4 lg:grid-cols-[0.9fr_1.3fr]"
                 >
                     <ScrollReveal>
                         <HeroProfile image={profileImage} />
@@ -99,7 +99,7 @@
                 </ScrollReveal>
 
                 <section
-                    class="grid border-b-4 border-ink lg:grid-cols-2"
+                    class="border-ink grid border-b-4 lg:grid-cols-2"
                     id="running"
                 >
                     <ScrollReveal>

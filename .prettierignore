@@ -1,2 +1,7 @@
 dist/
+build/
+.svelte-kit/
+legacy/
+src/lib/paraglide/
+project.inlang/.meta.json
 src/lib/types/running.ts

@@ -1,9 +1,11 @@
 <script lang="ts">
+    import type { Pathname } from '$app/types'
     import { resolve } from '$app/paths'
     import { m } from '$lib/paraglide/messages.js'
     import { localeStore, setClientLocale } from '$lib/locale.svelte'
     import NavIconLink from './NavIconLink.svelte'
     import { fly } from 'svelte/transition'
+    import { onMount } from 'svelte'
 
     type SocialLinks = {
         github: string
@@ -13,8 +15,46 @@
     let { socialLinks }: { socialLinks: SocialLinks } = $props()
 
     const homeHref = resolve('/')
+    const blogHref = resolve('/blog' as Pathname)
     const nextLocale = $derived(localeStore.current === 'de' ? 'en' : 'de')
     const labelTransition = { duration: 140, y: 6 }
+    const expandedHeaderHeight = '6.75rem'
+    const compactHeaderHeight = '4.5rem'
+
+    let isScrolled = $state(false)
+
+    function syncHeaderHeight() {
+        const scrollRegions = document.querySelectorAll<HTMLElement>(
+            '[data-header-scroll-region]'
+        )
+
+        isScrolled =
+            window.scrollY > 24 ||
+            Array.from(scrollRegions).some((region) => region.scrollTop > 24)
+
+        document.documentElement.style.setProperty(
+            '--site-header-height',
+            isScrolled ? compactHeaderHeight : expandedHeaderHeight
+        )
+    }
+
+    onMount(() => {
+        syncHeaderHeight()
+        window.addEventListener('scroll', syncHeaderHeight, {
+            capture: true,
+            passive: true,
+        })
+
+        return () => {
+            document.documentElement.style.setProperty(
+                '--site-header-height',
+                expandedHeaderHeight
+            )
+            window.removeEventListener('scroll', syncHeaderHeight, {
+                capture: true,
+            })
+        }
+    })
 
     function switchLanguage(event: MouseEvent) {
         event.preventDefault()
@@ -23,21 +63,41 @@
 </script>
 
 <header
-    class="grid grid-cols-[minmax(0,1fr)_auto] items-stretch border-b-4 border-ink"
+    class="border-ink bg-brand-orange sticky top-0 z-50 grid h-[var(--site-header-height)] grid-cols-[minmax(0,1fr)_auto_auto_auto] items-stretch overflow-hidden border-b-4 transition-[height] duration-[160ms]"
 >
     <a
         href={homeHref}
-        class="block bg-brand-orange px-5 py-4 font-display text-7xl font-black uppercase leading-none tracking-tight"
+        class={[
+            'bg-brand-orange font-display flex items-center px-3 leading-none font-black tracking-tight uppercase transition-[padding,font-size] duration-[160ms] sm:px-5',
+            isScrolled
+                ? 'py-2 text-[clamp(1.25rem,5vw,1.8rem)] sm:text-[clamp(1.7rem,5vw,2.5rem)] md:text-4xl lg:text-5xl'
+                : 'py-3 text-[clamp(1.35rem,5.8vw,2.15rem)] sm:py-4 sm:text-[clamp(2rem,6vw,3.25rem)] md:text-6xl lg:text-7xl',
+        ]}
     >
         {m.site_title()}
     </a>
 
     <nav
-        class="flex items-stretch justify-end border-l-4 border-ink"
+        class="border-ink bg-brand-orange flex items-stretch border-l-4"
+        aria-label="Routes"
+    >
+        <a
+            class="border-ink bg-paper hover:bg-paper grid h-full min-h-[3.25rem] place-items-center border-r-4 px-4 py-[0.65rem] text-[0.95rem] font-black tracking-[-0.04em] no-underline shadow-[inset_0_0_0_0_var(--color-ink)] transition-[transform,color,background] duration-[120ms] hover:shadow-[inset_0_-0.45rem_0_var(--color-ink)] max-lg:min-h-[3rem] max-lg:px-[0.8rem] max-lg:py-[0.55rem] max-lg:text-[0.85rem] max-md:min-h-[2.7rem] max-md:px-2 max-md:py-[0.45rem] max-md:text-[0.72rem]"
+            href={blogHref}>BLOG</a
+        >
+    </nav>
+
+    <div
+        class="bg-brand-orange px-3 max-lg:px-2 max-md:px-1"
+        aria-hidden="true"
+    ></div>
+
+    <nav
+        class="border-ink flex items-stretch justify-end border-l-4"
         aria-label="Social links"
     >
         <NavIconLink
-            class="nav-github"
+            class="hover:bg-brand-red"
             href={socialLinks.github}
             label="GitHub"
         >
@@ -48,7 +108,7 @@
             </svg>
         </NavIconLink>
         <NavIconLink
-            class="nav-linkedin"
+            class="hover:bg-brand-teal hover:text-white"
             href={socialLinks.linkedin}
             label="LinkedIn"
         >
@@ -59,7 +119,7 @@
             </svg>
         </NavIconLink>
         <a
-            class="nav-text nav-language"
+            class="border-ink bg-paper hover:bg-brand-green grid h-full min-h-[3.25rem] min-w-[3.25rem] place-items-center border-r-4 p-[0.65rem] text-[0.95rem] font-black tracking-[-0.04em] no-underline transition-[transform,color,background] duration-[120ms] hover:transform-none max-lg:min-w-[3rem] max-lg:p-[0.55rem] max-lg:text-[0.85rem] max-md:min-w-[2.7rem] max-md:p-[0.45rem] max-md:text-[0.72rem]"
             href={homeHref}
             onclick={switchLanguage}
         >

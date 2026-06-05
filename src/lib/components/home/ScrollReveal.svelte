@@ -12,16 +12,18 @@
         delay?: number
     } = $props()
 
+    let isVisible = $state(false)
+
     const reveal: Attachment = (element) => {
         if (!('IntersectionObserver' in window)) {
-            element.classList.add('is-visible')
+            isVisible = true
             return
         }
 
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (!entry) return
-                element.classList.toggle('is-visible', entry.isIntersecting)
+                isVisible = entry.isIntersecting
             },
             { rootMargin: '0px 0px -12% 0px', threshold: 0.15 }
         )
@@ -33,7 +35,13 @@
 </script>
 
 <div
-    class={['scroll-reveal', className]}
+    class={[
+        'transition-[opacity,transform] duration-[420ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:translate-y-0 motion-reduce:scale-100 motion-reduce:opacity-100 motion-reduce:transition-none',
+        isVisible
+            ? 'translate-y-0 scale-100 opacity-100'
+            : 'translate-y-8 scale-[0.97] opacity-0',
+        className,
+    ]}
     style:transition-delay={`${delay}ms`}
     {@attach reveal}
 >
