@@ -10,7 +10,9 @@
     import ScrollReveal from '$lib/components/home/ScrollReveal.svelte'
     import SiteHeader from '$lib/components/home/SiteHeader.svelte'
     import WorkStudySection from '$lib/components/home/WorkStudySection.svelte'
+    import { localeStore } from '$lib/locale.svelte'
     import { m } from '$lib/paraglide/messages.js'
+    import { fly } from 'svelte/transition'
 
     const socialLinks = {
         github: 'https://github.com/ant-le',
@@ -21,6 +23,8 @@
         strava: 'https://www.strava.com/athletes/118526108',
         soundcloud: 'https://soundcloud.com/antonlechuga',
     }
+
+    const languageTransition = { duration: 180, y: 12 }
 
     const profileImage = resolve('/images/profile.webp' as Pathname)
 
@@ -74,38 +78,48 @@
     <div class="flex min-h-screen w-full flex-col bg-paper">
         <SiteHeader {socialLinks} />
 
-        <section
-            class="grid flex-1 border-b-4 border-ink lg:grid-cols-[0.9fr_1.3fr]"
-        >
-            <ScrollReveal>
-                <HeroProfile image={profileImage} />
-            </ScrollReveal>
-            <ScrollReveal delay={90}>
-                <WorkStudySection />
-            </ScrollReveal>
-        </section>
+        {#key localeStore.current}
+            <div
+                class="flex flex-1 flex-col"
+                transition:fly={languageTransition}
+            >
+                <section
+                    class="grid flex-1 border-b-4 border-ink lg:grid-cols-[0.9fr_1.3fr]"
+                >
+                    <ScrollReveal>
+                        <HeroProfile image={profileImage} />
+                    </ScrollReveal>
+                    <ScrollReveal delay={90}>
+                        <WorkStudySection />
+                    </ScrollReveal>
+                </section>
 
-        <ScrollReveal>
-            <QuoteBlock />
-        </ScrollReveal>
+                <ScrollReveal>
+                    <QuoteBlock />
+                </ScrollReveal>
 
-        <section class="grid border-b-4 border-ink lg:grid-cols-2" id="running">
-            <ScrollReveal>
-                <RunningSection
-                    personalBests={runningPBs}
-                    stravaHref={sectionLinks.strava}
-                />
-            </ScrollReveal>
-            <ScrollReveal delay={90}>
-                <MusicSection
-                    {albums}
-                    soundcloudHref={sectionLinks.soundcloud}
-                />
-            </ScrollReveal>
-        </section>
+                <section
+                    class="grid border-b-4 border-ink lg:grid-cols-2"
+                    id="running"
+                >
+                    <ScrollReveal>
+                        <RunningSection
+                            personalBests={runningPBs}
+                            stravaHref={sectionLinks.strava}
+                        />
+                    </ScrollReveal>
+                    <ScrollReveal delay={90}>
+                        <MusicSection
+                            {albums}
+                            soundcloudHref={sectionLinks.soundcloud}
+                        />
+                    </ScrollReveal>
+                </section>
 
-        <ScrollReveal>
-            <ReferencesSection {friends} />
-        </ScrollReveal>
+                <ScrollReveal>
+                    <ReferencesSection {friends} />
+                </ScrollReveal>
+            </div>
+        {/key}
     </div>
 </main>

@@ -9,7 +9,7 @@
         <h2 class="section-title bg-brand-purple text-white">
             {m.work_study_title()}
         </h2>
-        <div class="flex flex-wrap gap-4 max-lg:justify-center">
+        <div class="flex flex-wrap justify-end gap-2 sm:gap-4">
             <a class="action-link bg-brand-orange" href={m.contact_href()}
                 >{m.contact_label()}</a
             >

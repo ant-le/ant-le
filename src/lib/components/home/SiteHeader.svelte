@@ -3,6 +3,7 @@
     import { m } from '$lib/paraglide/messages.js'
     import { localeStore, setClientLocale } from '$lib/locale.svelte'
     import NavIconLink from './NavIconLink.svelte'
+    import { fly } from 'svelte/transition'
 
     type SocialLinks = {
         github: string
@@ -13,6 +14,7 @@
 
     const homeHref = resolve('/')
     const nextLocale = $derived(localeStore.current === 'de' ? 'en' : 'de')
+    const labelTransition = { duration: 140, y: 6 }
 
     function switchLanguage(event: MouseEvent) {
         event.preventDefault()
@@ -61,7 +63,11 @@
             href={homeHref}
             onclick={switchLanguage}
         >
-            {m.language_label()}
+            {#key localeStore.current}
+                <span transition:fly={labelTransition}
+                    >{m.language_label()}</span
+                >
+            {/key}
         </a>
     </nav>
 </header>
