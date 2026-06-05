@@ -31,4 +31,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # sensitive data
+/cv/
 src/lib/types/running.ts
