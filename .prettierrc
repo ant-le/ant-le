@@ -4,5 +4,8 @@
     "semi": false,
     "singleQuote": true,
     "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
-    "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+    "overrides": [
+        { "files": "*.svelte", "options": { "parser": "svelte" } },
+        { "files": "*.{yml,yaml}", "options": { "tabWidth": 2 } }
+    ]
 }
