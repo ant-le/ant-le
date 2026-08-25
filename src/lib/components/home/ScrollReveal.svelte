@@ -12,18 +12,25 @@
         delay?: number
     } = $props()
 
-    let isVisible = $state(false)
+    let isVisible = $state(true)
 
     const reveal: Attachment = (element) => {
-        if (!('IntersectionObserver' in window)) {
-            isVisible = true
+        if (
+            !('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
             return
+        }
+
+        if (element.getBoundingClientRect().top > window.innerHeight * 0.88) {
+            isVisible = false
         }
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (!entry) return
-                isVisible = entry.isIntersecting
+                if (!entry?.isIntersecting) return
+                isVisible = true
+                observer.disconnect()
             },
             { rootMargin: '0px 0px -12% 0px', threshold: 0.15 }
         )

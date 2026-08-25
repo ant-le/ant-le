@@ -66,6 +66,12 @@
             text: m.friend_anton_text(),
             image: resolve('/images/anton.webp' as Pathname),
         },
+        {
+            name: 'Emil Daub',
+            role: m.friend_emil_role(),
+            text: m.friend_emil_text(),
+            image: resolve('/images/emil.jpg' as Pathname),
+        },
     ])
 </script>
 
@@ -79,10 +85,7 @@
         <SiteHeader {socialLinks} />
 
         {#key localeStore.current}
-            <div
-                class="flex flex-1 flex-col"
-                transition:fly={languageTransition}
-            >
+            <div class="flex flex-1 flex-col" in:fly={languageTransition}>
                 <section
                     class="border-ink grid flex-1 border-b-4 lg:grid-cols-[0.9fr_1.3fr]"
                 >

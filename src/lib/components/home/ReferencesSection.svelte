@@ -15,11 +15,9 @@
     </SectionTitle>
 
     <div class="mt-10 overflow-x-auto pb-4">
-        <div
-            class="grid auto-cols-[minmax(18rem,24rem)] grid-flow-col gap-4 xl:auto-cols-auto xl:grid-flow-row xl:grid-cols-4"
-        >
+        <div class="flex w-max gap-4">
             {#each friends as friend (friend.name)}
-                <ScrollReveal>
+                <ScrollReveal class="w-[min(82vw,24rem)] shrink-0">
                     <ReferenceCard {friend} />
                 </ScrollReveal>
             {/each}

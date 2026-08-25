@@ -9,6 +9,10 @@ export default defineConfig({
         paraglideVitePlugin({
             project: './project.inlang',
             outdir: './src/lib/paraglide',
+            outputStructure:
+                process.env.NODE_ENV === 'production'
+                    ? 'message-modules'
+                    : 'locale-modules',
         }),
         sveltekit(),
     ],

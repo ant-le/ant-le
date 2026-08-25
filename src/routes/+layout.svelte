@@ -9,7 +9,7 @@
 </script>
 
 {#key page.url.pathname}
-    <div transition:fly={routeTransition}>
+    <div in:fly={routeTransition}>
         {@render children()}
     </div>
 {/key}

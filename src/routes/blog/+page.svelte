@@ -1,20 +1,17 @@
 <script lang="ts">
     import type { Pathname } from '$app/types'
     import { resolve } from '$app/paths'
-    import type {
-        BlogCategoryKey,
-        BlogLocale,
-        LocalizedBlogPost,
-    } from '$lib/blog/posts'
-    import { localizePost, posts } from '$lib/blog/posts'
+    import type { BlogCategoryKey, BlogPost } from '$lib/blog/posts'
+    import { getPosts } from '$lib/blog/posts'
     import ScrollReveal from '$lib/components/home/ScrollReveal.svelte'
     import SiteHeader from '$lib/components/home/SiteHeader.svelte'
     import ActionLink from '$lib/components/ui/ActionLink.svelte'
     import BrutalCard from '$lib/components/ui/BrutalCard.svelte'
     import { localeStore } from '$lib/locale.svelte'
+    import { m } from '$lib/paraglide/messages.js'
     import { fly } from 'svelte/transition'
 
-    let selectedPost = $state<LocalizedBlogPost | null>(null)
+    let selectedPostSlug = $state<string | null>(null)
     let modalTop = $state(0)
     let searchQuery = $state('')
     let selectedCategory = $state<BlogCategoryKey | 'all'>('all')
@@ -29,48 +26,27 @@
 
     const pageTransition = { duration: 180, y: 12 }
     const blogControlClass =
-        'border-ink bg-white focus:bg-paper-muted focus:shadow-brutal-sm w-full border-4 px-3 py-[0.55rem] font-sans text-base font-black normal-case shadow-[5px_5px_0_var(--color-ink)] transition-[transform,box-shadow,background] duration-[120ms] focus:-translate-x-0.5 focus:-translate-y-0.5 focus:outline-none max-lg:border-2 max-lg:px-1 max-lg:py-[0.16rem] max-lg:text-[0.5rem] max-lg:leading-[1.1] max-lg:placeholder:text-[0.5rem] max-lg:shadow-[2px_2px_0_var(--color-ink)]'
-    const locale = $derived(localeStore.current as BlogLocale)
-    const localizedPosts = $derived(
-        posts.map((post) => localizePost(post, locale))
+        'border-ink bg-white focus:bg-paper-muted focus:shadow-brutal-sm w-full border-4 px-3 py-[0.55rem] font-sans text-base font-black normal-case shadow-[5px_5px_0_var(--color-ink)] transition-[transform,box-shadow,background] duration-[120ms] focus:-translate-x-0.5 focus:-translate-y-0.5 focus:outline-none max-lg:border-2 max-lg:px-2 max-lg:py-1 max-lg:leading-tight max-lg:placeholder:text-sm max-lg:shadow-[2px_2px_0_var(--color-ink)]'
+    const localizedPosts = $derived(getPosts())
+    const selectedPost = $derived(
+        localizedPosts.find((post) => post.slug === selectedPostSlug) ?? null
     )
-    const ui = $derived(
-        locale === 'de'
-            ? {
-                  title: 'Blog',
-                  description:
-                      'Notizen, Projekte, Laufprotokolle, Musikgedanken und Dinge, die es wert sind, aufgeschrieben zu werden.',
-                  controls: 'Blog-Steuerung',
-                  search: 'Suche',
-                  searchPlaceholder: 'Beiträge finden',
-                  filter: 'Filter',
-                  all: 'Alle',
-                  order: 'Sortieren',
-                  newest: 'Neueste zuerst',
-                  oldest: 'Älteste zuerst',
-                  readMore: 'Mehr lesen',
-                  noPosts: 'Keine Beiträge gefunden.',
-                  fullPage: 'Vollseite',
-                  close: 'Schließen',
-              }
-            : {
-                  title: 'Blog',
-                  description:
-                      'Notes, projects, running logs, music thoughts, and things worth writing down.',
-                  controls: 'Blog controls',
-                  search: 'Search',
-                  searchPlaceholder: 'Find posts',
-                  filter: 'Filter',
-                  all: 'All',
-                  order: 'Order',
-                  newest: 'Newest first',
-                  oldest: 'Oldest first',
-                  readMore: 'Read more',
-                  noPosts: 'No posts found.',
-                  fullPage: 'Full page',
-                  close: 'Close',
-              }
-    )
+    const ui = $derived({
+        title: m.blog_title(),
+        description: m.blog_description(),
+        controls: m.blog_controls(),
+        search: m.blog_search(),
+        searchPlaceholder: m.blog_search_placeholder(),
+        filter: m.blog_filter(),
+        all: m.blog_all(),
+        order: m.blog_order(),
+        newest: m.blog_newest(),
+        oldest: m.blog_oldest(),
+        readMore: m.blog_read_more(),
+        noPosts: m.blog_no_posts(),
+        fullPage: m.blog_full_page(),
+        close: m.blog_close(),
+    })
 
     const categories = $derived(
         Array.from(
@@ -109,14 +85,14 @@
             })
     )
 
-    function openPost(post: LocalizedBlogPost) {
+    function openPost(post: BlogPost) {
         lastFocusedElement = document.activeElement as HTMLElement | null
         modalTop = window.scrollY
-        selectedPost = post
+        selectedPostSlug = post.slug
     }
 
     function closePost() {
-        selectedPost = null
+        selectedPostSlug = null
     }
 
     function handleKeydown(event: KeyboardEvent) {
@@ -125,7 +101,7 @@
             return
         }
 
-        if (event.key !== 'Tab' || !selectedPost || !modalElement) {
+        if (event.key !== 'Tab' || !selectedPostSlug || !modalElement) {
             return
         }
 
@@ -154,7 +130,7 @@
     }
 
     $effect(() => {
-        if (!selectedPost) return
+        if (!selectedPostSlug) return
 
         const scrollY = modalTop
         const previousPosition = document.body.style.position
@@ -184,6 +160,9 @@
 <svelte:head>
     <title>{ui.title} | Anton Lechuga</title>
     <meta name="description" content={ui.description} />
+    <meta property="og:title" content={`${ui.title} | Anton Lechuga`} />
+    <meta property="og:description" content={ui.description} />
+    <meta property="og:type" content="website" />
 </svelte:head>
 
 <main class="bg-paper-muted text-ink min-h-screen w-full">
@@ -193,10 +172,10 @@
         {#key localeStore.current}
             <section
                 class="border-ink grid flex-1 border-b-4 lg:grid-cols-[1.2fr_0.8fr]"
-                transition:fly={pageTransition}
+                in:fly={pageTransition}
             >
                 <div
-                    class="border-ink bg-brand-teal sticky top-[var(--site-header-height)] z-40 order-1 grid h-24 grid-cols-[minmax(0,1fr)_minmax(8rem,10rem)] items-center gap-3 border-b-4 px-3 py-2 text-white sm:grid-cols-[minmax(0,1fr)_minmax(10rem,13rem)] md:h-28 md:grid-cols-[minmax(0,1fr)_minmax(12rem,16rem)] lg:order-2 lg:h-[calc(100vh-var(--site-header-height))] lg:grid-cols-1 lg:content-start lg:items-start lg:gap-0 lg:border-b-0 lg:border-l-4 lg:p-10"
+                    class="border-ink bg-brand-teal sticky top-[var(--site-header-height)] z-40 order-1 grid h-24 grid-cols-[minmax(0,1fr)_12rem] items-center gap-3 border-b-4 px-3 py-2 text-white sm:grid-cols-[minmax(0,1fr)_minmax(12rem,14rem)] md:h-28 md:grid-cols-[minmax(0,1fr)_minmax(12rem,16rem)] lg:order-2 lg:h-[calc(100vh-var(--site-header-height))] lg:grid-cols-1 lg:content-start lg:items-start lg:gap-0 lg:border-b-0 lg:border-l-4 lg:p-10"
                 >
                     <div class="min-w-0">
                         <h1
@@ -286,10 +265,13 @@
                                     <p
                                         class="text-xs font-black tracking-tight uppercase"
                                     >
-                                        {post.date} / {post.category}
+                                        <time datetime={post.date}
+                                            >{post.date}</time
+                                        >
+                                        / {post.category}
                                     </p>
                                     <h2
-                                        class="font-display mt-1 text-2xl leading-none font-black tracking-tight uppercase sm:text-3xl lg:mt-2 lg:text-5xl"
+                                        class="font-display mt-1 text-xl leading-none font-black tracking-tight uppercase sm:text-3xl lg:mt-2 lg:text-5xl"
                                     >
                                         {post.title}
                                     </h2>
@@ -327,7 +309,7 @@
         <button
             class="bg-ink/70 absolute inset-0"
             type="button"
-            aria-label="Close post"
+            aria-label={ui.close}
             onclick={closePost}
         ></button>
         <div
@@ -343,7 +325,10 @@
             >
                 <div>
                     <p class="text-sm font-black tracking-tight uppercase">
-                        {selectedPost.date} / {selectedPost.category}
+                        <time datetime={selectedPost.date}
+                            >{selectedPost.date}</time
+                        >
+                        / {selectedPost.category}
                     </p>
                     <h2
                         id="blog-modal-title"
