@@ -1,5 +1,7 @@
 <script lang="ts">
     import { m } from '$lib/paraglide/messages.js'
+    import ActionLink from '$lib/components/ui/ActionLink.svelte'
+    import SectionTitle from '$lib/components/ui/SectionTitle.svelte'
 
     let {
         personalBests,
@@ -9,25 +11,27 @@
 </script>
 
 <article
-    class="h-full border-b-4 border-ink bg-paper p-5 max-lg:text-center md:p-10 lg:border-b-0 lg:border-r-4"
+    class="border-ink bg-paper h-full border-b-4 p-5 max-lg:text-center md:p-10 lg:border-r-4 lg:border-b-0"
 >
-    <div class="title-action-row">
-        <h2 class="section-title bg-brand-red">{m.running_title()}</h2>
-        <a
-            class="action-link bg-brand-orange"
+    <div class="grid w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+        <SectionTitle class="bg-brand-red">{m.running_title()}</SectionTitle>
+        <ActionLink
+            class="bg-brand-orange"
             href={stravaHref}
             target="_blank"
-            rel="noreferrer">{m.follow_label()}</a
+            rel="noreferrer"
         >
+            {m.follow_label()}
+        </ActionLink>
     </div>
-    <p class="mt-6 text-2xl font-bold leading-tight">
+    <p class="mt-6 text-2xl leading-tight font-bold">
         {m.running_text()}
     </p>
     <div class="mt-8 grid grid-cols-2 gap-3 max-lg:mx-auto max-lg:max-w-xl">
-        {#each personalBests as pb}
-            <div class="border-4 border-ink bg-white p-4 shadow-brutal-sm">
+        {#each personalBests as pb (pb[0])}
+            <div class="border-ink shadow-brutal-sm border-4 bg-white p-4">
                 <p class="text-sm font-black uppercase">{pb[0]}</p>
-                <p class="text-3xl font-black text-brand-purple">{pb[1]}</p>
+                <p class="text-brand-purple text-3xl font-black">{pb[1]}</p>
             </div>
         {/each}
     </div>

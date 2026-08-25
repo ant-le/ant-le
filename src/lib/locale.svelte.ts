@@ -5,6 +5,7 @@
 
 import {
     baseLocale,
+    getTextDirection,
     locales,
     overwriteGetLocale,
 } from '$lib/paraglide/runtime.js'
@@ -34,6 +35,8 @@ overwriteGetLocale(() => localeStore.current)
 function persist(locale: Locale) {
     if (typeof document === 'undefined') return
     document.cookie = `${storageKey}=${locale}; path=/; max-age=34560000; samesite=lax`
+    document.documentElement.lang = locale
+    document.documentElement.dir = getTextDirection(locale)
 }
 
 export function setClientLocale(locale: Locale) {

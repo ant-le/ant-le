@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+@theme {
+    --color-ink: #111;
+    --color-paper: #f7f0dc;
+    --color-paper-muted: #f2ead3;
+    --color-brand-orange: #db831c;
+    --color-brand-red: #de4959;
+    --color-brand-teal: #11808c;
+    --color-brand-purple: #3a2170;
+    --color-brand-green: #78b84b;
+
+    --font-sans: MinimalFont, Arial, sans-serif;
+    --font-display: ArtisticFont, Arial Black, Arial, sans-serif;
+
+    --shadow-brutal-sm: 6px 6px 0 var(--color-ink);
+    --shadow-brutal-md: 8px 8px 0 var(--color-ink);
+    --shadow-brutal-lg: 12px 12px 0 var(--color-ink);
+}
+
+:root {
+    font-family: var(--font-sans);
+    background: var(--color-ink);
+    --site-header-height: 6.75rem;
+}
+
+@font-face {
+    font-family: 'ArtisticFont';
+    src: url('/fonts/artistic-font.ttf') format('truetype');
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MinimalFont';
+    src: url('/fonts/minimal-font.ttf') format('truetype');
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    animation: page-enter 180ms ease-out both;
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.is-language-changing body {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+}
+
+@media (max-width: 40rem) {
+    :root {
+        --site-header-height: 4.25rem;
+    }
+}
+
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.995);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
+        transition: none;
+    }
+}
