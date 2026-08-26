@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: ['main']
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -16,12 +17,12 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install Dependencies
@@ -29,6 +30,12 @@ jobs:
 
       - name: Validate
         run: npm run validate
+
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+      - name: Validate container build
+        run: docker build --check .
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

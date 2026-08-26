@@ -4,10 +4,12 @@ metadata:
   name: ant-le
   labels:
     pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: v1.36
     pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: v1.36
     pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: v1.36
 ---
-# checkov:skip=CKV_K8S_15:The image is built locally and imported directly into containerd by OpenTofu.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,6 +19,11 @@ metadata:
     app.kubernetes.io/name: ant-le
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: ant-le
@@ -26,6 +33,8 @@ spec:
         app.kubernetes.io/name: ant-le
     spec:
       automountServiceAccountToken: false
+      nodeSelector:
+        kubernetes.io/arch: amd64
       securityContext:
         runAsNonRoot: true
         runAsUser: 101
@@ -35,14 +44,14 @@ spec:
           type: RuntimeDefault
       containers:
         - name: website
-          image: ghcr.io/ant-le/ant-le:latest
+          image: ghcr.io/ant-le/ant-le@sha256:d3e6d2d11f0d75eea3264ea7b9cbb3d53f038754bbbce3237cb52d62035e4484
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 8080
           readinessProbe:
             httpGet:
-              path: /healthz
+              path: /
               port: http
             initialDelaySeconds: 2
             periodSeconds: 5
@@ -98,7 +107,6 @@ spec:
     - hosts:
         - antonlechuga.com
         - www.antonlechuga.com
-      secretName: ant-le-tls
   rules:
     - host: antonlechuga.com
       http:
@@ -148,6 +156,10 @@ spec:
         - namespaceSelector:
             matchLabels:
               kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: traefik-kube-system
+              app.kubernetes.io/name: traefik
       ports:
         - protocol: TCP
           port: 8080
