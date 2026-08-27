@@ -53,5 +53,16 @@
     "blog_post_why_body_2": "Generative KI macht es leicht, diesen Prozess zu überspringen. Sie kann eine plausible Antwort, eine saubere Zusammenfassung oder eine selbstbewusste Meinung liefern, bevor ich mich selbst länger mit der Frage beschäftigt habe. Das ist nützlich, verführt aber auch dazu, flüssige Sprache mit Verständnis zu verwechseln.",
     "blog_post_why_body_3": "Ich möchte KI nicht ablehnen. Ich arbeite mit ihr und bin weiterhin fasziniert davon, was sie ermöglichen kann. Gleichzeitig möchte ich Räume bewahren, in denen Effizienz nicht das einzige Ziel ist. Menschliches Urteilsvermögen, Neugier, Zweifel und gelebte Erfahrung zählen gerade deshalb, weil sie sich nicht auf die Vorhersage des nächsten überzeugenden Satzes reduzieren lassen.",
     "blog_post_why_body_4": "Dieser Blog ist einer dieser Räume. Er gibt mir einen Grund, langsamer zu werden, einer Idee über ihre erste Formulierung hinaus zu folgen und meine Annahmen sichtbar zu machen. Das Veröffentlichen bringt außerdem eine hilfreiche Verantwortung mit sich: Wenn ein Gedanke es wert ist, geteilt zu werden, sollte er klar genug für Widerspruch und konkret genug sein, um falsch liegen zu können.",
-    "blog_post_why_body_5": "Die Beiträge hier sollen deshalb mein Denken weiterentwickeln und nicht bloß eine Seite füllen. KI kann mir bei Recherche, Kritik oder Überarbeitung helfen, aber sie sollte mir nicht die Entscheidung abnehmen, was ich glaube und warum. In einer Zeit voller generierter Inhalte erscheint mir genau dieser Akt wertvoller denn je."
+    "blog_post_why_body_5": "Die Beiträge hier sollen deshalb mein Denken weiterentwickeln und nicht bloß eine Seite füllen. KI kann mir bei Recherche, Kritik oder Überarbeitung helfen, aber sie sollte mir nicht die Entscheidung abnehmen, was ich glaube und warum. In einer Zeit voller generierter Inhalte erscheint mir genau dieser Akt wertvoller denn je.",
+    "blog_comments_title": "Kommentare",
+    "blog_comments_description": "Diskutiere mit. Kommentare sind öffentlich und auf drei Beiträge pro Stunde begrenzt.",
+    "blog_comments_name": "Name",
+    "blog_comments_comment": "Kommentar",
+    "blog_comments_submit": "Kommentar senden",
+    "blog_comments_submitting": "Wird gesendet...",
+    "blog_comments_loading": "Kommentare werden geladen...",
+    "blog_comments_empty": "Noch keine Kommentare. Beginne die Diskussion.",
+    "blog_comments_unavailable": "Kommentare sind vorübergehend nicht verfügbar.",
+    "blog_comments_submitted": "Dein Kommentar ist veröffentlicht.",
+    "blog_comments_submit_error": "Der Kommentar konnte nicht veröffentlicht werden. Prüfe den Inhalt oder versuche es später erneut."
 }

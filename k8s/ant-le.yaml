@@ -37,9 +37,9 @@ spec:
         kubernetes.io/arch: amd64
       securityContext:
         runAsNonRoot: true
-        runAsUser: 101
-        runAsGroup: 101
-        fsGroup: 101
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
         seccompProfile:
           type: RuntimeDefault
       containers:
@@ -49,6 +49,41 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          env:
+            - name: ORIGIN
+              value: https://antonlechuga.com
+            - name: PROTOCOL_HEADER
+              value: x-forwarded-proto
+            - name: HOST_HEADER
+              value: x-forwarded-host
+            - name: ADDRESS_HEADER
+              value: x-forwarded-for
+            - name: XFF_DEPTH
+              value: '1'
+            - name: PGHOST
+              value: postgres.database.svc.cluster.local
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: comments-db
+                  key: database
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: comments-db
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: comments-db
+                  key: password
+            - name: COMMENTS_HASH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: comments-db
+                  key: hash-secret
           readinessProbe:
             httpGet:
               path: /
@@ -63,11 +98,11 @@ spec:
             periodSeconds: 10
           resources:
             requests:
-              cpu: 10m
-              memory: 16Mi
+              cpu: 25m
+              memory: 96Mi
             limits:
-              cpu: 100m
-              memory: 64Mi
+              cpu: 250m
+              memory: 256Mi
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -79,7 +114,7 @@ spec:
       volumes:
         - name: tmp
           emptyDir:
-            sizeLimit: 16Mi
+            sizeLimit: 32Mi
 ---
 apiVersion: v1
 kind: Service
@@ -163,3 +198,51 @@ spec:
       ports:
         - protocol: TCP
           port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns
+  namespace: ant-le
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: ant-le
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-postgres
+  namespace: ant-le
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: ant-le
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: database
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: postgres
+      ports:
+        - protocol: TCP
+          port: 5432

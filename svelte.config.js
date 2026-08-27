@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static'
+import adapter from '@sveltejs/adapter-node'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,9 +11,7 @@ const config = {
         paths: {
             base: process.env.BASE_PATH || '',
         },
-        adapter: adapter({
-            fallback: '404.html',
-        }),
+        adapter: adapter(),
     },
 }
 

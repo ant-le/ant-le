@@ -53,5 +53,16 @@
     "blog_post_why_body_2": "Generative AI makes it easy to skip that process. It can produce a plausible answer, a clean summary, or a confident opinion before I have spent time with the question myself. This is useful, but it also creates the temptation to mistake fluent language for understanding.",
     "blog_post_why_body_3": "I do not want to reject AI. I work with it and remain fascinated by what it can enable. But I want to preserve spaces in which efficiency is not the only goal. Human judgment, curiosity, doubt, and lived experience matter precisely because they cannot be reduced to predicting the next convincing sentence.",
     "blog_post_why_body_4": "This blog is one of those spaces. It gives me a reason to slow down, follow an idea beyond its first formulation, and make my assumptions visible. Publishing also adds useful responsibility: if a thought is worth sharing, it should be clear enough to question and specific enough to be wrong.",
-    "blog_post_why_body_5": "The posts here will therefore be written to develop my thinking, not merely to fill a page. AI may help me research, challenge, or edit, but it should not replace the act of deciding what I believe and why. In an age of abundant generated content, that act feels more valuable than ever."
+    "blog_post_why_body_5": "The posts here will therefore be written to develop my thinking, not merely to fill a page. AI may help me research, challenge, or edit, but it should not replace the act of deciding what I believe and why. In an age of abundant generated content, that act feels more valuable than ever.",
+    "blog_comments_title": "Comments",
+    "blog_comments_description": "Join the discussion. Comments are public and limited to three submissions per hour.",
+    "blog_comments_name": "Name",
+    "blog_comments_comment": "Comment",
+    "blog_comments_submit": "Post comment",
+    "blog_comments_submitting": "Posting...",
+    "blog_comments_loading": "Loading comments...",
+    "blog_comments_empty": "No comments yet. Start the conversation.",
+    "blog_comments_unavailable": "Comments are temporarily unavailable.",
+    "blog_comments_submitted": "Your comment is live.",
+    "blog_comments_submit_error": "The comment could not be posted. Check its content or try again later."
 }

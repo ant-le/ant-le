@@ -2,6 +2,7 @@
     import type { Pathname } from '$app/types'
     import { resolve } from '$app/paths'
     import { getPost } from '$lib/blog/posts'
+    import Comments from '$lib/components/blog/Comments.svelte'
     import SiteHeader from '$lib/components/home/SiteHeader.svelte'
     import ActionLink from '$lib/components/ui/ActionLink.svelte'
     import { localeStore } from '$lib/locale.svelte'
@@ -72,6 +73,8 @@
                             <p>{paragraph}</p>
                         {/each}
                     </div>
+
+                    <Comments slug={post.slug} />
                 </article>
             {/key}
         {/if}
