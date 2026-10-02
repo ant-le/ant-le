@@ -61,7 +61,7 @@ spec:
             - name: XFF_DEPTH
               value: '1'
             - name: PGHOST
-              value: postgres.database.svc.cluster.local
+              value: comments-pg-rw.database.svc.cluster.local
             - name: PGPORT
               value: '5432'
             - name: PGDATABASE
@@ -242,7 +242,7 @@ spec:
               kubernetes.io/metadata.name: database
           podSelector:
             matchLabels:
-              app.kubernetes.io/name: postgres
+              cnpg.io/cluster: comments-pg
       ports:
         - protocol: TCP
           port: 5432
