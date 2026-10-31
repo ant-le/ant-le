@@ -21,3 +21,21 @@ I am a Data Science graduate student interested in:
         <img target="blank" alt="Anton Lechuga | Twitter" width="24px" src="images/twitter.svg" />
     </a>
 </p>
+
+## Local validation
+
+Install the locked dependencies, then run the checks:
+
+```sh
+npm ci
+npm run validate
+```
+
+`npm run validate` runs the format check, ESLint, the Svelte type check and the unit tests.
+
+Browser tests are separate. `npm run test:e2e` builds the site and runs Playwright, which needs a browser installed first:
+
+```sh
+npx playwright install chromium
+npm run test:e2e
+```
