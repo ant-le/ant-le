@@ -3,6 +3,7 @@
     import { resolve } from '$app/paths'
     import type { BlogCategoryKey, BlogPost } from '$lib/blog/posts'
     import { getPosts } from '$lib/blog/posts'
+    import PostBody from '$lib/components/blog/PostBody.svelte'
     import ScrollReveal from '$lib/components/home/ScrollReveal.svelte'
     import SiteHeader from '$lib/components/home/SiteHeader.svelte'
     import ActionLink from '$lib/components/ui/ActionLink.svelte'
@@ -358,9 +359,7 @@
             />
 
             <div class="mt-6 grid gap-5 text-lg leading-relaxed font-bold">
-                {#each selectedPost.body as paragraph, index (`${selectedPost.slug}-${index}`)}
-                    <p>{paragraph}</p>
-                {/each}
+                <PostBody post={selectedPost} />
             </div>
         </div>
     </div>
