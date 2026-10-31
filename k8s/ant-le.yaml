@@ -44,7 +44,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: website
-          image: ghcr.io/ant-le/ant-le@sha256:752e21510d287d61cbe10808d771926e3914b2215c49f613db2e1fffae0aabe7
+          image: ghcr.io/ant-le/ant-le@sha256:46c48c287e577457fb35824336bb71bcd41e99dcec243585c01e40f2e18c87c4
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
