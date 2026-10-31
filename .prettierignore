@@ -6,3 +6,17 @@ src/lib/paraglide/
 project.inlang/.meta.json
 project.inlang/README.md
 src/lib/types/running.ts
+
+# Claude sandbox /dev/null placeholders for protected paths, not project files
+/.bash_profile
+/.bashrc
+/.claude
+/.gitconfig
+/.gitmodules
+/.idea
+/.mcp.json
+/.profile
+/.ripgreprc
+/.vscode
+/.zprofile
+/.zshrc
