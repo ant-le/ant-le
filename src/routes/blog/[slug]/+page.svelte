@@ -3,6 +3,7 @@
     import { resolve } from '$app/paths'
     import { getPost } from '$lib/blog/posts'
     import Comments from '$lib/components/blog/Comments.svelte'
+    import PostBody from '$lib/components/blog/PostBody.svelte'
     import SiteHeader from '$lib/components/home/SiteHeader.svelte'
     import ActionLink from '$lib/components/ui/ActionLink.svelte'
     import { localeStore } from '$lib/locale.svelte'
@@ -69,9 +70,7 @@
                     <div
                         class="mx-auto grid max-w-4xl gap-6 p-6 text-xl leading-relaxed font-bold lg:p-10"
                     >
-                        {#each post.body as paragraph, index (`${post.slug}-${index}`)}
-                            <p>{paragraph}</p>
-                        {/each}
+                        <PostBody {post} />
                     </div>
 
                     <Comments slug={post.slug} />
