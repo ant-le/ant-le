@@ -31,6 +31,8 @@ npm ci
 npm run validate
 ```
 
+If the default npm cache is not writable, pass one that is, for example `npm ci --cache "${TMPDIR:-/tmp}/npm-cache"`.
+
 `npm run validate` runs the format check, ESLint, the Svelte type check and the unit tests.
 
 Browser tests are separate. `npm run test:e2e` builds the site and runs Playwright, which needs a browser installed first:
